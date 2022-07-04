@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using MVC_2.Data;
 using MVC_2.Models;
 using Microsoft.AspNetCore.Cors;
+using DBMongo;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MVC_2.Controllers
 {
@@ -19,12 +20,12 @@ namespace MVC_2.Controllers
     [EnableCors]
     public class AccountController : ControllerBase
     {
-        private readonly bookContext _context;  
+        private readonly DBService _context;
 
-        public AccountController(bookContext context)
+        public AccountController(DBService context)
         {
             _context = context;
-           
+
         }
 
         // GET: api/Account/Token
@@ -32,11 +33,11 @@ namespace MVC_2.Controllers
         [HttpPost]
         public IActionResult Token(LoginModel model)
         {
-            var identity = GetIdentity(model.Email, model.Password);
+            var identity = GetIdentity(model.Login, model.Password);
             if (identity == null)
             {
-                Console.WriteLine("Invalid username or password. " + model.Email + "++" + model.Password);
-                return BadRequest(new { errorText = "Invalid username or password. "+ model.Email + " "+ model.Password });
+                Console.WriteLine("Invalid username or password. " + model.Login + "++" + model.Password);
+                return BadRequest(new { errorText = "Invalid username or password. " + model.Login + " " + model.Password });
             }
 
             var now = DateTime.UtcNow;
@@ -59,17 +60,47 @@ namespace MVC_2.Controllers
             return new JsonResult(response);
         }
 
-        private ClaimsIdentity GetIdentity(string email, string password)
+        [Route("Register")]
+        [HttpPost]
+        public IActionResult Register(LoginModel model)
         {
-            User person = _context.Users.FirstOrDefault(x => x.Email.Equals(email) && x.Password.Equals(password));
-             
+            var u = _context.SearchUser(model.Login);
+            if (u != null)
+            {
+                Console.WriteLine("Этот логин занят." + model.Login);
+                return BadRequest(new { errorText = model.Login + "  - этот логин занят. " });
+
+            }
+            _context.CreateUser(model.Login, model.Password);
+            return Token(model);
+        }
+
+        [Route("Delete")]
+        [HttpDelete]
+        [Authorize]
+        public IActionResult Delete()
+        {
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                _context.DeleteUser(u.Id);
+            }
+            return Ok();
+        }
+
+        private ClaimsIdentity GetIdentity(string login, string password)
+        {
+            var person = _context.SearchUser(login, password);
+
             if (person != null)
             {
-                string role = _context.Roles.FirstOrDefault(r => r.Id == person.RoleId).Name;
+                // string role = _context.Roles.FirstOrDefault(r => r.Id == person.RoleId).Name;
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.Email),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
+                //    new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
                 };
                 ClaimsIdentity claimsIdentity =
                 new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

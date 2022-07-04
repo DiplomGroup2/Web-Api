@@ -5,6 +5,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DBMongo\**" />
+    <Compile Remove="Migrations\**" />
+    <Content Remove="DBMongo\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="DBMongo\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="DBMongo\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AuthorsController.cs" />
+    <Compile Remove="Controllers\BooksApiController.cs" />
+    <Compile Remove="Controllers\BooksController.cs" />
+    <Compile Remove="Controllers\HomeController.cs" />
+    <Compile Remove="Models\Author.cs" />
+    <Compile Remove="Models\Book.cs" />
+    <Compile Remove="Models\BooksIndexViewModel.cs" />
+    <Compile Remove="Models\ErrorViewModel.cs" />
+    <Compile Remove="Models\InitialClass.cs" />
+    <Compile Remove="Models\PageViewModel.cs" />
+    <Compile Remove="Models\RegisterModel.cs" />
+    <Compile Remove="Models\Repository.cs" />
+    <Compile Remove="Models\Role.cs" />
+    <Compile Remove="Models\SortState.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
@@ -18,6 +46,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="DBMongo\DBMongo\DBMongo.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
