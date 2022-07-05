@@ -3,6 +3,7 @@
     "MVC_2": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "http://localhost:59723/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

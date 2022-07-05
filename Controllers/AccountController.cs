@@ -29,6 +29,11 @@ namespace MVC_2.Controllers
         }
 
         // GET: api/Account/Token
+        /// <summary>
+        /// авторизация пользователя и получение JWTтокена
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("Token")]
         [HttpPost]
         public IActionResult Token(LoginModel model)
@@ -60,6 +65,12 @@ namespace MVC_2.Controllers
             return new JsonResult(response);
         }
 
+        //api/Account/Register
+        /// <summary>
+        /// регистрация пользователя
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("Register")]
         [HttpPost]
         public IActionResult Register(LoginModel model)
@@ -74,7 +85,10 @@ namespace MVC_2.Controllers
             _context.CreateUser(model.Login, model.Password);
             return Token(model);
         }
-
+        /// <summary>
+        /// удаление текущего пользователя
+        /// </summary>
+        /// <returns></returns>
         [Route("Delete")]
         [HttpDelete]
         [Authorize]
