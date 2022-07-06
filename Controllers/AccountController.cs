@@ -25,7 +25,6 @@ namespace MVC_2.Controllers
         public AccountController(DBService context)
         {
             _context = context;
-
         }
 
         // GET: api/Account/Token

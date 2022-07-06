@@ -80,7 +80,7 @@ namespace DBMongo
             return r;
         }
 
-        public Record EditRecordUser(string recordId, string newRecord, string userId)
+        public Record EditRecordUser(string userId, string recordId, string newRecord )
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(recordId) }, { "UserId", userId } };
@@ -93,14 +93,14 @@ namespace DBMongo
             return r;
         }
 
-        public void DeleteRecordUser(string recordId, string userId)
+        public void DeleteRecordUser(string userId, string recordId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(recordId) }, { "UserId", userId } };
             col.DeleteOne(filter);
         }
 
-        public Record GetRecordUser(string recordId, string userId)
+        public Record GetRecordUser(string userId, string recordId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(recordId) }, { "UserId", userId } };
@@ -119,7 +119,7 @@ namespace DBMongo
         }
 
 
-        public Stick CreateDocumentUser(string userId, string name)
+        public Stick CreateStickUser(string userId, string name)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             Stick d = new Stick { UserId = userId, Name = name };
@@ -127,10 +127,10 @@ namespace DBMongo
             return d;
         }
 
-        public Stick RenameDocumentUser(string documentId, string newName, string userId)
+        public Stick RenameStickUser(string stickId, string newName, string userId)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(documentId) }, { "UserId", userId } };
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.FirstOrDefault();
             if (d == null)
@@ -140,15 +140,15 @@ namespace DBMongo
             return d;
         }
 
-        public Stick GetDocumentUser(string documentId, string userId)
+        public Stick GetStickUser(string stickId, string userId)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(documentId) }, { "UserId", userId } };
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.FirstOrDefault();
             return d;
         }
-        public List<Stick> GetAllDocumentUser(string userId)
+        public List<Stick> GetAllStickUser(string userId)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             var filter = new BsonDocument { { "UserId", userId } };
@@ -157,17 +157,24 @@ namespace DBMongo
             return d;
         }
 
-        public void DeleteDocumentUser(string documentId, string userId)
+        public void DeleteStickUser(string stickId, string userId)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(documentId) }, { "UserId", userId } };
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
             col.DeleteOne(filter);
         }
 
-        public Stick RecordToDocument(string documentId, string userId, string recordId)
+        /// <summary>
+        /// добавление записи/заметки на стик
+        /// </summary>
+        /// <param name="stickId"></param>
+        /// <param name="userId"></param>
+        /// <param name="recordId"></param>
+        /// <returns></returns>
+        public Stick AddRecordToStick(string stickId, string userId, string recordId)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(documentId) }, { "UserId", userId } };
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.FirstOrDefault();
             if (d != null)
