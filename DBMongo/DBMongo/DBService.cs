@@ -103,7 +103,9 @@ namespace DBMongo
         public Record GetRecordUser(string userId, string recordId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(recordId) }, { "UserId", userId } };
+            ObjectId id;
+            ObjectId.TryParse(recordId, out id);
+            var filter = new BsonDocument { { "_id", id }, { "UserId", userId } };
             var cursor = col.Find(filter);
             var r = cursor.FirstOrDefault();
             return r;
@@ -118,6 +120,21 @@ namespace DBMongo
             return r;
         }
 
+        public List<Record> GetTextRecordUser(string userId, string [] words)
+        {
+            var builder = Builders<Record>.Filter;
+            FilterDefinition<Record> filter = builder.Empty;
+            filter &= builder.Eq("UserId", userId);
+            //var restWords = new string[] { "cotton", "spiderman" };
+            var orReg = new System.Text.RegularExpressions.Regex(string.Join("|", words));
+            filter &= builder.Regex("Text", BsonRegularExpression.Create(orReg));
+
+            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+          //  var filter = new BsonDocument { { "UserId", userId } };
+            var cursor = col.Find(filter);
+            var r = cursor.ToList();
+            return r;
+        }
 
         public Stick CreateStickUser(string userId, string name)
         {

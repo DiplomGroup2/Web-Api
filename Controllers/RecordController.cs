@@ -87,6 +87,29 @@ namespace MVC_2.Controllers
             return BadRequest("От халепа :(");
         }
 
+
+        /// <summary>
+        /// пошук всіх записів авторизованого користувача за заданою фразою/словом
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetText")]
+        [HttpGet]
+        public IActionResult GetText(string str)
+        {
+
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                string[] arrayStr = str.Split(' ');
+
+                return new JsonResult(_context.GetTextRecordUser(u.Id, arrayStr));
+            }
+
+            return BadRequest("От халепа :( Спочатку авторизуйтесь");
+        }
+
         /// <summary>
         /// отримання всіх записів авторизованого користувача
         /// </summary>
@@ -107,11 +130,23 @@ namespace MVC_2.Controllers
             return BadRequest("От халепа :(");
         }
 
+        /// <summary>
+        /// видалення запису авторизованого користувача по id
+        /// </summary>
+        /// <param name="recordId"></param>
+        /// <returns></returns>
         [Route("Delete")]
         [HttpDelete]
-        public IActionResult Delete()
+        public IActionResult Delete(string recordId)
         {
-            throw new NotImplementedException();
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                _context.DeleteRecordUser(u.Id,  recordId);
+            }
+            return Ok();
         }
     }
 }
