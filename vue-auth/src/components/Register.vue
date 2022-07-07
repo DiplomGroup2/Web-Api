@@ -51,7 +51,7 @@ export default {
         async handleSubmit(){
             try{
                            console.log('submitted'),
-           await axios.get('api/Account/Register',{
+           await axios.post('api/Account/Register',{
             //first_name:this.first_name,
             //last_name:this.last_name,
             login:this.login,
