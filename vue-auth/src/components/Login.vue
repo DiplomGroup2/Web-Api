@@ -45,10 +45,11 @@ export default {
            password:this.password
            });
            localStorage.setItem('access_token',response.data.access_token);
-           this.$store.dispatch('username',response.data.username);
+           //this.$store.dispatch('username',response.data.username);
            this.$router.push('/');
            }catch(e){
-               this.error='Invalid username/password!'
+            this.error = 'Invalid username/password!';
+            console.log(e);
            }
         }
     }
