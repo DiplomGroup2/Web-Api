@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace DBMongo
 {
@@ -126,7 +127,7 @@ namespace DBMongo
             FilterDefinition<Record> filter = builder.Empty;
             filter &= builder.Eq("UserId", userId);
             //var restWords = new string[] { "cotton", "spiderman" };
-            var orReg = new System.Text.RegularExpressions.Regex(string.Join("|", words));
+            var orReg = new System.Text.RegularExpressions.Regex(string.Join("|", words), RegexOptions.IgnoreCase);
             filter &= builder.Regex("Text", BsonRegularExpression.Create(orReg));
 
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
@@ -144,7 +145,7 @@ namespace DBMongo
             return d;
         }
 
-        public Stick RenameStickUser(string stickId, string newName, string userId)
+        public Stick RenameStickUser(string userId, string stickId, string newName )
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
@@ -157,7 +158,7 @@ namespace DBMongo
             return d;
         }
 
-        public Stick GetStickUser(string stickId, string userId)
+        public Stick GetStickUser(string userId, string stickId)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
@@ -174,7 +175,22 @@ namespace DBMongo
             return d;
         }
 
-        public void DeleteStickUser(string stickId, string userId)
+        public List<Stick> GetNameStickUser(string userId, string[] words)
+        {
+            var builder = Builders<Stick>.Filter;
+            FilterDefinition<Stick> filter = builder.Empty;
+            filter &= builder.Eq("UserId", userId);
+            //var restWords = new string[] { "cotton", "spiderman" };
+            var orReg = new System.Text.RegularExpressions.Regex(string.Join("|", words), RegexOptions.IgnoreCase);
+            filter &= builder.Regex("Name", BsonRegularExpression.Create(orReg));
+
+            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
+            //  var filter = new BsonDocument { { "UserId", userId } };
+            var cursor = col.Find(filter);
+            var r = cursor.ToList();
+            return r;
+        }
+        public void DeleteStickUser(string userId,string stickId )
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
