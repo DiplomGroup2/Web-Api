@@ -7,7 +7,6 @@ const state={
     user:null
 };
 
-
 const store=new Vuex.Store({
     state,
     getters:{
@@ -25,8 +24,6 @@ const store=new Vuex.Store({
             state.username=username;
         }
     }
-
-
 });
 
 export default store;

@@ -13,7 +13,7 @@ export default {
     name:'HOME',
     
     computed: {
-        ...mapGetters(['user'])
+        ...mapGetters(['username'])
     }
 }
 </script>

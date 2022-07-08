@@ -5,8 +5,7 @@
      <div class="auth-wrapper">
          <div class="auth-inner">
           
-          
-             <router-view/>
+             <router-view></router-view>
           </div>
       </div>
 </div>
@@ -19,8 +18,7 @@ import axios from 'axios'
 export default {
   name: 'App',
   components:{
-    Nav,
-    
+    Nav
   },
   
     async created() {

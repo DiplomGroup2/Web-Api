@@ -9,7 +9,7 @@
 //import Vue from 'vue'
 //import App from './App.vue'
 //import router from './router'
-import './axios'
+//import './axios'
 //import store from './vuex'
 
 //Vue.config.productionTip=false
@@ -22,8 +22,17 @@ import './axios'
 
 
 
-import { createApp } from 'vue'
+/*import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router' // <---
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).mount('#app')*/
+
+import './axios'
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router' 
+
+const app = createApp(App);
+app.use(router);
+app.mount('#app');
