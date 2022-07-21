@@ -1,8 +1,10 @@
 ﻿using DBMongo.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace DBMongo
@@ -17,13 +19,15 @@ namespace DBMongo
         private const string COLLECTION_USER = "users";
         private const string COLLECTION_RECORD = "records";
         private const string COLLECTION_STICK = "stick";
+        private IGridFSBucket _gridFS;
 
-        public DBService(string connectionString= "mongodb://localhost:27017")
+        public DBService(string connectionString = "mongodb://localhost:27017")
         {
 
             _connectionString = connectionString;
             _client = new MongoClient(connectionString);
             _database = _client.GetDatabase("test");
+            _gridFS = new GridFSBucket(_database);
         }
 
         public User CreateUser(string login, string password)
@@ -66,22 +70,36 @@ namespace DBMongo
             var person = cursor.FirstOrDefault();
             return person;
         }
-        public void DeleteUser( string userId)
+        public void DeleteUser(string userId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_USER);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(userId) } };
             col.DeleteOne(filter);
         }
 
-        public Record CreateRecordUser(string userId, string record)
+        public Record CreateRecordUser(string userId, string record,string fileName, MemoryStream memoryStream)
         {
-            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             Record r = new Record { UserId = userId, Text = record };
+            if (fileName != null)
+            { ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
+                r.ImageId = id.ToString();
+                r.RecordType = RecordType.Image;
+            }
+
+            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             col.InsertOne(r);
             return r;
         }
 
-        public Record EditRecordUser(string userId, string recordId, string newRecord )
+        //public Record CreateRecordUser(string userId, Record record)
+        //{
+        //    IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+        //    Record r = new Record { UserId = userId, Text = record.Text };
+        //    col.InsertOne(r);
+        //    return r;
+        //}
+
+        public Record EditRecordUser(string userId, string recordId, string newRecord)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(recordId) }, { "UserId", userId } };
@@ -121,7 +139,7 @@ namespace DBMongo
             return r;
         }
 
-        public List<Record> GetTextRecordUser(string userId, string [] words)
+        public List<Record> GetTextRecordUser(string userId, string[] words)
         {
             var builder = Builders<Record>.Filter;
             FilterDefinition<Record> filter = builder.Empty;
@@ -131,7 +149,7 @@ namespace DBMongo
             filter &= builder.Regex("Text", BsonRegularExpression.Create(orReg));
 
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
-          //  var filter = new BsonDocument { { "UserId", userId } };
+            //  var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter);
             var r = cursor.ToList();
             return r;
@@ -145,7 +163,7 @@ namespace DBMongo
             return d;
         }
 
-        public Stick RenameStickUser(string userId, string stickId, string newName )
+        public Stick RenameStickUser(string userId, string stickId, string newName)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
@@ -190,7 +208,7 @@ namespace DBMongo
             var r = cursor.ToList();
             return r;
         }
-        public void DeleteStickUser(string userId,string stickId )
+        public void DeleteStickUser(string userId, string stickId)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
@@ -204,7 +222,8 @@ namespace DBMongo
         /// <param name="userId"></param>
         /// <param name="recordId"></param>
         /// <returns></returns>
-        public Stick AddRecordToStick(string stickId, string userId, string recordId)
+       // public Stick AddRecordToStick(string userId, string stickId,  string recordId)
+        public Stick AddRecordToStick(string userId, string stickId, Record record)
         {
             IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
@@ -212,9 +231,15 @@ namespace DBMongo
             var d = cursor.FirstOrDefault();
             if (d != null)
             {
-                if (d.RecordIds == null)
-                    d.RecordIds = new List<string>();
-                d.RecordIds.Add(recordId);
+                //if (d.RecordIds == null)
+                //    d.RecordIds = new List<string>();
+                //d.RecordIds.Add(recordId);
+
+                //CreateRecordUser(userId, record);
+
+                if (d.Records == null)
+                    d.Records = new List<Record>();
+                d.Records.Add(record);
                 col.ReplaceOne(filter, d);
             }
             return d;

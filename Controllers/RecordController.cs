@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVC_2.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,15 +32,24 @@ namespace MVC_2.Controllers
         /// <returns></returns>
         [Route("Create")]
         [HttpPost]
-        public IActionResult Create(RecordModel model)
+        public IActionResult Create([FromForm]RecordModel model )
         {
+
+            MemoryStream memoryStream = new MemoryStream();
+            if (model.File != null)
+            {
+                model.File.CopyTo(memoryStream);
+                memoryStream.Seek(0,SeekOrigin.Begin);
+            }
             //throw new NotImplementedException();
             string name = User.Identity.Name;
 
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                _context.CreateRecordUser(u.Id, model.Text);
+              var r=  _context.CreateRecordUser(u.Id, model.Text, model.File?.FileName,memoryStream);
+                _context.AddRecordToStick(u.Id, model.StickId, r);
+                   
             }
 
             return Ok();

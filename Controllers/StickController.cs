@@ -1,4 +1,5 @@
 ﻿using DBMongo;
+using DBMongo.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MVC_2.Models;
@@ -26,7 +27,7 @@ namespace MVC_2.Controllers
         /// <returns></returns>
         [Route("Create")]
         [HttpPost]
-        public IActionResult Create(StickModel model)
+        public IActionResult Create(string nameStick)
         {
             //throw new NotImplementedException();
             string name = User.Identity.Name;
@@ -34,7 +35,7 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                _context.CreateStickUser(u.Id, model.Name);
+                _context.CreateStickUser(u.Id, nameStick);
             }
 
             return Ok();
@@ -59,6 +60,31 @@ namespace MVC_2.Controllers
 
             return Ok();
         }
+
+        ///// <summary>
+        ///// редагування стіку - додавання записів. 
+        ///// </summary>
+        ///// <param name="model"></param>
+        ///// <param name="stickId"></param>
+
+        ///// <returns></returns>
+        //[Route("Edit")]
+        //[HttpPut]
+        //public IActionResult Edit(string stickId, RecordModel model)
+        //{
+        //    string name = User.Identity.Name;
+
+        //    var u = _context.SearchUser(name);
+        //    if (u != null)
+        //    {
+        //        Record r = new Record()
+        //        { Id= model.IdRecord,Text= model.Text,RecordType= RecordType.Text};
+        //        _context.AddRecordToStick(u.Id, stickId, r);
+        //    }
+
+        //    return Ok();
+        //}
+
         /// <summary>
         /// отримання стіку по його id. (брати з бази)
         /// </summary>

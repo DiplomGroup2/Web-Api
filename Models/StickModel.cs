@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DBMongo.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,11 @@ namespace MVC_2.Models
 
         [JsonProperty("Name")]
         public string Name { get; set; }
-
-        [JsonProperty("RecordIds")]
-        public List<string> RecordIds { get; set; }
+       
+        [JsonProperty("Records")]
+        public List<Record> Records { get; set; }
+       
+        //[JsonProperty("RecordIds")]
+        //public List<string> RecordIds { get; set; }
     }
 }

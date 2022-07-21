@@ -1,4 +1,5 @@
 ﻿using DBMongo.Models;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,21 @@ namespace MVC_2.Models
         [JsonProperty("Text")]
         public string Text { get; set; }
 
-        [JsonProperty("RecordType")]
-        [Required(ErrorMessage = "Не указан RecordType")]
-        public RecordType RecordType { get; set; }
-
-
+        [JsonProperty("StickId")]
+        [Required(ErrorMessage = "Не указан StickId")]
+        public string StickId { get; set; }
+      
         [JsonProperty("Image")]
-        public byte[] StrRecordByte { get; set; }
+        public IFormFile File { get; set; }
+        
+        //[JsonProperty("RecordType")]
+        //[Required(ErrorMessage = "Не указан RecordType")]
+        //public RecordType RecordType { get; set; }
+
+       
+
+        //[JsonProperty("Image")]
+        //public byte[] StrRecordByte { get; set; }
 
        
     }
