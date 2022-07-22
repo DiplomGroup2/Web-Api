@@ -24,21 +24,22 @@ export default {
     async created() {
         const response = await axios.get('username');
         
-         this.$store.dispatch("username",response.data);
+         this.$store.dispatch("user",response.data);
         console.log(response);
     }
 }
-
+ 
 </script>
 
-<style>
+<!-- <style >
+
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 *{
   box-sizing:border-box;
 }
 
 body{
-  background:#1C8EF9 !important;
+  background:#1C8EF9;
   min-height:100vh;
   display:flex;
   font-weight:400;
@@ -110,4 +111,4 @@ body,html, #app, #root,.auth-wrapper{
 .forgot-password a {
   color:#167bff;
 }
-</style>
+</style> -->
