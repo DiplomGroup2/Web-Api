@@ -1,5 +1,6 @@
 ﻿using DBMongo;
 using DBMongo.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MVC_2.Models;
@@ -12,6 +13,7 @@ namespace MVC_2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StickController : ControllerBase
     {
         private readonly DBService _context;
