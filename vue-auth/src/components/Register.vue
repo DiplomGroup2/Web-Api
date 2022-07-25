@@ -168,7 +168,7 @@
         background-color: var(--baby-powder);
         display: flex;
         height: 1024px;
-        /*padding: 100px 400px;*/
+        padding: 100px 400px;
         width: 1440px;
     }
 

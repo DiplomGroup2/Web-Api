@@ -5,7 +5,8 @@ import {createWebHistory, createRouter} from 'vue-router';
 import Home from './components/Home.vue'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
-import Userpage from './components/Userpage.vue'
+//import Userpage from './components/Userpage.vue'
+import Sp from './components/Sp.vue'
 
 export default createRouter({
 	history: createWebHistory(),
@@ -13,7 +14,8 @@ export default createRouter({
 		{path: '/', component: Home},
 		{path: '/login', component: Login},
 		{path: '/register', component: Register},
-		{path: '/workspace', component: Userpage}
+		//{path: '/workspace', component: Userpage}
+		{path: '/workspace', component: Sp}
 	]
 })
 

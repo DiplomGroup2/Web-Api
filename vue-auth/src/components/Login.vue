@@ -143,9 +143,9 @@ export default {
 
 .desktop-1 .overlap-group5 {
   height: 655px;
-  /*left: 460px;*/
- /* position: relative;
-  top: 72px;*/
+  left: 460px;
+  position: relative;
+  top: 72px;
   width: 1139px;
 }
 

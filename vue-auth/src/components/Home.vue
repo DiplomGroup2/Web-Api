@@ -6,7 +6,8 @@
     <!--<div class="example">hi</div>-->
    
     <div id="app">
-    <button type="button" @click="this.$router.push('/Register')">Register</button>
+    <!--<button type="button" @click="this.$router.push('/Register')">Register</button>-->
+    <button type="button" @click="component='Register'">Register</button>
     <button type="button" @click="component='Login'">Login</button>
     <button type="button" @click="component='Home'">Home</button>
     <button type="button" @click="component='Sp'">Spisok</button>
