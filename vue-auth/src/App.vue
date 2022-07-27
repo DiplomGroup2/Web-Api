@@ -13,7 +13,7 @@
 
 <script>
 import Nav from './components/Nav.vue'
-import axios from 'axios'
+//import axios from 'axios'
 
 export default {
   name: 'App',
@@ -22,10 +22,10 @@ export default {
   },
   
     async created() {
-        const response = await axios.get('username');
+        //const response = await axios.get('username');
         
-         this.$store.dispatch("user",response.data);
-        console.log(response);
+        // this.$store.dispatch("user",response.data);
+        //console.log(response);
     }
 }
  

@@ -1,3 +1,15 @@
+<template>
+    <!--<li>-->
+    <div class="group-15 border-0-4px-black">
+        {{ title }}
+        <!-- <keep-alive> -->
+        <Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage>
+        <!-- </keep-alive> -->
+        <button @click="$emit('remove')" v-if="!addnew">Remove</button>
+    </div>
+    <!--</li>-->
+</template>
+
 <script>
 
     import Userpage from "./Userpage"
@@ -10,18 +22,6 @@
             { Userpage }
     }
 </script>
-
-<template>
-    <!--<li>-->
-    <div class="group-15 border-0-4px-black">
-        {{ title }}
-        <!-- <keep-alive> -->
-        <Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage>
-        <!-- </keep-alive> -->
-        <button @click="$emit('remove')" v-if="!addnew">Remove</button>
-    </div>
-    <!--</li>-->
-</template>
 
 <style scoped>
     .group-15 {
@@ -37,5 +37,6 @@
         min-width: 197px;
         padding: 10px;
         margin: 10px;
+        display: inline-block
     }
 </style>

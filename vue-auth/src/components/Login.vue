@@ -8,7 +8,7 @@
                   <div class="rectangle-2 border-0-2px-gray"></div>
                   <div class="forgot-your-password">Forgot your password?</div>
                   <!--<div class="rectangle-4 border-0-4px-black">-->
-                      <input type="email" class="form-control rectangle-4 border-0-4px-black" v-model="login" placeholder="Email" />
+                      <input type="email" class="form-control rectangle-4 border-0-4px-black" v-model="email" placeholder="Email" />
 
                   <!--</div>-->
                  <!-- <div class="rectangle-11 border-0-4px-black">-->
@@ -76,16 +76,6 @@
     </div>
       <!--<img alt="Vue logo" src="./assets/logo.png">-->
       <h3>Login</h3>
-<!--<div class="form-group">
-<label>Email</label>
-<input type="email" class="form-control" v-model="login" placeholder="Email"/>
-</div>
-
-<div class="form-group">
-<label>Password</label>
-</div>-->
-
-
 <!--<p class="forgot-password text-right">
 <router-link to="forgot">Forgot password?</router-link>
 </p>-->
@@ -103,7 +93,7 @@ export default {
     },
     data(){
         return{
-        login:'',
+        email:'',
         password:'',
         error:''
         }
@@ -113,11 +103,11 @@ export default {
         { try{
            const response=await axios.post('api/Account/Token',
            {
-           login:this.login,
+               email: this.email,
            password:this.password
            });
-           localStorage.setItem('access_token',response.data.access_token);
-
+            localStorage.setItem('access_token', response.data.access_token);
+            console.log(localStorage);
           
            alert(response.data.username);
         

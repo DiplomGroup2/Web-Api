@@ -29,7 +29,7 @@
                         <div class="ellipse-7"></div>
                     </div>
                     <!--<div class="rectangle-12 border-0-4px-black">-->
-                    <input type="email" class="form-control rectangle-12 border-0-4px-black" v-model="login" placeholder="Email" />
+                    <input type="email" class="form-control rectangle-12 border-0-4px-black" v-model="email" placeholder="Email" />
 
 
                     <!--</div>-->
@@ -101,7 +101,7 @@
             </div>-->
         <!--<div class="form-group">
         <label>Email</label>-->
-        <!--<input type="email" class="form-control" v-model="login" placeholder="Email"/>-->
+        <!--<input type="email" class="form-control" v-model="email" placeholder="Email"/>-->
         <!--</div>-->
 
         <div class="form-group">
@@ -130,7 +130,7 @@
             return {
                 //first_name:'',
                 //last_name:'',
-                login: '',
+                email: '',
                 password: '',
                 password_confirm: '',
                 error: ''
@@ -145,11 +145,8 @@
                     }
                     console.log('submitted'),
                         await axios.post('api/Account/Register', {
-                            //first_name:this.first_name,
-                            //last_name:this.last_name,
-                            login: this.login,
+                            email: this.email,
                             password: this.password,
-                            //assword_confirm:this.password_confirm
                         });
 
                     this.$router.push('/login');

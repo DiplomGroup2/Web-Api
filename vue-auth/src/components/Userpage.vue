@@ -1,7 +1,3 @@
-
-
-
-
 <template>
     <!--<li>-->
     <!--{{ title }}
@@ -89,52 +85,5 @@ Userfront.init("demo1234");
 
 
 <style scoped>
-  #logout-button {
-    background-color: rgb(166, 0, 255);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-
-
-  }
-    .desktop-11 .overlap-group3 {
-        height: 32px;
-        /* left: 511px;
-            position: absolute;
-            top: 313px;*/
-        width: 32px;
-    }
-
-    .desktop-11 .rectangle-14 {
-        background: linear-gradient(180deg, rgb(92.84, 137.29, 227.37) 0%, rgb(146.62, 242.12, 255) 100%);
-        border-radius: 10px;
-        height: 32px;
-        left: 13px;
-        position: absolute;
-        top: 0;
-        transform: rotate(-90.00deg);
-        width: 6px;
-    }
-
-    .desktop-11 .rectangle-15 {
-        -webkit-backdrop-filter: blur(4px) brightness(100%);
-        backdrop-filter: blur(4px) brightness(100%);
-        background: linear-gradient(180deg, rgb(92.84, 137.29, 227.37) 0%, rgb(146.62, 242.12, 255) 100%);
-        border-radius: 10px;
-        height: 32px;
-        left: 13px;
-        position: absolute;
-        top: 0;
-        transform: rotate(-180deg);
-        width: 6px;
-    }
-
-  #backgr{
-    text-align: center;
-    background-color: aqua;
-  }
-  #logout-button[disabled] {
-    background-color: lightgray;
-    color: gray;
-  }
+  
 </style>

@@ -1,6 +1,5 @@
 <template>
 
-    <input type="hidden" id="anPageName" name="page" value="desktop-11" />
     <div class="container-center-horizontal">
         <div class="desktop-11 screen">
             <div class="overlap-group7">
@@ -10,16 +9,16 @@
                 <img class="ellipse-4"
                      src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-4-6@2x.svg" />
                 <div class="rectangle-24 border-2px-white">
-                    <div class=" border-2px-white" style=" margin-top: 150px; margin-left: 330px;">
+                    <div class=" border-2px-white" style="margin-top: 150px; margin-left: 330px;  ">
                         <!--<ul>-->
                         <div class="group-15 border-0-4px-black" v-on:click="addNewTodo">
-                            <div class="overlap-group3" >
+                            <div class="overlap-group3">
                                 <div class="rectangle-14 border-0-4px-white"></div>
                                 <div class="rectangle-15 border-0-4px-white"></div>
                             </div>
                         </div>
                         <todo-item v-for="(todo) in todos"
-                                   :title="todo.title"
+                                   :title="todo.name"
                                    :key="todo.id"
                                    @remove="todos.splice(index, 1)"></todo-item>
                         <!--</ul>-->
@@ -76,7 +75,6 @@
                                :key="todo.id"
                                @remove="todos.splice(index, 1)"></todo-item>
                 </ul>-->
-
                 <!--<div class="overlap-group3">
                     <div class="rectangle-14 border-0-4px-white"></div>
                     <div class="rectangle-15 border-0-4px-white" onclick=""></div>
@@ -128,7 +126,7 @@
         </div>
     </div>
 
-    <li>
+    <!--<li>
         {{ title }}
         <button id="logout-button" @click.prevent="handleLogout">Log out</button>
         <h3 v-if="!username">You are not logged in!</h3>
@@ -144,16 +142,16 @@
             <label for="new-todo">Add a todo</label>
             <input v-model="newTodoText"
                    placeholder="text" />
-            <button>
-                <!--<div class="overlap-group3">
-                    <div class="rectangle-14 border-0-4px-white"></div>
-                    <div class="rectangle-15 border-0-4px-white" ></div>
-                </div>-->
-                add
+            <button>-->
+    <!--<div class="overlap-group3">
+        <div class="rectangle-14 border-0-4px-white"></div>
+        <div class="rectangle-15 border-0-4px-white" ></div>
+    </div>-->
+    <!--add
             </button>
         </form>
         <button class="btn btn-primary btn-block">Create First Page</button>
-    </li>
+    </li>-->
 
 </template>
 
@@ -425,12 +423,14 @@
             /*            left: 428px;
                 position: absolute;
                 top: 259px;
-    */ width: 197px;
+    */
+            width: 197px;
+            display: inline-block;
         }
 
         .desktop-11 .overlap-group3 {
             height: 32px;
-           /* left: 511px;
+            /* left: 511px;
             position: absolute;
             top: 313px;*/
             width: 32px;
@@ -777,49 +777,33 @@
         components: { TodoItem },
 
         data() {
-            //const response =  axios.get('api/Stick/GetAll', {
-            //    headers: {
-            //        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-            //    }
-            //});
             return {
-                list: [],
-
-                newTodoText: '',
-                todos: [
-                    {
-                        id: 1,
-                        title: 'Userpage1'
-                    },
-                    {
-                        id: 2,
-                        title: 'Userpage2'
-                    },
-                    {
-                        id: 3,
-                        title: 'Userpage3'
-                    }
-                ],
-                nextTodoId: 4
+                todos: [],
             }
         },
+        async created() {
+            this.todos = await this.getAllPages();
+        },
         methods: {
-            addNewTodo() {
-                this.todos.push({
-                    id: this.nextTodoId++,
-                    title: this.newTodoText
-                })
-                this.newTodoText = '';
-                this.addNew();
-            },
-             addNew() {
-                const response = axios.get('api/Stick/GetAll', {
+            async addNewTodo() {
+
+                await axios.post('api/Page/Create', {
+                    newName: "Page test",
+                }, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
-               //  this.todos = response;
-                 this.list = response;
+                this.todos = await this.getAllPages();
+            },
+
+            async getAllPages() {
+                const response = await axios.get('api/Page/GetAll', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                return response.data;
             }
         }
     }
