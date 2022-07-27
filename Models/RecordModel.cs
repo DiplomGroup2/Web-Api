@@ -17,9 +17,9 @@ namespace MVC_2.Models
         [JsonProperty("Text")]
         public string Text { get; set; }
 
-        [JsonProperty("StickId")]
-        [Required(ErrorMessage = "Не указан StickId")]
-        public string StickId { get; set; }
+        [JsonProperty("PageId")]
+        [Required(ErrorMessage = "Не указан PageId")]
+        public string PageId { get; set; }
       
         [JsonProperty("Image")]
         public IFormFile File { get; set; }

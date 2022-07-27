@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MVC_2.Models
 {
-    public class StickModel
+    public class PageModel
     {
-        [JsonProperty("IdStick")]
-        public string IdStick { get; set; }
+        [JsonProperty("IdPage")]
+        public string IdPage { get; set; }
 
         [JsonProperty("Name")]
         public string Name { get; set; }

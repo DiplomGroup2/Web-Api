@@ -5,9 +5,9 @@ namespace MVC_2.Models
 {
     public class LoginModel
     {
-        [JsonProperty("Login")]
-        [Required(ErrorMessage = "Не указан Login")]
-        public string Login { get; set; }
+        [JsonProperty("Email")]
+        [Required(ErrorMessage = "Не указан Email")]
+        public string Email { get; set; }
 
         [JsonProperty("Password")]
         [Required(ErrorMessage = "Не указан пароль")]

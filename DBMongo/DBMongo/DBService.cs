@@ -18,7 +18,7 @@ namespace DBMongo
         private IMongoDatabase _database;
         private const string COLLECTION_USER = "users";
         private const string COLLECTION_RECORD = "records";
-        private const string COLLECTION_STICK = "stick";
+        private const string COLLECTION_PAGE = "Page";
         private IGridFSBucket _gridFS;
 
         public DBService(string connectionString = "mongodb://localhost:27017")
@@ -30,28 +30,28 @@ namespace DBMongo
             _gridFS = new GridFSBucket(_database);
         }
 
-        public User CreateUser(string login, string password)
+        public User CreateUser(string email, string password)
         {
             IMongoCollection<User> col = _database.GetCollection<User>(COLLECTION_USER);
             var filter = new BsonDocument
                 {
-                    {"Login", login}
+                    {"Email", email}
                 };
             IFindFluent<User, User> cursor = col.Find(filter);
             var person = cursor.FirstOrDefault();
             if (person != null)
                 return null;
-            User us = new User { Login = login, Password = password };
+            User us = new User { Email = email, Password = password };
             col.InsertOne(us);
             return us;
         }
 
-        public User SearchUser(string login, string password)
+        public User SearchUser(string email, string password)
         {
             IMongoCollection<User> col = _database.GetCollection<User>(COLLECTION_USER);
             var filter = new BsonDocument
                 {
-                    {"Login", login},
+                    {"Email", email},
                     {"Password", password}
                 };
             IFindFluent<User, User> cursor = col.Find(filter);
@@ -59,12 +59,12 @@ namespace DBMongo
             return person;
         }
 
-        public User SearchUser(string login)
+        public User SearchUser(string email)
         {
             IMongoCollection<User> col = _database.GetCollection<User>(COLLECTION_USER);
             var filter = new BsonDocument
                 {
-                    {"Login", login}
+                    {"Email", email}
             };
             IFindFluent<User, User> cursor = col.Find(filter);
             var person = cursor.FirstOrDefault();
@@ -155,18 +155,18 @@ namespace DBMongo
             return r;
         }
 
-        public Stick CreateStickUser(string userId, string name)
+        public Page CreatePageUser(string userId, string name, string group)
         {
-            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            Stick d = new Stick { UserId = userId, Name = name };
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            Page d = new Page { UserId = userId, Name = name, Group= group };
             col.InsertOne(d);
             return d;
         }
 
-        public Stick RenameStickUser(string userId, string stickId, string newName)
+        public Page RenamePageUser(string userId, string PageId, string newName)
         {
-            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.FirstOrDefault();
             if (d == null)
@@ -176,68 +176,61 @@ namespace DBMongo
             return d;
         }
 
-        public Stick GetStickUser(string userId, string stickId)
+        public Page GetPageUser(string userId, string PageId)
         {
-            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.FirstOrDefault();
             return d;
         }
-        public List<Stick> GetAllStickUser(string userId)
+        public List<Page> GetAllPageUser(string userId)
         {
-            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.ToList();
             return d;
         }
 
-        public List<Stick> GetNameStickUser(string userId, string[] words)
+        public List<Page> GetNamePageUser(string userId, string[] words)
         {
-            var builder = Builders<Stick>.Filter;
-            FilterDefinition<Stick> filter = builder.Empty;
+            var builder = Builders<Page>.Filter;
+            FilterDefinition<Page> filter = builder.Empty;
             filter &= builder.Eq("UserId", userId);
             //var restWords = new string[] { "cotton", "spiderman" };
             var orReg = new System.Text.RegularExpressions.Regex(string.Join("|", words), RegexOptions.IgnoreCase);
             filter &= builder.Regex("Name", BsonRegularExpression.Create(orReg));
 
-            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             //  var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter);
             var r = cursor.ToList();
             return r;
         }
-        public void DeleteStickUser(string userId, string stickId)
+        public void DeletePageUser(string userId, string PageId)
         {
-            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
             col.DeleteOne(filter);
         }
 
         /// <summary>
         /// добавление записи/заметки на стик
         /// </summary>
-        /// <param name="stickId"></param>
+        /// <param name="PageId"></param>
         /// <param name="userId"></param>
         /// <param name="recordId"></param>
         /// <returns></returns>
-       // public Stick AddRecordToStick(string userId, string stickId,  string recordId)
-        public Stick AddRecordToStick(string userId, string stickId, Record record)
+        public Page AddRecordToPage(string userId, string PageId, Record record)
         {
-            IMongoCollection<Stick> col = _database.GetCollection<Stick>(COLLECTION_STICK);
-            var filter = new BsonDocument { { "_id", ObjectId.Parse(stickId) }, { "UserId", userId } };
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.FirstOrDefault();
             if (d != null)
             {
-                //if (d.RecordIds == null)
-                //    d.RecordIds = new List<string>();
-                //d.RecordIds.Add(recordId);
-
-                //CreateRecordUser(userId, record);
-
-                if (d.Records == null)
+                               if (d.Records == null)
                     d.Records = new List<Record>();
                 d.Records.Add(record);
                 col.ReplaceOne(filter, d);

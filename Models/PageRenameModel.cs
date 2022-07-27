@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MVC_2.Models
 {
-    public class StickRenameModel
+    public class PageRenameModel
     {
-        [JsonProperty("IdStick")]
-        public string IdStick { get; set; }
+        [JsonProperty("IdPage")]
+        public string IdPage { get; set; }
 
         [JsonProperty("NewName")]
         public string NewName { get; set; }

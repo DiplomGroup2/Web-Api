@@ -37,11 +37,11 @@ namespace MVC_2.Controllers
         [HttpPost]
         public IActionResult Token(LoginModel model)
         {
-            var identity = GetIdentity(model.Login, model.Password);
+            var identity = GetIdentity(model.Email, model.Password);
             if (identity == null)
             {
-                Console.WriteLine("Invalid username or password. " + model.Login + "++" + model.Password);
-                return BadRequest(new { errorText = "Invalid username or password. " + model.Login + " " + model.Password });
+                Console.WriteLine("Invalid username or password. " + model.Email + "++" + model.Password);
+                return BadRequest(new { errorText = "Invalid username or password. " + model.Email + " " + model.Password });
             }
 
             var now = DateTime.UtcNow;
@@ -74,14 +74,14 @@ namespace MVC_2.Controllers
         [HttpPost]
         public IActionResult Register(LoginModel model)
         {
-            var u = _context.SearchUser(model.Login);
+            var u = _context.SearchUser(model.Email);
             if (u != null)
             {
-                Console.WriteLine("Этот логин занят." + model.Login);
-                return BadRequest(new { errorText = model.Login + "  - этот логин занят. " });
+                Console.WriteLine("Этот логин занят." + model.Email);
+                return BadRequest(new { errorText = model.Email + "  - этот логин занят. " });
 
             }
-            _context.CreateUser(model.Login, model.Password);
+            _context.CreateUser(model.Email, model.Password);
             return Token(model);
         }
         /// <summary>
@@ -103,16 +103,16 @@ namespace MVC_2.Controllers
             return Ok();
         }
 
-        private ClaimsIdentity GetIdentity(string login, string password)
+        private ClaimsIdentity GetIdentity(string email, string password)
         {
-            var person = _context.SearchUser(login, password);
+            var person = _context.SearchUser(email, password);
 
             if (person != null)
             {
                 // string role = _context.Roles.FirstOrDefault(r => r.Id == person.RoleId).Name;
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.Login),
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.Email),
                 //    new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
                 };
                 ClaimsIdentity claimsIdentity =

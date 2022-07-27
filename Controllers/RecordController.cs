@@ -48,7 +48,7 @@ namespace MVC_2.Controllers
             if (u != null)
             {
               var r=  _context.CreateRecordUser(u.Id, model.Text, model.File?.FileName,memoryStream);
-                _context.AddRecordToStick(u.Id, model.StickId, r);
+                _context.AddRecordToPage(u.Id, model.PageId, r);
                    
             }
 
