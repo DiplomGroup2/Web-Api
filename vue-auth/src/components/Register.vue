@@ -181,9 +181,10 @@
             box-shadow: 0px 7px 10px #00000040;
             height: 655px;
             left: 69px;
-            position: absolute;
+            /*position: absolute;
             top: 0;
-            width: 1051px;
+            width: 1051px;*/
+            
         }
 
         .desktop-2 .overlap-group1 {
