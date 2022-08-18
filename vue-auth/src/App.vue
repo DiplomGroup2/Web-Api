@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" >
      <Nav/>
       
      <div class="auth-wrapper">
@@ -30,7 +30,6 @@ export default {
 }
  
 </script>
-
 <!-- <style >
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');

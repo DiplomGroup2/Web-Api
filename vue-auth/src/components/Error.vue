@@ -1,8 +1,9 @@
 <template>
 
-<div  v-if="error" class="alert alert-danger" role="alert">
+<div  v-if="error" class="alert alert-danger" role="alert" >
 {{error}}
 </div>
+
 
  </template>
 
@@ -12,3 +13,4 @@
     props:['error']
     }
  </script>
+

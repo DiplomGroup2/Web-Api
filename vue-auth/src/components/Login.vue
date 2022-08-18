@@ -48,8 +48,7 @@
                   </div>
                   <div class="overlap-group2">
                       <div class="rectangle-6"></div>
-                      <img class="icon-user"
-                           src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/mask-group-31@2x.svg" />
+                      <img class="icon-user" :src="require('@/assets/Profile.jpg')"/>
                   </div>
                   <h1 class="title fredoka-bold-white-36px">Welcome!</h1>
                   <p class="we-provide-you-with fredoka-light-white-16px">
@@ -57,7 +56,7 @@
                       products or a plan for working with a team in a couple of clicks!
                   </p>
                   <div class="overlap-group3 border-0-4px-white">
-                      <div class="place fredoka-normal-white-20px">Register</div>
+                      <div class="place fredoka-normal-white-20px" @click="FromSignInIntoRegister">Register</div>
                   </div>
                   <button class="btn btn-primary btn-block">
                       <!--Login-->
@@ -75,7 +74,17 @@
       </div>
     </div>
       <!--<img alt="Vue logo" src="./assets/logo.png">-->
-      <h3>Login</h3>
+      <!--<h3>Login</h3>-->
+<!--<div class="form-group">
+<label>Email</label>
+<input type="email" class="form-control" v-model="login" placeholder="Email"/>
+</div>
+
+<div class="form-group">
+<label>Password</label>
+</div>-->
+
+
 <!--<p class="forgot-password text-right">
 <router-link to="forgot">Forgot password?</router-link>
 </p>-->
@@ -103,32 +112,46 @@ export default {
         { try{
            const response=await axios.post('api/Account/Token',
            {
-               email: this.email,
+           email: this.email,
            password:this.password
            });
-            localStorage.setItem('access_token', response.data.access_token);
-            console.log(localStorage);
+           localStorage.setItem('access_token',response.data.access_token);
+           console.log(localStorage);
+          
           
            alert(response.data.username);
         
            await this.$store.dispatch('user',response.data.username);
 
            //this.$store.dispatch('username',response.data.username);
-           this.$router.push('/workspace');
+           this.$router.push('/zeroworkspace');
            }catch(e){
             this.error = 'Invalid username/password!';
             console.log(e);
            }
+        },
+        FromSignInIntoRegister(){
+          this.$router.push('/register');
+
         }
     }
+    //ИЗМЕНЕНИЯ ПО СТИЛЮ . БЫЛО ВОТ ТАК:
+   // .desktop-1 {
+  //background-color: var(--baby-powder);
+  //height: 910px;
+  //width: 100%;
+//}
 }
 </script>
 
 <style>
 .desktop-1 {
-  background-color: var(--baby-powder);
-  height: 2024px;
-  width: 100%;
+  /*background-color: var(--baby-powder);*/
+   background-color:#e3e8ee;
+  /*height: 10px;
+  width: 130%; CТИЛЬ С ЗЕЛЕНЫМ ФОНОМ*/
+  height:969px;
+  width:1918px;
 }
 
 .desktop-1 .overlap-group5 {
@@ -228,7 +251,8 @@ export default {
 }
 
 .desktop-1 .rectangle-3 {
-  background: linear-gradient(180deg, rgba(116, 253, 224, 0.76) 0%, rgba(116, 253, 224, 0) 100%);
+  /* Изменение в стиле фона*/
+  background: linear-gradient(180deg, #74FDE0, #5BBCFD);
   border-radius: 0px 12px 12px 0px;
   height: 655px;
   left: 66px;

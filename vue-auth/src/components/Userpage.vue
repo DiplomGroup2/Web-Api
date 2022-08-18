@@ -21,7 +21,16 @@
      </form>
     <button class="btn btn-primary btn-block">Create First Page</button>-->
     <!--</li>-->
-   11111
+
+
+   <p> </p>   
+    <!--111111-->
+
+
+
+   
+   <!--<input type="hidden" id="anPageName" name="page" value="98_318" />
+    <div class="group-15 border-0-4px-black"></div>-->
     
 </template>
 
@@ -57,8 +66,6 @@ Userfront.init("demo1234");
              data(){
                 return{
                     newTodoText: ''
-
-
                 }
              },
              methods:{
@@ -85,5 +92,5 @@ Userfront.init("demo1234");
 
 
 <style scoped>
-  
-</style>
+
+  </style>
