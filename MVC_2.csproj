@@ -30,6 +30,7 @@
     <Compile Remove="Models\Repository.cs" />
     <Compile Remove="Models\Role.cs" />
     <Compile Remove="Models\SortState.cs" />
+    <Compile Remove="Models\UserModel.cs" />
   </ItemGroup>
 
   <ItemGroup>

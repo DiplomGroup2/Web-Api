@@ -21,12 +21,13 @@ namespace DBMongo
         private const string COLLECTION_PAGE = "Page";
         private IGridFSBucket _gridFS;
 
-        public DBService(string connectionString = "mongodb://localhost:27017")
+        public DBService(string connectionString = "mongodb://uktclp9d1e9pwejmuzhz:tcebGcGcW8wwXA4LIXBO@n1-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017,n2-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017/bqmv36yvlevov6u?replicaSet=rs0")
+            //(string connectionString = "mongodb://localhost:27017")
         {
 
             _connectionString = connectionString;
             _client = new MongoClient(connectionString);
-            _database = _client.GetDatabase("test");
+            _database = _client.GetDatabase("bqmv36yvlevov6u");
             _gridFS = new GridFSBucket(_database);
         }
 

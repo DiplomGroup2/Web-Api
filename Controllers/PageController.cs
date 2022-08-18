@@ -155,16 +155,30 @@ namespace MVC_2.Controllers
         /// </summary>
         /// <param name="PageId"></param>
         /// <returns></returns>
-        [Route("Delete")]
-        [HttpDelete]
-        public IActionResult Delete(string PageId)
+        // [Route("Delete")]
+        // [HttpDelete]
+        //public IActionResult Delete(string PageId)
+        //{
+        //    string name = User.Identity.Name;
+
+        //    var u = _context.SearchUser(name);
+        //    if (u != null)
+        //    {
+        //        _context.DeletePageUser(u.Id, PageId);
+        //    }
+        //    return Ok();
+        //}
+
+        [HttpDelete("{id}")]
+
+        public IActionResult Delete(string id)
         {
             string name = User.Identity.Name;
 
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                _context.DeletePageUser(u.Id, PageId);
+                _context.DeletePageUser(u.Id, id);
             }
             return Ok();
         }

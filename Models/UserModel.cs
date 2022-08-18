@@ -1,7 +1,7 @@
 ﻿
 namespace MVC_2.Models
 {
-    public class User
+    public class UserModel
     {
        // [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
