@@ -10,8 +10,18 @@
             class="ellipse-4"
             src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/ellipse-4-1@2x.svg"
           />
-          <div class="rectangle-24 border-2px-white"></div>
+          
+          <div class="rectangle-24 border-2px-white">
+              <div class=" border-2px-white" style="margin-top: 150px; margin-left: 330px;  ">
+                  <!--<ul>-->
 
+                  <todo-item v-for="(todo) in todos"
+                             :title="todo.name"
+                             :key="todo.id"
+                             @remove="DeleteTodo(todo)"></todo-item>
+                  <!--</ul>-->
+              </div>
+          </div>
 
 
 
@@ -116,8 +126,8 @@
             </div>
           </div>
           <div class="view">
-            <div class="overlap-group7 border-0-4px-black">
-              <div class="flex-row">
+            <!--<div class="overlap-group7 border-0-4px-black">-->
+              <!--<div class="flex-row">
                 <div class="untitled fredoka-medium-black-17px">Untitled</div>
                 <div class="overlap-group3-1 border-0-4px-black">
                   <div class="group-134">
@@ -131,16 +141,16 @@
                   class="mask-group-1"
                   src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-4@2x.svg"
                 />
-              </div>
-              <div class="flex-row-1">
+              </div>-->
+              <!--<div class="flex-row-1">
                 <div class="date">12.05.22</div>
                 <img
                   class="vector-8"
                   src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-8@2x.svg"
                 />
                 <div class="movies fredoka-light-gray-12px" id="movies">#movies</div>
-              </div>
-              <div class="text fredoka-light-black-15px">Text..</div>
+              </div>-->
+              <!--<div class="text fredoka-light-black-15px">Text..</div>
               <div class="group-container-1">
                 <img
                   class="mask-group-2"
@@ -174,31 +184,15 @@
                     />
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>-->
+            <!--</div>-->
           </div>
           <div class="component-2">
-
-
-          
-
-
-
-
-
-
-
-
-
-
             <div class="overlap-group8" v-on:click="addNewTodo">
               <div class="rectangle-14 border-0-4px-white"></div>
               <div class="rectangle-15 border-0-4px-white"></div>
             </div>
-            <todo-item v-for="(todo) in todos"
-                                   :title="todo.name"
-                                   :key="todo.id"
-                                   @remove="todos.splice(index, 1)"></todo-item>
+            
           </div>
         </div>
         

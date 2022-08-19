@@ -105,14 +105,19 @@
 
 
 <style scoped>
-.view {
-  align-items: flex-start;
-  display: flex;
-  height: 192px;
-  overflow: hidden;
-  padding: 0.6px 0;
-  width: 265px;
-}
+    .view {
+        align-items: flex-start;
+        /*display: flex;
+        height: 192px;*/
+        overflow: hidden;
+        padding: 0.6px 0;
+        /* width: 265px;*/
+        min-height: 192px;
+        min-width: 265px;
+        padding: 10px;
+        margin: 10px;
+        display: inline-block
+    }
 
 .overlap-group3 {
   -webkit-backdrop-filter: blur(15px) brightness(100%);
