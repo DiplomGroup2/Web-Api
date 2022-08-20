@@ -12,14 +12,23 @@
           />
           
           <div class="rectangle-24 border-2px-white">
-              <div class=" border-2px-white" style="margin-top: 150px; margin-left: 330px;  ">
+              <div class=" border-2px-white" style="margin-top: 150px; margin-left: 330px; min-height:870px; ">
                   <!--<ul>-->
+                  <div class="group-129 border-0-4px-black">
+                      <div class="component-2">
+                          <div class="overlap-group8" v-on:click="addNewTodo">
+                              <div class="rectangle-14 border-0-4px-white"></div>
+                              <div class="rectangle-15 border-0-4px-white"></div>
+                          </div>
 
+                      </div>
+                  </div>
                   <todo-item v-for="(todo) in todos"
                              :title="todo.name"
                              :key="todo.id"
                              @remove="DeleteTodo(todo)"></todo-item>
                   <!--</ul>-->
+
               </div>
           </div>
 
@@ -70,10 +79,6 @@
           </div>
           <div class="trash fredoka-light-black-16px">trash</div>
 
-          
-          <div class="group-129 border-0-4px-black" ></div>
-          
- 
           <div class="overlap-group3">
             <div class="rectangle-121"></div>
             
@@ -125,76 +130,7 @@
               />
             </div>
           </div>
-          <div class="view">
-            <!--<div class="overlap-group7 border-0-4px-black">-->
-              <!--<div class="flex-row">
-                <div class="untitled fredoka-medium-black-17px">Untitled</div>
-                <div class="overlap-group3-1 border-0-4px-black">
-                  <div class="group-134">
-                    <img
-                      class="vector-9"
-                      src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-9@2x.svg"
-                    />
-                  </div>
-                </div>
-                <img
-                  class="mask-group-1"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-4@2x.svg"
-                />
-              </div>-->
-              <!--<div class="flex-row-1">
-                <div class="date">12.05.22</div>
-                <img
-                  class="vector-8"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-8@2x.svg"
-                />
-                <div class="movies fredoka-light-gray-12px" id="movies">#movies</div>
-              </div>-->
-              <!--<div class="text fredoka-light-black-15px">Text..</div>
-              <div class="group-container-1">
-                <img
-                  class="mask-group-2"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-3@2x.svg"
-                />
-                <div class="group-133">
-                  <div class="overlap-group1">
-                    <div class="overlap-group-2">
-                      <div class="rectangle-39 border-0-9px-black-3"></div>
-                      <div class="rectangle-37 border-0-9px-black-4"></div>
-                    </div>
-                    <img
-                      class="line-5"
-                      src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/line-5@2x.svg"
-                    />
-                    <img
-                      class="line-6"
-                      src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/line-6@2x.svg"
-                    />
-                  </div>
-                </div>
-                <div class="group-132">
-                  <div class="overlap-group2-1">
-                    <img
-                      class="arrow-1"
-                      src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/arrow-1@2x.svg"
-                    />
-                    <img
-                      class="ellipse-42"
-                      src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/ellipse-42@2x.svg"
-                    />
-                  </div>
-                </div>
-              </div>-->
-            <!--</div>-->
-          </div>
-          <div class="component-2">
-            <div class="overlap-group8" v-on:click="addNewTodo">
-              <div class="rectangle-14 border-0-4px-white"></div>
-              <div class="rectangle-15 border-0-4px-white"></div>
-            </div>
-            
-          </div>
-        </div>
+             </div>
         
         <img
           class="mask-group-3"
@@ -257,18 +193,18 @@
 
 .desktop-21 {
   align-items: flex-start;
-  /*background-color: var(--mystic);*/
+  background-color: var(--mystic);
   background-color:#e3e8ee;
   display: flex;
-  /*height: 1024px;*/
-  height: 800px;
-  overflow: hidden;
+  
+  min-height: 800px;
+  /*overflow: hidden;*/
   /*width: 1440px;*/
   width: 1519px;
 }
 
 .desktop-21 .overlap-group9 {
-  height: 1118px;
+  /*height: 1118px;*/
   margin-left: -88px;
   margin-top: -94.24px;
   position: relative;
@@ -322,7 +258,7 @@
   backdrop-filter: blur(15px) brightness(100%);
   background-color: var(--white-42);
   border-radius: 13px;
-  height: 1024px;
+  min-height: 1024px;
   left: 140px;
   position: absolute;
   top: 94px;
@@ -467,11 +403,12 @@
   border-radius: 13px;
  
   height: 191px;
-  left: 725px;
+  /*left: 725px;
   position: absolute;
-  top: 259px;
+  top: 259px;*/
   width: 264px;
-  
+  margin:20px;
+  display:inline-block;
   
 }
 
@@ -836,10 +773,10 @@
   cursor: pointer;
   display: flex;
   height: 33px;
-  left: 841px;
+  left: 115px;
   min-width: 33px;
   position: absolute;
-  top: 338px;
+  top: 79px;
   
   
 }
