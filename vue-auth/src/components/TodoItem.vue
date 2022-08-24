@@ -5,7 +5,7 @@
         <Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage><!--перенос-->
         <div class="flex-row">
           <div class="untitled fredoka-medium-black-17px">Untitled</div>
-          <!--<div class="untitled fredoka-medium-black-17px"> {{ title }}</div>-->
+          <!--<div class="untitled fredoka-medium-black-17px">{{ title }}</div>-->
           <div class="overlap-group4 border-0-4px-black">
             <div class="group-134">
               <img
@@ -20,13 +20,14 @@
           @click="$emit('remove')" v-if="!addnew"/>
         </div>
         <div class="flex-row-1">
-          <div class="date">12.05.22</div>
+            <div class="date">{{createdPage}}</div>
           <img
             class="vector-8"
             src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-8@2x.svg"
           />
           <div class="movies fredoka-light-gray-12px">#movies</div>
         </div>
+
         <div class="text fredoka-light-black-15px">Text..</div>
         <div class="group-container">
           <img
@@ -74,7 +75,7 @@
 
     export default {
         name: 'TODOITEM',
-        props: ['title'],
+        props: ['title', 'records','createdPage'],
         emits: ['remove'],
         components:
             { Userpage }

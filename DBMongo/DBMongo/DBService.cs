@@ -156,7 +156,7 @@ namespace DBMongo
             return r;
         }
 
-        public Page CreatePageUser(string userId, string name, string group)
+        public Page CreatePageUser(string userId, string name, List<string> group)
         {
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             Page d = new Page { UserId = userId, Name = name, Group= group };
@@ -164,7 +164,7 @@ namespace DBMongo
             return d;
         }
 
-        public Page RenamePageUser(string userId, string PageId, string newName)
+        public Page RenamePageUser(string userId, string PageId, string newName, List<string> group)
         {
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
@@ -173,6 +173,7 @@ namespace DBMongo
             if (d == null)
                 return null;
             d.Name = newName;
+            d.Group = group;
             col.ReplaceOne(filter, d);
             return d;
         }

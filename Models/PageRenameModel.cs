@@ -13,5 +13,8 @@ namespace MVC_2.Models
 
         [JsonProperty("NewName")]
         public string NewName { get; set; }
+
+        [JsonProperty("Group")]
+        public List<string> Group { get; set; }
     }
 }

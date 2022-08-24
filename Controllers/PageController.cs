@@ -37,7 +37,7 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                _context.CreatePageUser(u.Id, model.NewName, "");
+                _context.CreatePageUser(u.Id, model.NewName, model.Group);
             }
 
             return Ok();
@@ -57,37 +57,13 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                _context.RenamePageUser(u.Id, model.IdPage, model.NewName);
+                _context.RenamePageUser(u.Id, model.IdPage, model.NewName, model.Group);
             }
 
             return Ok();
         }
 
-        ///// <summary>
-        ///// редагування стіку - додавання записів. 
-        ///// </summary>
-        ///// <param name="model"></param>
-        ///// <param name="PageId"></param>
-
-        ///// <returns></returns>
-        //[Route("Edit")]
-        //[HttpPut]
-        //public IActionResult Edit(string PageId, RecordModel model)
-        //{
-        //    string name = User.Identity.Name;
-
-        //    var u = _context.SearchUser(name);
-        //    if (u != null)
-        //    {
-        //        Record r = new Record()
-        //        { Id= model.IdRecord,Text= model.Text,RecordType= RecordType.Text};
-        //        _context.AddRecordToPage(u.Id, PageId, r);
-        //    }
-
-        //    return Ok();
-        //}
-
-        /// <summary>
+             /// <summary>
         /// отримання стіку по його id. (брати з бази)
         /// </summary>
         /// <param name="PageId"></param>

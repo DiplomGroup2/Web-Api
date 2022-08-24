@@ -26,6 +26,8 @@
                   <todo-item v-for="(todo) in todos"
                              :title="todo.name"
                              :key="todo.id"
+                             :records="todo.records"
+                             :createdPage="todo.createdPage"
                              @remove="DeleteTodo(todo)"></todo-item>
                   <!--</ul>-->
 

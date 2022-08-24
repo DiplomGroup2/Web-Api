@@ -17,7 +17,9 @@ namespace MVC_2.Models
        
         [JsonProperty("Records")]
         public List<Record> Records { get; set; }
-       
+
+        [JsonProperty("Group")]
+        public List<string> Group { get; set; }
         //[JsonProperty("RecordIds")]
         //public List<string> RecordIds { get; set; }
     }
