@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace MVC_2.Controllers
@@ -32,14 +35,14 @@ namespace MVC_2.Controllers
         /// <returns></returns>
         [Route("Create")]
         [HttpPost]
-        public IActionResult Create([FromForm]RecordModel model )
+        public IActionResult Create([FromForm] RecordModel model)
         {
 
             MemoryStream memoryStream = new MemoryStream();
             if (model.File != null)
             {
                 model.File.CopyTo(memoryStream);
-                memoryStream.Seek(0,SeekOrigin.Begin);
+                memoryStream.Seek(0, SeekOrigin.Begin);
             }
             //throw new NotImplementedException();
             string name = User.Identity.Name;
@@ -47,9 +50,9 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-              var r=  _context.CreateRecordUser(u.Id, model.Text, model.File?.FileName,memoryStream);
+                var r = _context.CreateRecordUser(u.Id, model.Text, model.File?.FileName, memoryStream);
                 _context.AddRecordToPage(u.Id, model.PageId, r);
-                   
+
             }
 
             return Ok();
@@ -78,13 +81,13 @@ namespace MVC_2.Controllers
             return Ok();
         }
         /// <summary>
-        /// отримання запису по його id. (брати з бази)
+        /// отримання текстового запису по його id. 
         /// </summary>
         /// <param name="recordId"></param>
         /// <returns></returns>
         [Route("GetRecord")]
         [HttpGet]
-        public IActionResult GetRecord(string recordId)
+        public IActionResult GetTextRecord(string recordId)
         {
             string name = User.Identity.Name;
 
@@ -96,6 +99,32 @@ namespace MVC_2.Controllers
 
             return BadRequest("От халепа :(");
         }
+
+
+        /// <summary>
+        /// отримання зображення по його id.
+        /// </summary>
+        /// <param name="imageId"></param>
+        /// <returns></returns>
+        [Route("GetImage")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult GetImageRecord(string imageId)
+        {
+            // string name = User.Identity.Name;
+                        // var u = _context.SearchUser(name);
+            var s = _context.GetImage(imageId);
+            if (s != null)
+            {
+                s.Seek(0, SeekOrigin.Begin);
+                //try { return File(s, "application/octet-stream"); }
+                try { return File(s, "image/jpeg"); }
+                catch(Exception e) { return BadRequest("От халепа :("); }
+                          
+            }
+            return BadRequest("От халепа :(");
+        }
+
 
 
         /// <summary>
@@ -154,7 +183,7 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                _context.DeleteRecordUser(u.Id,  recordId);
+                _context.DeleteRecordUser(u.Id, recordId);
             }
             return Ok();
         }

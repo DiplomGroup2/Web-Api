@@ -1146,21 +1146,5 @@
 </script>
 
 
-<!--<template>
-    <form v-on:submit.prevent="addNewTodo">
-        <label for="new-todo">Add a todo</label>
-        <input v-model="newTodoText"
-               id="new-todo"
-               placeholder="E.g. Feed the cat" />
-        <button>Add</button>
-    </form>
-    <ul>
-        <todo-item v-for="(todo) in todos"
-                   :title="todo.title"
-                   :key="todo.id"
-                   @remove="todos.splice(index, 1)"></todo-item>
-    </ul>
-</template>-->
-
 
 

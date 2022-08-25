@@ -22,7 +22,7 @@ namespace DBMongo
         private IGridFSBucket _gridFS;
 
         public DBService(string connectionString = "mongodb://uktclp9d1e9pwejmuzhz:tcebGcGcW8wwXA4LIXBO@n1-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017,n2-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017/bqmv36yvlevov6u?replicaSet=rs0")
-            //(string connectionString = "mongodb://localhost:27017")
+        //(string connectionString = "mongodb://localhost:27017")
         {
 
             _connectionString = connectionString;
@@ -78,11 +78,12 @@ namespace DBMongo
             col.DeleteOne(filter);
         }
 
-        public Record CreateRecordUser(string userId, string record,string fileName, MemoryStream memoryStream)
+        public Record CreateRecordUser(string userId, string record, string fileName, MemoryStream memoryStream)
         {
             Record r = new Record { UserId = userId, Text = record };
             if (fileName != null)
-            { ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
+            {
+                ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
                 r.ImageId = id.ToString();
                 r.RecordType = RecordType.Image;
             }
@@ -92,13 +93,17 @@ namespace DBMongo
             return r;
         }
 
-        //public Record CreateRecordUser(string userId, Record record)
-        //{
-        //    IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
-        //    Record r = new Record { UserId = userId, Text = record.Text };
-        //    col.InsertOne(r);
-        //    return r;
-        //}
+        public MemoryStream GetImage(string imageId)
+        {
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                _gridFS.DownloadToStream(ObjectId.Parse(imageId), ms);
+                return ms;
+            }
+            catch { return null; }
+        }
+
 
         public Record EditRecordUser(string userId, string recordId, string newRecord)
         {
@@ -159,7 +164,7 @@ namespace DBMongo
         public Page CreatePageUser(string userId, string name, List<string> group)
         {
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
-            Page d = new Page { UserId = userId, Name = name, Group= group };
+            Page d = new Page { UserId = userId, Name = name, Group = group };
             col.InsertOne(d);
             return d;
         }
@@ -232,7 +237,7 @@ namespace DBMongo
             var d = cursor.FirstOrDefault();
             if (d != null)
             {
-                               if (d.Records == null)
+                if (d.Records == null)
                     d.Records = new List<Record>();
                 d.Records.Add(record);
                 col.ReplaceOne(filter, d);
