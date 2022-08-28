@@ -5,34 +5,39 @@
         <Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage><!--перенос-->
         <div class="flex-row">
           <div class="untitled fredoka-medium-black-17px">Untitled</div>
-          <!--<div class="untitled fredoka-medium-black-17px">{{ title }}</div>-->
+          <!--<div class="untitled fredoka-medium-black-17px"> {{ title }}</div>-->
           <div class="overlap-group4 border-0-4px-black">
             <div class="group-134">
               <img
-                class="vector-9"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-9@2x.svg"
+                class="vector-9" src="../assets/vector-9@2x.svg"
               />
             </div>
           </div>
           <img
-            class="mask-group"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-4@2x.svg"
+            class="mask-group" src="../assets/mask-group-4@2x.svg"
           @click="$emit('remove')" v-if="!addnew"/>
         </div>
         <div class="flex-row-1">
             <div class="date">{{createdPage}}</div>
           <img
-            class="vector-8"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-8@2x.svg"
+            class="vector-8" src="../assets/vector-8@2x.svg"
           />
           <div class="movies fredoka-light-gray-12px">#movies</div>
         </div>
 
-        <div class="text fredoka-light-black-15px">Text..</div>
+        <div class="text fredoka-light-black-15px">
+          {{ message }}
+          <component v-bind:is="component"></component>
+          <textarea  id="textArea" v-model="message"  placeholder="Text..">
+
+          </textarea>             
+          
+          </div>
         <div class="group-container">
+
+
           <img
-            class="mask-group-1"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-3@2x.svg"
+            class="mask-group-1" src="../assets/mask-group-3@2x.svg"
           />
           <div class="group-133">
             <div class="overlap-group1">
@@ -41,35 +46,31 @@
                 <div class="rectangle-37 border-0-9px-black-4"></div>
               </div>
               <img
-                class="line-5"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/line-5@2x.svg"
+                class="line-5" src="../assets/line-5@2x.svg"
               />
               <img
-                class="line-6"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/line-6@2x.svg"
+                class="line-6" src="../assets/line-6@2x.svg"
               />
             </div>
           </div>
           <div class="group-132">
             <div class="overlap-group2">
-              <img
-                class="arrow-1"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/arrow-1@2x.svg"
+              <img click="SaveInFile"
+                class="arrow-1" id="arrow" src="../assets/arrow-1@2x.svg"
               />
               <img
-                class="ellipse-42"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/ellipse-42@2x.svg"
+                class="ellipse-42" src="../assets/arrow-1@2x.svg"
               />
             </div>
           </div>
         </div>
+        
       </div>
     </div>
 </template>
 
 
-
-<script>
+<script >
 
     import Userpage from "./Userpage"
 
@@ -77,9 +78,68 @@
         name: 'TODOITEM',
         props: ['title', 'records','createdPage'],
         emits: ['remove'],
+        methods: {
+        SaveInFile(){
+/*let textArea = document.getElementById('textArea');
+
+    async function writeFile(fileHandle, contents) {
+      const writable = await fileHandle.createWritable();
+      await writable.write(contents);
+      await writable.close();
+    }   
+    
+    let fileHandle;
+    let saveTo;
+
+    addEventListener('click', async () => {
+      
+      [fileHandle] = await window.showOpenFilePicker();
+      const file = await fileHandle.getFile();
+      const contents = await file.text();
+      textArea.value = contents;
+    });
+
+    addEventListener('click', async () => {
+    if (typeof saveTo == 'undefined') {
+        saveTo = await window.showSaveFilePicker();
+    } 
+     writeFile(saveTo, textArea.value);
+    });     */
+    //СПОСОБ ДВА
+    /*function saveFileAs() {
+   if (promptFilename = prompt("Save file as", "")) {
+    var textBlob = new Blob([document.getElementById("canvas-textarea").value], {type:'text/plain'});
+    var downloadLink = document.createElement("a");
+    downloadLink.download = promptFilename;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = window.URL.createObjectURL(textBlob);
+    downloadLink.click();
+    delete downloadLink;
+    delete textBlob;
+     }
+  }
+
+document.getElementById("arrow").onclick = saveFileAs;
+
+}*/
+              //СПОСОБ  ТРИ 
+              
+/*$(function() {
+  $('#arrow').click(function(e) {
+    var data = document.getElementById('textArea').value;
+     data = 'data:application/csv;charset=utf-8,' + encodeURIComponent(data);
+    var el = e.currentTarget;
+    el.href = data;
+    el.target = '_blank';
+    el.download = 'data.csv';
+  });
+});*/
+    },
         components:
             { Userpage }
     }
+    }
+    
 </script>
 
 <!--<template>-->
@@ -106,18 +166,27 @@
 
 
 <style scoped>
+textarea {
+ width:200px;
+ height:60px ;
+ resize:both;
+
+}
     .view {
-        align-items: flex-start;
-        /*display: flex;
-        height: 192px;*/
-        overflow: hidden;
+         align-items: flex-start;
+                             /*display: flex;
+                              height: 192px;
+                              */
+        overflow:hidden;
         padding: 0.6px 0;
-        /* width: 265px;*/
+                              /* width: 265px;*/
         min-height: 192px;
         min-width: 265px;
+        
         padding: 10px;
         margin: 10px;
-        display: inline-block
+        display: inline-block;
+        
     }
 
 .overlap-group3 {
@@ -127,11 +196,21 @@
   background-color: var(--white);
   border-radius: 13px;
   box-shadow: 0px 4px 0px #8aa7de;
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  min-height: 187px;
+  min-height: 187px;*/
   padding: 14.0px 19.7px;
   width: 265px;
+  flex-direction: column;
+  /* НИЖЕ ДОБАВЛЕНЫ УВЕЛИЧЕНИЯ ТАЙЛА */
+  resize: both;
+  display: inline-block;
+  overflow: auto;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 1026px;
+  max-height: 750px;
+        
 }
 
 .flex-row {
@@ -141,6 +220,7 @@
   height: 21px;
   margin-left: 0.08px;
   min-width: 225px;
+  
 }
 
 .untitled {
@@ -230,7 +310,7 @@
   align-items: flex-start;
   display: flex;
   margin-left: 0.88px;
-  margin-top: 74px;
+  margin-top: 30px; /* изменено  74px; / 40 px  */
   min-width: 88px;
 }
 
@@ -320,6 +400,7 @@
   position: absolute;
   top: 0;
   width: 10px;
+  cursor:pointer;
 }
 
 .ellipse-42 {

@@ -29,29 +29,57 @@
           />
           <div class="overlap-group border-0-4px-white">
            
-            <div class="creat-first-page fredoka-normal-white-20px"><button @click="Workspace" style="background-color: transparent; border-color: transparent; width:200px">Create first page</button></div>
+            <div class="creat-first-page fredoka-normal-white-20px"><button @click="Workspace" style="background-color: transparent; border-color: transparent; width:150px">Personal pages</button></div>
           </div>
+          <div class="questions">
           <img
             class="group-18" src="../assets/group-18-10@2x.svg"
           />
-          <h1 class="place fredoka-medium-black-30px">Welcome</h1>
+          <h1 class="place fredoka-medium-black-30px">QUESTIONS</h1>
           <div class="shall-we-start-by-cr fredoka-light-black-30px">
-            Shall we start by creating the first personal page?
+            Are you creating a page in our site for the first time?
+            <p>See the answers for some important questions.</p> 
           </div>
-          <div class="rectangle-70"></div>
+          <div class="shall-we-start-by-cr1 fredoka-light-black-30px1">
+            What is xTiles? 
+          </div>
+          <div class="shall-we-start-by-cr2 fredoka-light-black-30px1">
+            xTiles is a cross-platform visual note-taking app for creative people . It helps creative minds gather and store their thoughts in one place.
+          </div>
+          <div class="shall-we-start-by-cr3 fredoka-light-black-30px1">
+            What are the most common uses for xTiles ?
+          </div>
+          <div class="shall-we-start-by-cr4 fredoka-light-black-30px1">
+            <p>- creative writing;</p>
+            <p>- note-taking;</p>
+            <p>- personal productivity;</p>
+            <p>- remote working;</p>
+            <p>- researching;</p>
+          </div>
+          <div class="shall-we-start-by-cr5 fredoka-light-black-30px1">
+          What are Key benefits of using xTiles?
+          </div>
+          <div class="shall-we-start-by-cr6 fredoka-light-black-30px1">
+            <p> - Easy to use and flexible approach for creative processes;</p>
+            <p> - One-click publishing to the web;</p>
+            <p> - All your notes are in one place</p>
+            </div>
+          </div>
+          
+          <!--<div class="rectangle-70"></div>
           <div class="rectangle-73"></div>
           <div class="rectangle-71"></div>
-          <div class="rectangle-72"></div>
+          <div class="rectangle-72"></div>-->
         </div>
-        <img
+        <!--<img
           class="mask-group" src="../assets/mask-group-63@1x.svg"
-        />
-        <img
+        />-->
+        <!--<img
           class="x1" src="../assets/---1@1x.png"
-        />
+        />-->
         <div class="ellipse-7"></div>
         <div class="ellipse-8"></div>
-        <img
+        <!--<img
           class="ellipse-9" src="../assets/ellipse-9@2x.svg"
         />
         <img
@@ -59,9 +87,9 @@
         />
         <img
           class="icon-light_bulb" src="../assets/mask-group-64@2x.svg"
-        />
+        />-->
         <div class="group-10">
-          <div class="overlap-group-1">
+          <!--<div class="overlap-group-1">
             <div class="rectangle-9 border-0-3px-fresh-air"></div>
             <div class="text-1 fredoka-bold-white-30px" @click="QuestionPage">?</div>
           </div>
@@ -76,7 +104,7 @@
               class="mask-group-1"
               src="../assets/mask-group-66@2x.svg"
             />
-          </div>
+          </div>-->
           <div class="group-14 border-0-3px-fresh-air" id="outtooltip" >
             <img 
               class="icon-user" @click="handleLogout"
@@ -164,6 +192,9 @@ Userfront.init("demo1234");
 
 <style scoped>
 
+.desktop7.questions{
+  padding-left: 300px;
+}
 #outtooltip {
   position: relative;
   display: inline-block;
@@ -220,27 +251,28 @@ Userfront.init("demo1234");
   position: absolute;
   top: 37px;
   transform: rotate(-13.71deg);
-  width: 359px;
+  width: 420px;
 }
+
 
 .desktop-7 .ellipse-5 {
   background: linear-gradient(180deg, rgb(159.98, 130.33, 244.38) 0%, rgba(100.06, 176.76, 247.56, 0.55) 50.76%, rgba(250.96, 53.12, 255, 0) 100%);
   border-radius: 143.16px;
   height: 286px;
-  left: 1339px;
+  left: 1239px;
   position: absolute;
   top: 590px;
   transform: rotate(-120.00deg);
-  width: 286px;
+  width: 386px;
 }
 
 .desktop-7 .ellipse-6 {
   background: linear-gradient(180deg, rgb(159.98, 130.33, 244.38) 0%, rgba(100.06, 176.76, 247.56, 0.55) 50.76%, rgba(250.96, 53.12, 255, 0) 100%);
   border-radius: 117.04px;
   height: 234px;
-  left: 1252px;
+  left: 1352px;
   position: absolute;
-  top: 721px;
+  top: 421px;
   transform: rotate(-60.00deg);
   width: 234px;
 }
@@ -250,7 +282,7 @@ Userfront.init("demo1234");
   left: 50px;
   position: absolute;
   top: 196px;
-  width: 259px;
+  width: 459px;
 }
 
 .desktop-7 .rectangle-24 {
@@ -285,45 +317,115 @@ Userfront.init("demo1234");
   border-radius: 20px;
   display: flex;
   height: 37px;
-  left: 379px;
+  left: 750px;
   min-width: 275px;
   padding: 5.3px 65.3px;
   position: absolute;
-  top: 543px;
+  top: 750px;
 }
 
 .desktop-7 .creat-first-page {
   letter-spacing: 0;
   min-height: 24px;
-  width: 144px;
+  width: 154px;
+  
+  
 }
 
 .desktop-7 .group-18 {
   height: 82px;
   left: 474px;
   position: absolute;
-  top: 247px;
+  top: 197px;
   width: 82px;
 }
 
 .desktop-7 .place {
-  left: 435px;
+  left: 800px;
   letter-spacing: 0;
   position: absolute;
   text-align: center;
-  top: 366px;
+  top: 215px;
   width: 160px;
+  color: #8d5cff;
 }
 
 .desktop-7 .shall-we-start-by-cr {
-  left: 317px;
+  left: 580px;
   letter-spacing: 0;
   position: absolute;
   text-align: center;
-  top: 415px;
-  width: 399px;
+  top: 300px;
+  width: 650px;
+  color: #5c6cff;
+  font-weight: bold;
 }
 
+.desktop-7 .shall-we-start-by-cr1 {
+  left: 820px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: left;
+  top: 400px;
+  width: 650px;
+  font-weight: bold;
+  color:#8d5cff;
+  font-size:23px;
+}
+
+.desktop-7 .shall-we-start-by-cr2 {
+  left: 580px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 430px;
+ width: 650px;
+ font-weight: normal;
+}
+
+.desktop-7 .shall-we-start-by-cr3 {
+  left: 570px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 480px;
+  width: 650px;
+  font-weight: bold;
+  color:#8d5cff;
+  font-size:23px;
+}
+
+.desktop-7 .shall-we-start-by-cr4 {
+  left: 560px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 500px;
+  width: 650px;
+   font-weight: normal;
+}
+
+.desktop-7 .shall-we-start-by-cr5 {
+  left: 570px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 615px;
+  width: 650px;
+  font-weight: bold;
+  color:#8d5cff;
+  font-size:23px;
+}
+
+.desktop-7 .shall-we-start-by-cr6 {
+  left: 560px;
+  letter-spacing: 0;
+  position: absolute;
+  text-align: center;
+  top: 640px;
+  width: 650px;
+  font-weight: normal;
+}
 .desktop-7 .rectangle-70 {
   background: linear-gradient(180deg, rgb(55.25, 111.18, 255) 0%, rgba(255, 255, 255, 0) 100%);
   border-radius: 18.92px;
@@ -438,13 +540,13 @@ Userfront.init("demo1234");
 
 .desktop-7 .group-10 {
   align-items: center;
-  box-shadow: 0px 2px 2px #5cffdd;
+  box-shadow: 0px 2px 2px #5c8aff;
   display: flex;
-  height: 36px;
+  height: 65px;
   left: 1134px;
-  min-width: 166px;
+  min-width: 80px;
   position: fixed;
-  top: 17px;
+  top: 65px;
   z-index: 8;
 }
 
@@ -522,9 +624,9 @@ Userfront.init("demo1234");
 }
 
 .desktop-7 .icon-user {
-  height: 32px;
+  height: 60px;
  
-  width: 32px;
+  width: 60px;
   cursor:pointer;
 
 }
@@ -590,7 +692,6 @@ Userfront.init("demo1234");
   --white-4: #ffffffb2;
   --white-5: #ffffff69;
  
-  --font-size-l: 20px;
   --font-size-xxl: 30px;
  
   --font-family-fredoka: "Fredoka", Helvetica;
@@ -598,7 +699,7 @@ Userfront.init("demo1234");
 .fredoka-normal-white-20px {
   color: var(--white);
   font-family: var(--font-family-fredoka);
-  font-size: var(--font-size-l);
+  font-size: 19px;
   font-style: normal;
   font-weight: 400;
 }
@@ -614,9 +715,17 @@ Userfront.init("demo1234");
 .fredoka-light-black-30px {
   color: var(--black);
   font-family: var(--font-family-fredoka);
-  font-size: var(--font-size-xxl);
+  font-size: 25px;
   font-style: normal;
   font-weight: 300;
+}
+
+.fredoka-light-black-30px1 {
+  color: var(--black);
+  font-family: var(--font-family-fredoka);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 200;
 }
 
 .fredoka-bold-white-30px {

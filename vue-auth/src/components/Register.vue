@@ -9,21 +9,21 @@
                         <div class="rectangle-3"></div>
                         <div class="overlap-group">
                             <img class="ellipse-1"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-1-2@2x.svg" />
+                                 src="../assets/ellipse-1-2@2x.svg" />
                             <img class="ellipse-2"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-2-2@2x.svg" />
+                                 src="../assets/ellipse-2-2@2x.svg" />
                             <img class="ellipse-3"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-3-2@2x.svg" />
+                                 src="../assets/ellipse-3-2@2x.svg" />
                             <img class="ellipse-4"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-4-5@2x.svg" />
+                                 src="../assets/ellipse-4-9@2x.svg" />
                             <img class="ellipse-5"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-5-2@2x.svg" />
+                                 src="../assets/ellipse-5-2@2x.svg" />
                             <img class="vector"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-8@2x.svg" />
+                                 src="../assets/vector-12@2x.svg" />
                             <img class="vector-1"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-9@2x.svg" />
+                                 src="../assets/vector-13@2x.svg" />
                             <img class="vector-2"
-                                 src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-10@2x.svg" />
+                                 src="../assets/vector-14@2x.svg" />
                         </div>
                         <div class="ellipse-6"></div>
                         <div class="ellipse-7"></div>
@@ -55,7 +55,7 @@
     <div class="password fredoka-light-nobel-16px">Password</div>-->
                     <div class="group-67">
                         <img class="vector-5"
-                             src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-5-1@2x.svg" />
+                             src="../assets/vector-5-1@2x.svg" />
                     </div>
                     <div class="rectangle-69"></div>
                     <button class="btn btn-primary btn-block ">

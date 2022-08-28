@@ -21,34 +21,35 @@
                   <!--<div class="password fredoka-light-nobel-16px">Password</div>-->
                   <div class="group-64">
                       <img class="vector-4"
-                           src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-4-2@2x.svg" />
+                           src="../assets/vector-4-1@2x.svg" />
                   </div>
                   <div class="overlap-group1">
                       <div class="rectangle-3"></div>
                       <div class="overlap-group">
                           <img class="ellipse-1"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-1-4@2x.svg" />
+                               src="../assets/ellipse-1-4@2x.svg" />
                           <img class="ellipse-2"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-2-4@2x.svg" />
+                               src="../assets/ellipse-2-4@2x.svg" />
                           <img class="ellipse-3"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-3-4@2x.svg" />
+                               src="../assets/ellipse-3-4@2x.svg" />
                           <img class="ellipse-4"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-4-10@2x.svg" />
+                               src="../assets/ellipse-4-17@2x.svg" />
                           <img class="ellipse-5"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/ellipse-5-4@2x.svg" />
+                               src="../assets/ellipse-5-4@2x.svg" />
                           <img class="vector"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-14@2x.svg" />
+                               src="../assets/vector-20@2x.svg" />
                           <img class="vector-1"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-15@2x.svg" />
+                               src="../assets/vector-21@2x.svg" />
                           <img class="vector-2"
-                               src="https://anima-uploads.s3.amazonaws.com/projects/62d2d7d3f9ede3e68a5f3c76/releases/62d2d824588fd82329642652/img/vector-7@2x.svg" />
+                               src="../assets/vector-7@2x.svg" />
                       </div>
                       <div class="ellipse-6"></div>
                       <div class="ellipse-7"></div>
                   </div>
                   <div class="overlap-group2">
                       <div class="rectangle-6"></div>
-                      <img class="icon-user" :src="require('@/assets/Profile.jpg')"/>
+                     <!-- <img class="icon-user" :src="require('@/assets/Profile.jpg')"/> -->
+                     <img class="icon-user" src="../assets/mask-group-77@2x.svg"/>
                   </div>
                   <h1 class="title fredoka-bold-white-36px">Welcome!</h1>
                   <p class="we-provide-you-with fredoka-light-white-16px">

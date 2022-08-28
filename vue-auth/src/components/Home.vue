@@ -8,14 +8,12 @@
           <div class="ellipse-5"></div>
           <div class="ellipse-6"></div>
           <img
-            class="ellipse-4"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/ellipse-4@2x.svg"
+            class="ellipse-4" src="../assets/ellipse-4@2x.svg"
           />
           
 
           <img
-            class="rectangle-24"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/rectangle-24@1x.png"
+            class="rectangle-24" src="../assets/rectangle-24@1x.png"
           />
           
           
@@ -30,8 +28,7 @@
           
           <div class="sing-in" @click="SignInClick">Sing in</div>
           <img
-            class="group-18"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/group-18@2x.svg"
+            class="group-18" src="../assets/group-18@2x.svg"
           />
           
           <div class="tiles" id="outtooltip">tiles
@@ -44,22 +41,24 @@
           <div class="organize-your-ideas-projects-visually">Organize your ideas &amp; projects visually</div>
           <div class="personal-workspace-favored-by-creatives">Personal workspace favored by creatives</div>
           <div class="rectangle-136">
-            <iframe width="700" height="415"
+            <!--<iframe width="700" height="415"
              src="https://www.youtube.com/embed/1bvqFU5OhWQ" 
              title="YouTube video player"
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-               allowfullscreen></iframe>
+               allowfullscreen></iframe>-->
+               <iframe width="700" height="415" 
+               src="https://www.youtube.com/embed/H7bOtuZtiXk" 
+               title="YouTube video player"
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
-          <img
-            class="polygon-1"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/polygon-1@2x.svg"
-          />
+         <!--<img
+            class="polygon-1" src="../assets/polygon-1@2x.svg"
+          />-->
           <div class="ellipse-7"></div>
           <div class="ellipse-8"></div>
           <img
-            class="rectangle-137"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/rectangle-137@1x.png"
+            class="rectangle-137" src="../assets/rectangle-137@1x.png"
           />
           
           <div class="copyright fredoka-normal-black-20px">© 2022 xTiles</div>
@@ -67,8 +66,7 @@
           <div class="public-offer fredoka-light-white-15px">Public offer</div>
           <div class="cookies fredoka-light-white-15px">Cookies</div>
           <img
-            class="group-73"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62ebec45d779b49174ebed22/img/group-73@2x.svg"
+            class="group-73" src="../assets/group-73@2x.svg"
           />
 
           <h1 class="title">tiles</h1>

@@ -8,7 +8,7 @@
           <div class="ellipse-6"></div>
           <img
             class="ellipse-4"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/ellipse-4-1@2x.svg"
+            src="../assets/ellipse-4-1@2x.svg"
           />
           
           <div class="rectangle-24 border-2px-white">
@@ -23,7 +23,11 @@
 
                       </div>
                   </div>
-                  <todo-item v-for="(todo) in todos"
+                  <!--<todo-item v-for="(todo) in todos"
+                             :title="todo.name"
+                             :key="todo.id"
+                             @remove="DeleteTodo(todo)"></todo-item>-->
+                             <todo-item v-for="(todo) in todos"
                              :title="todo.name"
                              :key="todo.id"
                              :records="todo.records"
@@ -39,15 +43,15 @@
           <div class="rectangle-30"></div>
           <img
             class="line-1"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/line-1@1x.svg"
+            src="../assets/line-1@1x.svg"
           />
           <img
             class="line-2"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/line-2@1x.svg"
+            src="../assets/line-2@1x.svg"
           />
           <img
             class="group-18"
-            src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/group-18@2x.svg"
+            src="../assets/group-18@2x.svg"
           />
           <h1 class="title fredoka-medium-black-25px">Personal pages</h1>
           <div class="overlap-group2">
@@ -56,25 +60,25 @@
                 <div class="group-67">
                   <img
                     class="vector-1"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-1-1@2x.svg"
+                    src="../assets/vector-1-1@2x.svg"
                   />
                   <img
                     class="vector"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-2-1@2x.svg"
+                    src="../assets/vector-2-1@2x.svg"
                   />
                   <img
                     class="vector"
-                    src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-3@2x.svg"
+                    src="../assets/vector-3@2x.svg"
                   />
                 </div>
                 <img
                   class="rectangle-36"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/rectangle-36@2x.svg"
+                  src="../assets/rectangle-36@2x.svg"
                 />
               </div>
               <img
                 class="mask-group"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-2@2x.svg"
+                src="../assets/mask-group-2@2x.svg"
               />
             </div>
             <div class="private fredoka-light-black-16px">Private</div>
@@ -91,34 +95,32 @@
               <div class="group-67">
                 <img
                   class="vector-1"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-1-2@2x.svg"
+                  src="../assets/vector-1-2@2x.svg"
                 />
                 <img
                   class="vector"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-2-2@2x.svg"
+                  src="../assets/vector-2-2@2x.svg"
                 />
                 <img
                   class="vector"
-                  src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/vector-3-1@2x.svg"
+                  src="../assets/vector-3-1@2x.svg"
                 />
               </div>
               <img
                 class="rectangle-36"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/rectangle-36-1@2x.svg"
+                src="../assets/rectangle-36-1@2x.svg"
               />
             </div>
           </div>
           <div class="overlap-group4">
             <img
-              class="group-71"
-              src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/group-71@2x.svg"
+              class="group-71" src="../assets/group-71@2x.svg"
             />
             <div class="ellipse-7 border-0-5px-white"></div>
           </div>
           <div class="overlap-group5">
             <img
-              class="group-68"
-              src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/group-68@2x.svg"
+              class="group-68" src="../assets/group-68@2x.svg"
             />
             <div class="workspace fredoka-light-black-16px">Workspace</div>
           </div>
@@ -127,34 +129,30 @@
             <div class="overlap-group6">
               <div class="ellipse-43 border-1px-glacier"></div>
               <img
-                class="line-9"
-                src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/line-9@2x.svg"
+                class="line-9" src="../assets/line-9@2x.svg"
               />
             </div>
           </div>
              </div>
         
         <img
-          class="mask-group-3"
-          src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-1@2x.svg"
+          class="mask-group-3" src="../assets/mask-group-1@2x.svg"
         />
         <div class="tags fredoka-light-gray-12px">#tags</div>
         <div class="group-10">
           <div class="overlap-group-3">
             <div class="rectangle-9 border-0-3px-fresh-air"></div>
-            <div class="text-1 fredoka-bold-white-30px">?</div>
+            <div class="text-1 fredoka-bold-white-30px" @click="QuestionPage">?</div>
           </div>
           <div class="group-12 border-0-3px-fresh-air">
             <img
-              class="icon-star"
-              src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/star-1@2x.svg"
+              class="icon-star" src="../assets/star-1@2x.svg"
             />
           </div>
         
           <div class="group-13 border-0-3px-fresh-air" >
             <img 
-              class="mask-group-4"
-              src="https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-6@2x.svg"
+              class="mask-group-4" src="../assets/mask-group-6@2x.svg"
             />
           </div>
            <!--ПОДКЛЮЧЕНИЕ ПОДСКАЗКИ TOOLTIP LOGOUT -->
@@ -193,19 +191,18 @@
   cursor: pointer;
 }
 
-    .desktop-21 {
-        align-items: flex-start;
-        background-color: var(--mystic);
-        background-color: #e3e8ee;
-        display: flex;
-        justify-content: flex-end;
-        min-height: 1200px;
-        /*max-height: 100%;*/
-        /*overflow: visible;*/
-        /*overflow: hidden;*/
-        width: 100%;
-        /*width: 1519px;*/
-    }
+.desktop-21 {
+  align-items: flex-start;
+  /*background-color: var(--mystic);*/
+  background-color:#e3e8ee;
+  display: flex;
+  
+  min-height: 1124px;
+  /*overflow: hidden;*/
+  /*width: 1440px;*/
+  /*width: 1519px;*/
+  
+}
 
 .desktop-21 .overlap-group9 {
   /*height: 1118px;*/
@@ -256,7 +253,7 @@
   top: 196px;
   width: 259px;
 }
-
+                                                 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .desktop-21 .rectangle-24 {
   -webkit-backdrop-filter: blur(15px) brightness(100%);
   backdrop-filter: blur(15px) brightness(100%);
@@ -781,8 +778,6 @@
   min-width: 33px;
   position: absolute;
   top: 79px;
-  
-  
 }
 
 .desktop-21 .overlap-group8 {
@@ -835,7 +830,7 @@
 
 .desktop-21 .group-10 {
   align-items: center;
-  box-shadow: 0px 2px 2px #5cffdd;
+  /*box-shadow: 0px 2px 2px #5cffdd;*/
   display: flex;
   height: 34px;
   left: 1133px;
@@ -854,7 +849,7 @@
 }
 
 .desktop-21 .rectangle-9 {
-  background: linear-gradient(180deg, rgb(253, 254, 255) 0%, rgb(234, 242, 253) 100%);
+  /*background: linear-gradient(180deg, rgb(253, 254, 255) 0%, rgb(234, 242, 253) 100%);*/
   border-radius: 13px;
   height: 27px;
   left: 0;
@@ -864,10 +859,18 @@
 }
 
 .desktop-21 .text-1 {
-  -webkit-background-clip: text !important;
+ -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent;
-  background: linear-gradient(180deg, rgb(39.91, 92.81, 195.5) 0%, rgba(107.09, 43.24, 157.25, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    rgb(39.91, 92.81, 195.5) 0%,
+    rgba(107.09, 43.24, 157.25, 0) 100%
+  );
   background-clip: text;
+  color: transparent;
+  font-family: var(--font-family-fredoka);
+  font-size: var(--font-size-xxxl2);
+  font-weight: 700;
   left: 7px;
   letter-spacing: 0;
   position: absolute;
@@ -875,11 +878,12 @@
   text-fill-color: transparent;
   top: 0;
   width: 13px;
+  cursor:pointer;
 }
 
 .desktop-21 .group-12 {
   align-items: flex-start;
-  background: linear-gradient(180deg, rgba(246, 246, 249, 0.27) 0%, rgb(255, 255, 255) 0.01%, rgb(232, 241, 253) 100%);
+  /*background: linear-gradient(180deg, rgba(246, 246, 249, 0.27) 0%, rgb(255, 255, 255) 0.01%, rgb(232, 241, 253) 100%);*/
   border-radius: 13px;
   display: flex;
   height: 27px;
@@ -896,7 +900,7 @@
 
 .desktop-21 .group-13 {
   align-items: flex-start;
-  background: linear-gradient(180deg, rgb(253, 254, 255) 0%, rgb(234, 242, 253) 100%);
+  /*background: linear-gradient(180deg, rgb(253, 254, 255) 0%, rgb(234, 242, 253) 100%);*/
   border-radius: 13px;
   display: flex;
   height: 27px;
@@ -912,8 +916,8 @@
 }
 
 .desktop-21 .group-14 {
-  background: linear-gradient(180deg, rgba(248.63, 248.63, 248.63, 0) 0%, rgb(219.94, 236.07, 255) 100%);
-  background-image: url(https://anima-uploads.s3.amazonaws.com/projects/62e95c8145c29e165de0122e/releases/62e95f07fc13ad9d4cfd2020/img/mask-group-5@2x.svg);
+  background: linear-gradient(180deg, rgb(253, 254, 255) 0%, rgb(234, 242, 253) 100%);
+  background-image: url("../assets/mask-group-5@2x.svg");
   background-size: 100% 100%;
   border-radius: 13px;
   height: 27px;
@@ -1140,11 +1144,31 @@
                     }
                 });
                 return response.data;
-            }
+            },
+          QuestionPage(){
+          this.$router.push('/question');
+
+        }
         }
     }
 </script>
 
+
+<!--<template>
+    <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input v-model="newTodoText"
+               id="new-todo"
+               placeholder="E.g. Feed the cat" />
+        <button>Add</button>
+    </form>
+    <ul>
+        <todo-item v-for="(todo) in todos"
+                   :title="todo.title"
+                   :key="todo.id"
+                   @remove="todos.splice(index, 1)"></todo-item>
+    </ul>
+</template>-->
 
 
 
