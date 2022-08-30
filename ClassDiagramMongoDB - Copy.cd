@@ -12,10 +12,10 @@
     <Position X="7.5" Y="0.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="DBMongo.Models.RecordType">
+  <!--<Class Name="DBMongo.Models.RecordType">
     <Position X="7.5" Y="3.25" Width="1.5" />
     <TypeIdentifier />
-  </Class>
+  </Class>-->
   <Class Name="DBMongo.Models.User">
     <Position X="4" Y="0.75" Width="1.5" />
     <TypeIdentifier />

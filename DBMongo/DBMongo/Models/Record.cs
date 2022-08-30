@@ -14,18 +14,18 @@ namespace DBMongo.Models
         public string UserId { get; set; }
         //public string PageId { get; set; }
         public string ImageId { get; set; }
-        public RecordType RecordType { get; set; }
+        public string RecordType { get; set; }
        // public byte[] StrRecordByte { get; set; }
 
 
 
     }
 
-    public enum RecordType
-    {
-        Text,
-        //Binary,
-        Image
-    }
+    //public enum RecordType
+    //{
+    //    Text,
+    //    //Binary,
+    //    Image
+    //}
 }
 

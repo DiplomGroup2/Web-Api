@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Структура back-end">
+    <Position X="6.677" Y="1" Height="0.375" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Структура сервісу, що працює з базою даних">
+    <Position X="10.479" Y="1.078" Height="0.292" Width="3.002" />
+  </Comment>
+  <Comment CommentText="VUE&#xD;&#xA;(front-end)">
+    <Position X="4.021" Y="3.719" Height="0.49" Width="0.877" />
+  </Comment>
+  <Class Name="DBMongo.Models.Page" Collapsed="true">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBMongo.Models.Record" Collapsed="true">
+    <Position X="12.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBMongo.Models.User" Collapsed="true">
+    <Position X="12.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DBMongo.DBService">
+    <Position X="10.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MVC_2.Controllers.AccountController" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAEFAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Controllers.PageController">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAEQAEAAAgAAAAAAhAA=</HashCode>
+      <FileName>Controllers\PageController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Controllers.RecordController" Collapsed="true">
+    <Position X="8" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAABAAoAAAAAAAAAAEAAAACYgAAAAAAAAA=</HashCode>
+      <FileName>Controllers\RecordController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Models.AuthOptions" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQRAAAAAQAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AuthOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Models.LoginModel" Collapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LoginModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Models.PageModel" Collapsed="true">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\PageModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Models.PageRenameModel" Collapsed="true">
+    <Position X="5.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAIAAA=</HashCode>
+      <FileName>Models\PageRenameModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Models.RecordEditModel" Collapsed="true">
+    <Position X="5.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAA=</HashCode>
+      <FileName>Models\RecordEditModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Models.RecordImageModel" Collapsed="true">
+    <Position X="5.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RecordImageModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVC_2.Models.RecordTextModel" Collapsed="true">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\RecordTextModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

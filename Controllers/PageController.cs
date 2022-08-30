@@ -1,5 +1,6 @@
 ﻿using DBMongo;
 using DBMongo.Models;
+using Diplom_webAPI_REST.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
-        /// создание стика(документа). Обов'язкова авторизація
+        /// Створення нової сторінки
         /// </summary>
         /// <returns></returns>
         [Route("Create")]
@@ -44,7 +45,7 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
-        /// редагування імені/назви стіку. Id  поки що копіюю з бази. Обов'язкова авторизація
+        /// редагування назви сторінки.
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -63,8 +64,8 @@ namespace MVC_2.Controllers
             return Ok();
         }
 
-             /// <summary>
-        /// отримання стіку по його id. (брати з бази)
+        /// <summary>
+        /// отримання сторінки по  id. 
         /// </summary>
         /// <param name="PageId"></param>
         /// <returns></returns>
@@ -83,9 +84,29 @@ namespace MVC_2.Controllers
             return BadRequest("От халепа :(");
         }
 
+        /// <summary>
+        /// отримання списку тегів
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetTag")]
+        [HttpGet]
+        public IActionResult GetTag()
+        {
+
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                return new JsonResult(_context.GetAllTagUser(u.Id).Select(s => new GroupModel { Tag = s }).ToList());
+            }
+
+            return BadRequest("От халепа :( Спочатку авторизуйтесь");
+        }
+
 
         /// <summary>
-        /// пошук стіку авторизованого користувача за назвою
+        /// пошук сторінок авторизованого користувача за назвою
         /// </summary>
         /// <returns></returns>
         [Route("GetName")]
@@ -107,7 +128,7 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
-        /// отримання всіх стіків авторизованого користувача
+        /// отримання всіх сторінок авторизованого користувача
         /// </summary>
         /// <returns></returns>
         [Route("GetAll")]
@@ -145,6 +166,11 @@ namespace MVC_2.Controllers
         //    return Ok();
         //}
 
+        /// <summary>
+        /// видалення сторынки авторизованого користувача по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns> 
         [HttpDelete("{id}")]
 
         public IActionResult Delete(string id)

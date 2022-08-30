@@ -30,12 +30,58 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
-        /// создание записи (пока только текст). Обов'язкова авторизація
+        /// створення запису (текст).
         /// </summary>
         /// <returns></returns>
-        [Route("Create")]
+        [Route("CreateText")]
         [HttpPost]
-        public IActionResult Create([FromForm] RecordModel model)
+        public IActionResult CreateText( RecordTextModel model)
+        {
+
+            
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                var r = _context.CreateRecordTextUser(u.Id, model.Text);
+                _context.AddRecordToPage(u.Id, model.PageId, r);
+
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// створення запису (посилання).
+        /// </summary>
+        /// <returns></returns>
+        [Route("CreateUrl")]
+        [HttpPost]
+        public IActionResult CreateUrl(RecordTextModel model)
+        {
+
+
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                var r = _context.CreateRecordUrlUser(u.Id, model.Text);
+                _context.AddRecordToPage(u.Id, model.PageId, r);
+
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// створення запису (зображення). 
+        /// </summary>
+        /// <returns></returns>
+        [Route("CreateImage")]
+        [HttpPost]
+        public IActionResult CreateImage([FromForm] RecordImageModel model)
         {
 
             MemoryStream memoryStream = new MemoryStream();
@@ -50,7 +96,7 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                var r = _context.CreateRecordUser(u.Id, model.Text, model.File?.FileName, memoryStream);
+                var r = _context.CreateRecordImageUser(u.Id, model.File?.FileName, memoryStream);
                 _context.AddRecordToPage(u.Id, model.PageId, r);
 
             }
@@ -59,16 +105,75 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
-        /// редагування запису. Id запису поки що копіюю з бази. Обов'язкова авторизація
+        /// створення запису (файлу). 
+        /// </summary>
+        /// <returns></returns>
+        [Route("CreateFile")]
+        [HttpPost]
+        public IActionResult CreateFile([FromForm] RecordImageModel model)
+        {
+
+            MemoryStream memoryStream = new MemoryStream();
+            if (model.File != null)
+            {
+                model.File.CopyTo(memoryStream);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+            }
+            //throw new NotImplementedException();
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                var r = _context.CreateRecordFileUser(u.Id, model.File?.FileName, memoryStream);
+                _context.AddRecordToPage(u.Id, model.PageId, r);
+
+            }
+
+            return Ok();
+        }
+
+
+        ///// <summary>
+        ///// создание записи (пока только текст). Обов'язкова авторизація
+        ///// </summary>
+        ///// <returns></returns>
+        //[Route("Create")]
+        //[HttpPost]
+        //public IActionResult Create([FromForm] RecordTextModel model)
+        //{
+
+        //    MemoryStream memoryStream = new MemoryStream();
+        //    if (model.File != null)
+        //    {
+        //        model.File.CopyTo(memoryStream);
+        //        memoryStream.Seek(0, SeekOrigin.Begin);
+        //    }
+        //    //throw new NotImplementedException();
+        //    string name = User.Identity.Name;
+
+        //    var u = _context.SearchUser(name);
+        //    if (u != null)
+        //    {
+        //        var r = _context.CreateRecordUser(u.Id, model.Text, model.File?.FileName, memoryStream);
+        //        _context.AddRecordToPage(u.Id, model.PageId, r);
+
+        //    }
+
+        //    return Ok();
+        //}
+
+        /// <summary>
+        /// редагування текстового запису. 
         /// </summary>
         /// <remarks>
-        /// Для поля RecordType - 0, якщо текст; 1 - якщо малюнок (малюнки не працюють)
+        /// Для поля RecordType - 0, якщо текст; 1 - якщо малюнок 
         /// </remarks>
         /// <param name="model"></param>
         /// <returns></returns>
         [Route("Edit")]
         [HttpPut]
-        public IActionResult Edit(RecordModel model)
+        public IActionResult Edit(RecordEditModel model)
         {
             string name = User.Identity.Name;
 
@@ -85,7 +190,7 @@ namespace MVC_2.Controllers
         /// </summary>
         /// <param name="recordId"></param>
         /// <returns></returns>
-        [Route("GetRecord")]
+        [Route("GetTextRecord")]
         [HttpGet]
         public IActionResult GetTextRecord(string recordId)
         {
@@ -121,6 +226,30 @@ namespace MVC_2.Controllers
                 try { return File(s, "image/jpeg"); }
                 catch(Exception e) { return BadRequest("От халепа :("); }
                           
+            }
+            return BadRequest("От халепа :(");
+        }
+
+        /// <summary>
+        /// отримання файлу по його id.
+        /// </summary>
+        /// <param name="imageId"></param>
+        /// <returns></returns>
+        [Route("GetFile")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult GetFileRecord(string imageId)
+        {
+            // string name = User.Identity.Name;
+            // var u = _context.SearchUser(name);
+            var s = _context.GetImage(imageId);
+            if (s != null)
+            {
+                s.Seek(0, SeekOrigin.Begin);
+                try { return File(s, "application/octet-stream"); }
+                //try { return File(s, "image/jpeg"); }
+                catch (Exception e) { return BadRequest("От халепа :("); }
+
             }
             return BadRequest("От халепа :(");
         }

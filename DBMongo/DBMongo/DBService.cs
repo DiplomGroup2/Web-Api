@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
-using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -78,20 +78,68 @@ namespace DBMongo
             col.DeleteOne(filter);
         }
 
-        public Record CreateRecordUser(string userId, string record, string fileName, MemoryStream memoryStream)
+
+        public Record CreateRecordTextUser(string userId, string record)
         {
-            Record r = new Record { UserId = userId, Text = record };
+            Record r = new Record { UserId = userId, Text = record, RecordType="text" };
+            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+            col.InsertOne(r);
+            return r;
+        }
+
+        public Record CreateRecordUrlUser(string userId, string record)
+        {
+            Record r = new Record { UserId = userId, Text = record, RecordType = "url" };
+            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+            col.InsertOne(r);
+            return r;
+        }
+
+        public Record CreateRecordImageUser(string userId, string fileName, MemoryStream memoryStream )
+        {
+            Record r = new Record { UserId = userId, RecordType = "image" };
             if (fileName != null)
             {
                 ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
                 r.ImageId = id.ToString();
-                r.RecordType = RecordType.Image;
+               // r.RecordType = RecordType.Image;
             }
 
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             col.InsertOne(r);
             return r;
         }
+
+        public Record CreateRecordFileUser(string userId, string fileName, MemoryStream memoryStream)
+        {
+            Record r = new Record { UserId = userId, RecordType = "file" };
+            if (fileName != null)
+            {
+                ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
+                r.ImageId = id.ToString();
+                // r.RecordType = RecordType.Image;
+            }
+
+            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+            col.InsertOne(r);
+            return r;
+        }
+
+        //public Record CreateRecordUser(string userId, string record, string fileName, MemoryStream memoryStream)
+        //public Record CreateRecordUser(string userId, string record, string fileName=null, MemoryStream memoryStream=null)
+        //{
+        //    Record r = new Record { UserId = userId, Text = record };
+        //    if (fileName != null)
+        //    {
+        //        ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
+        //        r.ImageId = id.ToString();
+        //        r.RecordType = RecordType.Image;
+        //    }
+
+        //    IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+        //    col.InsertOne(r);
+        //    return r;
+        //}
 
         public MemoryStream GetImage(string imageId)
         {
@@ -197,6 +245,17 @@ namespace DBMongo
             var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.ToList();
+
+            return d;
+        }
+
+        public List<string> GetAllTagUser(string userId)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "UserId", userId } };
+            var cursor = col.Find(filter).Project(p=>p.Group);
+            var d = cursor.ToList().SelectMany(o=>o).Distinct().ToList();
+
             return d;
         }
 

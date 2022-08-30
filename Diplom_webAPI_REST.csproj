@@ -5,12 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\**" />
     <Compile Remove="DBMongo\**" />
     <Compile Remove="Migrations\**" />
+    <Content Remove="Data\**" />
     <Content Remove="DBMongo\**" />
     <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Data\**" />
     <EmbeddedResource Remove="DBMongo\**" />
     <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Data\**" />
     <None Remove="DBMongo\**" />
     <None Remove="Migrations\**" />
   </ItemGroup>
@@ -51,10 +55,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>
