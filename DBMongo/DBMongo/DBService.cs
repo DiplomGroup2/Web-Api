@@ -254,7 +254,7 @@ namespace DBMongo
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter).Project(p=>p.Group);
-            var d = cursor.ToList().SelectMany(o=>o).Distinct().ToList();
+            var d = cursor.ToList().Where(a=>a!=null).SelectMany(o=>o).Distinct().ToList();
 
             return d;
         }
