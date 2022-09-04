@@ -26,7 +26,8 @@
                                    :records="todo.records"
                                    :createdPage="todo.createdPage"
                                    :pageId="todo.id"
-                                   @remove="DeleteTodo(todo)"></todo-item>
+                                   @remove="DeleteTodo(todo)"
+                                   @refresh="getAllPages()"></todo-item>
 
                     </div>
                 </div>
@@ -1053,7 +1054,7 @@
             }
         },
         async created() {
-            this.todos = await this.getAllPages();
+             await this.getAllPages();
         },
         methods: {
             async addNewTodo() {
@@ -1065,7 +1066,7 @@
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
-                this.todos = await this.getAllPages();
+                 await this.getAllPages();
             },
             async DeleteTodo(todo) {
                 await axios.delete('api/Page/' + todo.id, {
@@ -1073,7 +1074,7 @@
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
-                this.todos = await this.getAllPages();
+                await this.getAllPages();
             },
             handleLogout() {
                 console.log('log_out_button'),
@@ -1083,13 +1084,15 @@
 
             },
 
+
+
             async getAllPages() {
                 const response = await axios.get('api/Page/GetAll', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
-                return response.data;
+                this.todos =  response.data;
             },
             QuestionPage() {
                 this.$router.push('/question');

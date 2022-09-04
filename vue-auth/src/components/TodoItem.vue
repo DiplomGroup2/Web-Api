@@ -2,7 +2,7 @@
     <input type="hidden" id="anPageName" name="page" value="9_644" />
     <div class="view">
       <div class="overlap-group3 border-0-4px-black">
-        <Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage><!--перенос-->
+        <!--<Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage>--><!--перенос-->
         <div class="flex-row">
           <div class="untitled fredoka-medium-black-17px">Untitled</div>
           <!--<div class="untitled fredoka-medium-black-17px"> {{ title }}</div>-->
@@ -16,7 +16,7 @@
           </div>
           <img
             class="mask-group" src="../assets/mask-group-4@2x.svg"
-          @click="$emit('remove')" v-if="!addnew"/>
+          @click="$emit('remove')" />
         </div>
         <div class="flex-row-1">
             <div class="date">{{createdPage}}</div>
@@ -26,8 +26,17 @@
           <div class="movies fredoka-light-gray-12px">#movies</div>
         </div>
 
-        <div class="text fredoka-light-black-15px">
-            {{ records }}
+        <div class="fredoka-light-black-15px">
+            <!--{{ records }}-->
+            <record-item v-for="(record) in records"
+                                   
+                                   :key="record.id"
+                                   :text="record.text"
+                                   :imageId="record.imageId"
+                                   :type="record.recordType"
+                                   
+                                   ></record-item>
+
             <component v-bind:is="component"></component>
             <textarea id="textArea" v-model="message" placeholder="Text.." v-on:blur="save_record">
           
@@ -95,12 +104,14 @@
     import axios from 'axios'
     import vSelect from 'vue-select'
     import 'vue-select/dist/vue-select.css';
+    import RecordItem from './RecordItem'
 
 
     export default {
         name: 'TODOITEM',
         props: ['title', 'records', 'createdPage', 'pageId'],
-        emits: ['remove'],
+        emits: ['remove', 'refresh'],
+       
         
         data(){
                    return {
@@ -156,6 +167,8 @@
                             'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                         }
                     });
+                    this.message = "";
+                    this.$emit('refresh');
                 } catch (e) {
                     this.error = 'Invalid!';
                     console.log(e);
@@ -187,24 +200,15 @@
       }*/
     },
         components:
-            { Userpage, vSelect }
+            { Userpage,RecordItem, vSelect }
+               
     }
     
     
     
 </script>
 
-<!--<template>-->
-    <!--<li>-->
-   <!-- <div class="group-15 border-0-4px-black">-->
-       <!-- {{ title }}-->
-        <!-- <keep-alive> -->
-      <!--  <Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage>-->
-        <!-- </keep-alive> -->
-       <!-- <button @click="$emit('remove')" v-if="!addnew">Remove</button>--><!--//нАДО ПОМЕНЯТЬ !!!!-->
-   <!-- </div>-->
-    <!--</li>-->
-<!--</template>-->
+
 <style scoped>
 
 .mypic{
@@ -576,56 +580,3 @@ textarea {
 
 </style>
 
-
-
-
-
-
-
-
-
-
-
-
-<!--<script>
-
-    import Userpage from "./Userpage"
-
-    export default {
-        name: 'TODOITEM',
-        props: ['title'],
-        emits: ['remove'],
-        components:
-            { Userpage }
-    }
-</script>-->
-<!--
-<template>-->
-    <!--<li>-->
-   <!-- <div class="group-15 border-0-4px-black">
-        {{ title }}-->
-        <!-- <keep-alive> -->
-        <!--<Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage>-->
-        <!-- </keep-alive> -->
-       <!-- <button @click="$emit('remove')" v-if="!addnew">Remove</button>--><!--//нАДО ПОМЕНЯТЬ !!!!-->
-   <!-- </div>-->
-    <!--</li>-->
-<!--</template>-->
-
-<!--<style scoped>
-    .group-15 {
-        -webkit-backdrop-filter: blur(15px) brightness(100%);
-        backdrop-filter: blur(15px) brightness(100%);
-        background-color: var(--white-32);
-        border-radius: 13px;
-        min-height: 139px;
-        /*            left: 428px;
-                position: absolute;
-                top: 259px;
-    */
-        min-width: 197px;
-        padding: 10px;
-        margin: 10px;
-        display: inline-block
-    }
-</style>-->
