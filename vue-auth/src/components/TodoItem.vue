@@ -3,27 +3,28 @@
     <div class="view">
       <div class="overlap-group3 border-0-4px-black">
         <!--<Userpage v-bind:title="this.title" v-bind:addnew="this.addnew"></Userpage>--><!--перенос-->
-        <div class="flex-row">
-          <div class="untitled fredoka-medium-black-17px">Untitled</div>
-          <!--<div class="untitled fredoka-medium-black-17px"> {{ title }}</div>-->
-          <div class="overlap-group4 border-0-4px-black">
-              <div class="group-134">
-                  <!--<img       class="vector-9" src="../assets/vector-9@2x.svg"     />-->
-                  <!--<v-select :options="groups"
-                            label="tag">
-                  </v-select>-->
-              </div>
+          <div class="flex-row">
+              <div class="untitled fredoka-medium-black-17px"><input class="tytleSt" placeholder="Untitled"></div>
+
+              <select v-model="select" class="overlap-group4 border-0-4px-black">
+                  <option value="" disabled hidden>Choose a tag</option>
+                  <option>movies</option>
+                  <option>sport</option>
+                  <option>travelling</option>
+                  <option>education</option>
+                  <option>politics</option>
+                  <option>economics</option>
+              </select>
+              
+              <img class="mask-group" src="../assets/mask-group-4@2x.svg"
+                   @click="$emit('remove')" />
           </div>
-          <img
-            class="mask-group" src="../assets/mask-group-4@2x.svg"
-          @click="$emit('remove')" />
-        </div>
         <div class="flex-row-1">
             <div class="date">{{createdPage}}</div>
           <img
             class="vector-8" src="../assets/vector-8@2x.svg"
           />
-          <div class="movies fredoka-light-gray-12px">#movies</div>
+          <div class="movies fredoka-light-gray-12px">#{{select}}</div>
         </div>
 
         <div class="fredoka-light-black-15px">
@@ -36,7 +37,6 @@
                                    :type="record.recordType"
                                    :recordId="record.id"
                                    :pageId="pageId"
-                                   
                                    ></record-item>
 
             <component v-bind:is="component"></component>
@@ -75,16 +75,22 @@
           </div>
           <div class="group-132">
             <div class="overlap-group2">
-              <img click="SaveInFile"
+              <!--<img click="SaveInFile"
                 class="arrow-1" id="arrow" src="../assets/arrow-1@2x.svg"
-              />
+              />-->
               <img
-                class="ellipse-42" src="../assets/arrow-1@2x.svg"
-              />
+                class="ellipse-42"  id="arrow"  click="SaveInFile" src="../assets/arrow-1@2x.svg"
+              />             
             </div>
-          </div>                                                                                       
+             
+          </div>  
+          <img class="group-136" src="../assets/group-136-2@2x.svg" />     
+            
+
+
+
         </div> 
-        <div class="imgset"><img :src="imgSrc" v-if="imgSrc"    class="mypic" /> </div>
+        <div class="imgset"><img :src="imgSrc" v-if="imgSrc" class="mypic" /> </div>
         
         <!-- <div class="preview">
     <p>No files currently selected for upload</p>
@@ -119,7 +125,8 @@
                    return {
                        message: '',
                        groups: [],
-                       imgSrc: ''
+                       imgSrc: '',
+                       select:''
                    }
               },
         async created() {
@@ -212,6 +219,23 @@
 
 
 <style scoped>
+group-136 {
+  height: 15px;
+  margin-bottom: 0;
+  margin-left: 12px;
+  width: 15px;
+  
+}
+
+input:focus, textarea:focus, select:focus{
+        outline: none;
+    }
+    
+.tytleSt{
+  width:80px;
+  border: hidden;
+ 
+}
 
 .mypic{
   max-width:100%;
@@ -348,8 +372,8 @@ textarea {
   height: 19px;
   justify-content: flex-end;
   margin-left: 21px;
-  min-width: 102px;
-  padding: 3.7px 4.0px;
+  min-width: 112px;
+  padding: 0px 4.0px;
 }
 
 .group-134 {
@@ -406,7 +430,7 @@ textarea {
   letter-spacing: 0; 
   min-height: 16px;
   margin-left: 4px;
-  width: 49px;
+  width: 70px;
 }
 
 .text {
@@ -494,7 +518,7 @@ textarea {
   display: flex;
   height: 20px;
   margin-left: 13px;
-  min-width: 20px;
+  min-width: 40px;
   opacity: 0.5;
   padding: 0.0px 0.0px;
 }
@@ -515,11 +539,12 @@ textarea {
 }
 
 .ellipse-42 {
-  height: 10px;
+  height: 14px;
   left: 0;
   position: absolute;
-  top: 8px;
+  top: 4px;
   width: 20px;
+  cursor:pointer;
 }
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 

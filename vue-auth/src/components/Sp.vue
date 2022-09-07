@@ -90,17 +90,26 @@
                     <img class="group-68" src="../assets/group-68@2x.svg" />
                     <div class="workspace fredoka-light-black-16px">Workspace</div>
                 </div>
-                <div class="rectangle-126 border-0-4px-glacier"></div>
-                <div class="group-136">
+                <!--<div class="rectangle-126 border-0-4px-glacier"></div>-->
+                <select v-model="select" class="rectangle-126 border-0-4px-glacier">        
+              <option value="" disabled hidden  >Choose a tag</option>
+              <option >movies</option>
+              <option>sport</option>
+              <option>travelling</option>
+              <option>education</option>
+              <option>politics</option>
+              <option>economics</option>
+            </select>
+                <!--<div class="group-136">
                     <div class="overlap-group6">
                         <div class="ellipse-43 border-1px-glacier"></div>
                         <img class="line-9" src="../assets/line-9@2x.svg" />
                     </div>
-                </div>
+                </div>-->
             </div>
 
             <img class="mask-group-3" src="../assets/mask-group-1@2x.svg" />
-            <div class="tags fredoka-light-gray-12px">#tags</div>
+            <!--<div class="tags fredoka-light-gray-12px">#tags</div>-->
             <div class="group-10">
                 <div class="overlap-group-3">
                     <div class="rectangle-9 border-0-3px-fresh-air"></div>
@@ -818,7 +827,7 @@
             background-clip: text;
             color: transparent;
             font-family: var(--font-family-fredoka);
-            font-size: var(--font-size-xxxl2);
+            font-size: 23px;
             font-weight: 700;
             left: 7px;
             letter-spacing: 0;
@@ -1050,7 +1059,8 @@
         data() {
             return {
                 todos: [],
-                pageId: ""
+                pageId: "",
+                select:''
             }
         },
         async created() {
