@@ -34,6 +34,8 @@
                                    :text="record.text"
                                    :imageId="record.imageId"
                                    :type="record.recordType"
+                                   :recordId="record.id"
+                                   :pageId="pageId"
                                    
                                    ></record-item>
 

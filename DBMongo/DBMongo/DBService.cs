@@ -81,7 +81,7 @@ namespace DBMongo
 
         public Record CreateRecordTextUser(string userId, string record)
         {
-            Record r = new Record { UserId = userId, Text = record, RecordType="text" };
+            Record r = new Record { UserId = userId, Text = record, RecordType = "text" };
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             col.InsertOne(r);
             return r;
@@ -95,14 +95,14 @@ namespace DBMongo
             return r;
         }
 
-        public Record CreateRecordImageUser(string userId, string fileName, MemoryStream memoryStream )
+        public Record CreateRecordImageUser(string userId, string fileName, MemoryStream memoryStream)
         {
             Record r = new Record { UserId = userId, RecordType = "image" };
             if (fileName != null)
             {
                 ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
                 r.ImageId = id.ToString();
-               // r.RecordType = RecordType.Image;
+                // r.RecordType = RecordType.Image;
             }
 
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
@@ -153,7 +153,7 @@ namespace DBMongo
         }
 
 
-        public Record EditRecordUser(string userId, string recordId, string newRecord)
+        public Record EditRecordUser(string userId, string recordId, string newRecord, string pageId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(recordId) }, { "UserId", userId } };
@@ -163,6 +163,17 @@ namespace DBMongo
                 return null;
             r.Text = newRecord;
             col.ReplaceOne(filter, r);
+
+            IMongoCollection<Page> col2 = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter2 = new BsonDocument { { "_id", ObjectId.Parse(pageId) }, { "UserId", userId } };
+            var cursor2 = col2.Find(filter2);
+            var r2 = cursor2.FirstOrDefault();
+            if (r2 == null)
+                return null;
+            var p = r2.Records.FirstOrDefault(o => o.Id == recordId);
+            p.Text = newRecord;
+            col2.ReplaceOne(filter2, r2);
+
             return r;
         }
 
@@ -253,8 +264,8 @@ namespace DBMongo
         {
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var filter = new BsonDocument { { "UserId", userId } };
-            var cursor = col.Find(filter).Project(p=>p.Group);
-            var d = cursor.ToList().Where(a=>a!=null).SelectMany(o=>o).Distinct().ToList();
+            var cursor = col.Find(filter).Project(p => p.Group);
+            var d = cursor.ToList().Where(a => a != null).SelectMany(o => o).Distinct().ToList();
 
             return d;
         }

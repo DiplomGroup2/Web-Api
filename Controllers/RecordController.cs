@@ -180,10 +180,11 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                _context.EditRecordUser(u.Id, model.IdRecord, model.Text);
-            }
-
+                _context.EditRecordUser(u.Id, model.IdRecord, model.Text, model.PageId);
             return Ok();
+            }
+            return BadRequest("От халепа :(");
+
         }
         /// <summary>
         /// отримання текстового запису по його id. 
