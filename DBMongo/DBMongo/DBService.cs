@@ -161,8 +161,14 @@ namespace DBMongo
             var r = cursor.FirstOrDefault();
             if (r == null)
                 return null;
-            r.Text = newRecord;
-            col.ReplaceOne(filter, r);
+            if (newRecord != "")
+            {
+                r.Text = newRecord;
+                col.ReplaceOne(filter, r);
+            }
+            else
+                col.DeleteOne(filter);
+
 
             IMongoCollection<Page> col2 = _database.GetCollection<Page>(COLLECTION_PAGE);
             var filter2 = new BsonDocument { { "_id", ObjectId.Parse(pageId) }, { "UserId", userId } };
@@ -171,9 +177,14 @@ namespace DBMongo
             if (r2 == null)
                 return null;
             var p = r2.Records.FirstOrDefault(o => o.Id == recordId);
-            p.Text = newRecord;
+            if (newRecord != "")
+            {
+                p.Text = newRecord;
+            }
+            else
+                r2.Records.Remove(p);
             col2.ReplaceOne(filter2, r2);
-
+            
             return r;
         }
 
