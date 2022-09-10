@@ -45,6 +45,29 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
+        /// Створення тегу
+        /// </summary>
+        /// <returns></returns>
+        [Route("CreateTag")]
+        [HttpPost]
+        public IActionResult CreateTag(PageTagModel model)
+        {
+            if (model.Group == "" || model.Group == null)
+                return BadRequest("No tag");
+            else
+            {
+                string name = User.Identity.Name;
+
+                var u = _context.SearchUser(name);
+                if (u != null)
+                {
+                    _context.AddTagPage(u.Id, model.IdPage, model.Group);
+                }
+                return Ok();
+            }
+        }
+
+        /// <summary>
         /// редагування назви сторінки.
         /// </summary>
         /// <param name="model"></param>
@@ -185,5 +208,24 @@ namespace MVC_2.Controllers
             return Ok();
         }
 
+
+        /// <summary>
+        /// Видалення тегу
+        /// </summary>
+        /// <returns></returns>
+        [Route("DeleteTag")]
+        [HttpDelete]
+        public IActionResult DeleteTag(PageTagModel model)
+        {
+            string name = User.Identity.Name;
+
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                _context.DeleteTagPage(u.Id, model.IdPage, model.Group);
+            }
+
+            return Ok();
+        }
     }
 }

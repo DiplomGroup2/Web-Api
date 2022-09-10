@@ -26,8 +26,13 @@
                                    :records="todo.records"
                                    :createdPage="todo.createdPage"
                                    :pageId="todo.id"
+                                   :group="todo.group"
+                                   :alltags="alltags"
                                    @remove="DeleteTodo(todo)"
-                                   @refresh="getAllPages()"></todo-item>
+                                   @refresh="getAllPages()"
+                                   @refreshTags="get_all_tags()">
+
+                        </todo-item>
 
                     </div>
                 </div>
@@ -42,44 +47,50 @@
                 <img class="group-18"
                      src="../assets/group-18@2x.svg" />
                 <h1 class="title fredoka-medium-black-25px">Personal pages</h1>
-                <div class="overlap-group2">
-                    <div class="group-container">
-                        <div class="overlap-group">
-                            <div class="group-67">
-                                <img class="vector-1"
-                                     src="../assets/vector-1-1@2x.svg" />
-                                <img class="vector"
-                                     src="../assets/vector-2-1@2x.svg" />
-                                <img class="vector"
-                                     src="../assets/vector-3@2x.svg" />
-                            </div>
-                            <img class="rectangle-36"
-                                 src="../assets/rectangle-36@2x.svg" />
-                        </div>
-                        <img class="mask-group"
-                             src="../assets/mask-group-2@2x.svg" />
-                    </div>
-                    <div class="private fredoka-light-black-16px">Private</div>
-                </div>
+
                 <div class="trash fredoka-light-black-16px">trash</div>
 
                 <div class="overlap-group3">
                     <div class="rectangle-121"></div>
+                    <div class="overlap-group2">
+                        <div class="group-container">
 
-
-
-                    <div class="all-notes fredoka-light-black-16px">All notes</div>
-                    <div class="overlap-group-1">
-                        <div class="group-67">
-                            <img class="vector-1"
-                                 src="../assets/vector-1-2@2x.svg" />
-                            <img class="vector"
-                                 src="../assets/vector-2-2@2x.svg" />
-                            <img class="vector"
-                                 src="../assets/vector-3-1@2x.svg" />
+                            <div class="overlap-group-1">
+                                <div class="group-67">
+                                    <img class="vector-1"
+                                         src="../assets/vector-1-2@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-2-2@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-3-1@2x.svg" />
+                                </div>
+                                <img class="rectangle-36"
+                                     src="../assets/rectangle-36-1@2x.svg" />
+                            </div>
                         </div>
-                        <img class="rectangle-36"
-                             src="../assets/rectangle-36-1@2x.svg" />
+                        <div class="all-notes fredoka-light-black-16px">All notes</div>
+                    </div>
+
+                    <div class="overlap-group2" v-for="item in alltags" :value="item.tag" :key="item.tag">
+                        <div class="group-container">
+                            <div class="overlap-group">
+                                <div class="group-67">
+                                    <img class="vector-1"
+                                         src="../assets/vector-1-1@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-2-1@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-3@2x.svg" />
+                                </div>
+                                <img class="rectangle-36"
+                                     src="../assets/rectangle-36@2x.svg" />
+                            </div>
+                            <img class="mask-group"
+                                 src="../assets/mask-group-2@2x.svg" />
+                        </div>
+                        <div class="private fredoka-light-black-16px">
+                            {{item.tag}}
+                        </div>
                     </div>
                 </div>
                 <div class="overlap-group4">
@@ -90,16 +101,17 @@
                     <img class="group-68" src="../assets/group-68@2x.svg" />
                     <div class="workspace fredoka-light-black-16px">Workspace</div>
                 </div>
+
                 <!--<div class="rectangle-126 border-0-4px-glacier"></div>-->
-                <select v-model="select" class="rectangle-126 border-0-4px-glacier">        
-              <option value="" disabled hidden  >Choose a tag</option>
-              <option >movies</option>
-              <option>sport</option>
-              <option>travelling</option>
-              <option>education</option>
-              <option>politics</option>
-              <option>economics</option>
-            </select>
+                <!--<select v-model="select" class="rectangle-126 border-0-4px-glacier">
+                    <option value="" disabled hidden>Choose a tag</option>
+                    <option>movies</option>
+                    <option>sport</option>
+                    <option>travelling</option>
+                    <option>education</option>
+                    <option>politics</option>
+                    <option>economics</option>
+                </select>-->
                 <!--<div class="group-136">
                     <div class="overlap-group6">
                         <div class="ellipse-43 border-1px-glacier"></div>
@@ -109,6 +121,7 @@
             </div>
 
             <img class="mask-group-3" src="../assets/mask-group-1@2x.svg" />
+
             <!--<div class="tags fredoka-light-gray-12px">#tags</div>-->
             <div class="group-10">
                 <div class="overlap-group-3">
@@ -122,6 +135,7 @@
                 <div class="group-13 border-0-3px-fresh-air">
                     <img class="mask-group-4" src="../assets/mask-group-6@2x.svg" />
                 </div>
+
                 <!--ПОДКЛЮЧЕНИЕ ПОДСКАЗКИ TOOLTIP LOGOUT -->
                 <div class="group-14 border-0-3px-fresh-air" @click="handleLogout" id="outtooltip">
                     <span id="tooltiptext">Log out</span>
@@ -132,7 +146,9 @@
     </div>
 </template>
 
+
 <style scoped>
+
     #outtooltip {
         position: relative;
         display: inline-block;
@@ -149,7 +165,7 @@
             padding: 5px 0;
             /* Position the tooltip */
             position: absolute;
-            z-index: 1;
+            /*z-index: 1;*/
         }
 
         #outtooltip:hover #tooltiptext {
@@ -174,7 +190,7 @@
             margin-top: -94.24px;
             position: relative;
             width: 1678px;
-            z-index: 1;
+            /*z-index: 1;*/
         }
 
         .desktop-21 .ellipse-3 {
@@ -280,11 +296,11 @@
             border-radius: 5px;
             display: flex;
             height: 30px;
-            left: 226px;
+            /* left: 226px;*/
             min-width: 125px;
             padding: 3.9px 4.7px;
-            position: absolute;
-            top: 365px;
+            /*position: absolute;*/
+            /*top: 365px;*/
         }
 
         .desktop-21 .group-container {
@@ -394,19 +410,19 @@
         }
 
         .desktop-21 .all-notes {
-            left: 38px;
+            /*left: 38px;*/
             letter-spacing: 0;
-            position: absolute;
-            top: 4px;
+            /* position: absolute;
+            top: 4px;*/
             width: 79px;
         }
 
         .desktop-21 .overlap-group-1 {
-            height: 20px;
-            left: 5px;
-            position: absolute;
+            /*height: 20px;
+            left: 5px;*/
+            /*position: absolute;
             top: 4px;
-            width: 27px;
+            width: 27px;*/
         }
 
         .desktop-21 .overlap-group4 {
@@ -778,7 +794,7 @@
             position: fixed;
             top: 694px;
             width: 29px;
-            z-index: 2;
+            /* z-index: 2;*/
         }
 
         .desktop-21 .tags {
@@ -787,7 +803,7 @@
             position: fixed;
             top: 19px;
             width: 40px;
-            z-index: 4;
+            /* z-index: 4;*/
         }
 
         .desktop-21 .group-10 {
@@ -799,7 +815,7 @@
             min-width: 165px;
             position: fixed;
             top: 10px;
-            z-index: 3;
+            /* z-index: 3;*/
         }
 
         .desktop-21 .overlap-group-3 {
@@ -1031,19 +1047,10 @@
     .border-0-9px-black-4 {
         border: 0.9px solid var(--black-4);
     }
-</style>
-
-
-
-
-
-
-
-
-
-
+</style>>
 
 <script>
+
     import TodoItem from './TodoItem'
     //import Userpage from './Userpage'
     import axios from 'axios'
@@ -1060,11 +1067,13 @@
             return {
                 todos: [],
                 pageId: "",
-                select:''
+                alltags: [],
+                select: '',
             }
         },
         async created() {
-             await this.getAllPages();
+            await this.getAllPages();
+            await this.get_all_tags();
         },
         methods: {
             async addNewTodo() {
@@ -1076,7 +1085,7 @@
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
-                 await this.getAllPages();
+                await this.getAllPages();
             },
             async DeleteTodo(todo) {
                 await axios.delete('api/Page/' + todo.id, {
@@ -1102,29 +1111,23 @@
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
-                this.todos =  response.data;
+                this.todos = response.data;
             },
             QuestionPage() {
                 this.$router.push('/question');
 
-            }
+            },
+
+            async get_all_tags() {
+
+                const response = await axios.get('api/Page/GetTag', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.alltags = response.data;
+            },
         }
     }
-</script>
+</script>>
 
-
-<!--<template>
-    <form v-on:submit.prevent="addNewTodo">
-        <label for="new-todo">Add a todo</label>
-        <input v-model="newTodoText"
-               id="new-todo"
-               placeholder="E.g. Feed the cat" />
-        <button>Add</button>
-    </form>
-    <ul>
-        <todo-item v-for="(todo) in todos"
-                   :title="todo.title"
-                   :key="todo.id"
-                   @remove="todos.splice(index, 1)"></todo-item>
-    </ul>
-</template>-->

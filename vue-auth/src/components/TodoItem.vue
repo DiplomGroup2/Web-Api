@@ -13,23 +13,35 @@
                     </span>
                 </div>
 
-                <select v-model="select" class="overlap-group4 border-0-4px-black">
-                    <option value="" disabled hidden>Choose a tag</option>
-                    <option>movies</option>
-                    <option>sport</option>
-                    <option>travelling</option>
-                    <option>education</option>
-                    <option>politics</option>
-                    <option>economics</option>
-                </select>
+
 
                 <img class="mask-group" src="../assets/mask-group-4@2x.svg"
                      @click="$emit('remove')" />
             </div>
+
             <div class="flex-row-1">
+                <select v-model="select" class="overlap-group4 " @change="add_tag()">
+                    <option value="" disabled hidden>Choose a tag</option>
+                    <option value="add tag">add tag</option>
+                    <option v-for="item in alltags" :value="item.tag" :key="item.tag">{{item.tag}}</option>
+                </select>
+                <input v-show="visible" v-model="newtag" v-on:blur="add_newtag">
+                <!--<input ref="tagfocus" v-show="visible" v-model="newtag" v-on:blur="add_newtag">-->
+            </div>
+
+            <div class=" flex-row-1">
                 <div class="date">{{createdPage}}</div>
                 <img class="vector-8" src="../assets/vector-8@2x.svg" />
-                <div class="movies fredoka-light-gray-12px">#{{select}}</div>
+                <!--<div class="movies">-->
+                    <div class="movies fredoka-light-gray-12px">
+                        <span class="movies" v-for="item in group" :key="item">
+                            #{{item}}
+                            <span class="movies button1" v-on:click="del_tag(item)">
+                                &nbsp;&nbsp;X
+                            </span>
+                        </span>
+                    <!--</div>-->
+                </div>
             </div>
 
             <div class="fredoka-light-black-15px">
@@ -76,7 +88,7 @@
                     </div>
                 </div>
                 <div class="group-132">
-                    <div class="overlap-group2" >
+                    <div class="overlap-group2">
                         <!--<img click="SaveInFile"
                           class="arrow-1" id="arrow" src="../assets/arrow-1@2x.svg"
                         />-->
@@ -84,7 +96,7 @@
                     </div>
 
                 </div>
-                <img class="group-136" src="../assets/group-136-2@2x.svg"  v-on:click="create_url" />
+                <img class="group-136" src="../assets/group-136-2@2x.svg" v-on:click="create_url" />
                 <!--<textarea id="textArea" v-model="message" placeholder="link.." v-on:blur="add_text"></textarea>
                 />-->
 
@@ -109,14 +121,14 @@
     //import axios from 'axios'
     import Userpage from "./Userpage"
     import axios from 'axios'
-    import vSelect from 'vue-select'
+    // import vSelect from 'vue-select'
     import 'vue-select/dist/vue-select.css';
     import RecordItem from './RecordItem'
 
 
     export default {
         name: 'TODOITEM',
-        props: ['title', 'records', 'createdPage', 'pageId'],
+        props: ['title', 'records', 'createdPage', 'pageId', 'group', 'alltags'],
         emits: ['remove', 'refresh'],
 
 
@@ -124,32 +136,19 @@
             return {
 
                 message: '',
-                groups: [],
                 imgSrc: '',
                 select: '',
-                a1: 'text',
-                a2: 'image',
-                a3: 'Url',
-                a4: 'file',
                 editing: false,
                 creating_text: false,
                 creating_url: false,
+                visible: false,
             }
         },
         async created() {
             //Vue.component('v-select', vSelect)
             this.name = this.title;
-
-
-            const response = await axios.get('api/Page/GetTag', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                }
-            });
-            console.log(response);
-            this.groups = response.data;
-            console.log(this.groups);
         },
+
 
         methods: {
             editName() {
@@ -199,6 +198,7 @@
                     console.log(e);
                 }
             },
+
             create_text() {
                 this.creating_text = true;
             },
@@ -221,6 +221,7 @@
                 }
                 this.creating_text = false;
             },
+
             create_url() {
                 this.creating_url = true;
             },
@@ -244,6 +245,73 @@
                 this.creating_url = false;
             },
 
+            async add_tag() {
+                if (this.select == "add tag") {
+                    this.visible = true;
+                //    this.$refs.tagfocus.focus();
+                }
+                else {
+                    this.visible = false;
+                    try {
+                        await axios.post('api/Page/CreateTag',
+                            {
+                                Group: this.select,
+                                IdPage: this.pageId,
+                            }, {
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                            }
+                        });
+                        this.select = "";
+                        this.$emit('refresh');
+                    } catch (e) {
+                        this.error = 'Invalid!';
+                        console.log(e);
+                    }
+                }
+            },
+
+            async add_newtag() {
+                this.visible = false;
+                try {
+                    await axios.post('api/Page/CreateTag',
+                        {
+                            Group: this.newtag,
+                            IdPage: this.pageId,
+                        }, {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        }
+                    });
+                    this.select = "";
+                    this.$emit('refresh');
+                    this.$emit('refreshTags');
+                } catch (e) {
+                    this.error = 'Invalid!';
+                    console.log(e);
+                }
+            },
+
+            async del_tag(tag) {
+                try {
+                    await axios.delete('api/Page/DeleteTag',
+                        {
+                            data: {
+                                Group: tag,
+                                IdPage: this.pageId,
+                            },
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                            }
+                        });
+                    this.select = "";
+                    this.$emit('refresh');
+                } catch (e) {
+                    this.error = 'Invalid!';
+                    console.log(e);
+                }
+            }
+
             /*submitFile(){
                         let formData = new FormData();
                         formData.append('file', this.file);
@@ -266,7 +334,8 @@
                   }*/
         },
         components:
-            { Userpage, RecordItem, vSelect }
+            //{ Userpage, RecordItem, vSelect }
+            { Userpage, RecordItem }
 
     }
 
@@ -362,8 +431,8 @@
     .view {
         align-items: flex-start;
         /*display: flex;
-                                height: 192px;
-                                */
+                                    height: 192px;
+                                    */
         overflow: hidden;
         padding: 0.6px 0;
         /* width: 265px;*/
@@ -382,8 +451,8 @@
         border-radius: 13px;
         box-shadow: 0px 4px 0px #8aa7de;
         /*display: flex;
-    flex-direction: column;
-    min-height: 187px;*/
+        flex-direction: column;
+        min-height: 187px;*/
         padding: 14.0px 19.7px;
         width: 265px;
         flex-direction: column;
@@ -416,13 +485,16 @@
         align-items: flex-start;
         align-self: flex-end;
         background-color: var(--white);
-        border-radius: 13px;
+        border-radius: 5px;
         display: flex;
         height: 19px;
         justify-content: flex-end;
-        margin-left: 21px;
-        min-width: 112px;
+        /*        margin-left: 21px;
+    */ min-width: 112px;
         padding: 0px 4.0px;
+        margin: -5px;
+        border: 0.4px solid var(--gray);
+        color: gray;
     }
 
     .group-134 {
@@ -480,6 +552,8 @@
         min-height: 16px;
         margin-left: 4px;
         width: 70px;
+        display: flex;
+        flex-direction: row;
     }
 
     .text {
@@ -654,5 +728,9 @@
     .border-0-9px-black-4 {
         border: 0.9px solid var(--black-4);
     }
+
+    .button1 {
+        cursor: pointer;
+            }
 </style>
 

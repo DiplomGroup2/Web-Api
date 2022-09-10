@@ -125,22 +125,6 @@ namespace DBMongo
             return r;
         }
 
-        //public Record CreateRecordUser(string userId, string record, string fileName, MemoryStream memoryStream)
-        //public Record CreateRecordUser(string userId, string record, string fileName=null, MemoryStream memoryStream=null)
-        //{
-        //    Record r = new Record { UserId = userId, Text = record };
-        //    if (fileName != null)
-        //    {
-        //        ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
-        //        r.ImageId = id.ToString();
-        //        r.RecordType = RecordType.Image;
-        //    }
-
-        //    IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
-        //    col.InsertOne(r);
-        //    return r;
-        //}
-
         public MemoryStream GetImage(string imageId)
         {
             try
@@ -184,7 +168,7 @@ namespace DBMongo
             else
                 r2.Records.Remove(p);
             col2.ReplaceOne(filter2, r2);
-            
+
             return r;
         }
 
@@ -321,6 +305,41 @@ namespace DBMongo
                 if (d.Records == null)
                     d.Records = new List<Record>();
                 d.Records.Add(record);
+                col.ReplaceOne(filter, d);
+            }
+            return d;
+        }
+
+        public Page AddTagPage(string userId, string PageId, string tag)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
+            var cursor = col.Find(filter);
+            var d = cursor.FirstOrDefault();
+            if (d != null)
+            {
+                if (d.Group == null)
+                    d.Group = new List<string>();
+                if (d.Group.Count < 2)
+                {
+                    d.Group.Add(tag);
+                    col.ReplaceOne(filter, d);
+                }
+            }
+            return d;
+        }
+
+        public Page DeleteTagPage(string userId, string PageId, string tag)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
+            var cursor = col.Find(filter);
+            var d = cursor.FirstOrDefault();
+            if (d != null)
+            {
+                if (d.Group == null)
+                    return d;
+                d.Group.Remove(tag);
                 col.ReplaceOne(filter, d);
             }
             return d;
