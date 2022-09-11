@@ -71,13 +71,22 @@ namespace DBMongo
             var person = cursor.FirstOrDefault();
             return person;
         }
+
         public void DeleteUser(string userId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_USER);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(userId) } };
             col.DeleteOne(filter);
-        }
 
+            IMongoCollection<Record> colRecord = _database.GetCollection<Record>(COLLECTION_RECORD);
+            var filterRecord = new BsonDocument { { "UserId", userId } };
+            colRecord.DeleteOne(filterRecord);
+
+            IMongoCollection<Record> colPage = _database.GetCollection<Record>(COLLECTION_RECORD);
+            var filterPage = new BsonDocument { { "UserId", userId } };
+            colPage.DeleteOne(filterPage);
+
+        }
 
         public Record CreateRecordTextUser(string userId, string record)
         {
@@ -102,9 +111,7 @@ namespace DBMongo
             {
                 ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
                 r.ImageId = id.ToString();
-                // r.RecordType = RecordType.Image;
             }
-
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             col.InsertOne(r);
             return r;
@@ -117,9 +124,7 @@ namespace DBMongo
             {
                 ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
                 r.ImageId = id.ToString();
-                // r.RecordType = RecordType.Image;
             }
-
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             col.InsertOne(r);
             return r;
@@ -172,11 +177,31 @@ namespace DBMongo
             return r;
         }
 
-        public void DeleteRecordUser(string userId, string recordId)
+        public void DeleteRecordUser(string userId, string recordId, string pageId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(recordId) }, { "UserId", userId } };
+            var cursor = col.Find(filter);
+            var r = cursor.FirstOrDefault();
+            if (r == null)
+                return;
             col.DeleteOne(filter);
+            if (r.ImageId != null && r.ImageId != "")
+            {
+                _gridFS.Delete(ObjectId.Parse(r.ImageId));
+            }
+
+            IMongoCollection<Page> col2 = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter2 = new BsonDocument { { "_id", ObjectId.Parse(pageId) }, { "UserId", userId } };
+            var cursor2 = col2.Find(filter2);
+            var page = cursor2.FirstOrDefault();
+            if (page == null)
+                return;
+            var recordPage = page.Records.FirstOrDefault(o => o.Id == recordId);
+            if (recordPage != null)
+                page.Records.Remove(recordPage);
+
+            col2.ReplaceOne(filter2, page);
         }
 
         public Record GetRecordUser(string userId, string recordId)
@@ -199,17 +224,16 @@ namespace DBMongo
             return r;
         }
 
-        public List<Record> GetTextRecordUser(string userId, string[] words)
+        public List<Page> GetTextRecordUser(string userId, string[] words)
         {
-            var builder = Builders<Record>.Filter;
-            FilterDefinition<Record> filter = builder.Empty;
-            filter &= builder.Eq("UserId", userId);
-            //var restWords = new string[] { "cotton", "spiderman" };
+            var builderPage = Builders<Page>.Filter;
+            var builderRecord = Builders<Record>.Filter;
+            FilterDefinition<Page> filter = builderPage.Empty;
+            filter &= builderPage.Eq("UserId", userId);
             var orReg = new System.Text.RegularExpressions.Regex(string.Join("|", words), RegexOptions.IgnoreCase);
-            filter &= builder.Regex("Text", BsonRegularExpression.Create(orReg));
+            filter &= builderPage.ElemMatch(p => p.Records, builderRecord.Regex("Text", BsonRegularExpression.Create(orReg)));
 
-            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
-            //  var filter = new BsonDocument { { "UserId", userId } };
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var cursor = col.Find(filter);
             var r = cursor.ToList();
             return r;
@@ -251,7 +275,18 @@ namespace DBMongo
             var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.ToList();
+            return d;
+        }
 
+        public List<Page> GetAllPageUser(string userId, string tag)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var builderPage = Builders<Page>.Filter;
+            FilterDefinition<Page> filter = builderPage.Empty;
+            filter &= builderPage.Eq("UserId", userId);
+            filter &= builderPage.All("Group", new List<string>() { tag });
+            var cursor = col.Find(filter);
+            var d = cursor.ToList();
             return d;
         }
 
@@ -260,8 +295,7 @@ namespace DBMongo
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter).Project(p => p.Group);
-            var d = cursor.ToList().Where(a => a != null).SelectMany(o => o).Distinct().ToList();
-
+            var d = cursor.ToList().Where(a => a != null).SelectMany(o => o).Distinct().OrderBy(o => o).ToList();
             return d;
         }
 
@@ -280,6 +314,7 @@ namespace DBMongo
             var r = cursor.ToList();
             return r;
         }
+
         public void DeletePageUser(string userId, string PageId)
         {
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);

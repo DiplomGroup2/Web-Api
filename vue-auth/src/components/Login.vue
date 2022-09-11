@@ -63,10 +63,10 @@
                       <!--Login-->
 
                       <div class="overlap-group4 border-0-4px-white">
-                          <div class="sing-in fredoka-normal-white-20px">Sing in</div>
+                          <div class="sing-in fredoka-normal-white-20px">Sign in</div>
                       </div>
                   </button>
-                  <div class="sing-in-1 fredoka-medium-black-30px">Sing in</div>
+                  <div class="sing-in-1 fredoka-medium-black-30px">Sign in</div>
                   <p class="log-in-to-an-existin fredoka-light-black-16px">
                       Log in to an existing account so that your data cannot be lost
                   </p>

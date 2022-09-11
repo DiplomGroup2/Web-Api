@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DBMongo;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using MVC_2.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using MVC_2.Models;
-using Microsoft.AspNetCore.Cors;
-using DBMongo;
-using Microsoft.AspNetCore.Authorization;
 
 namespace MVC_2.Controllers
 {
@@ -84,8 +81,9 @@ namespace MVC_2.Controllers
             _context.CreateUser(model.Email, model.Password);
             return Token(model);
         }
+
         /// <summary>
-        /// удаление текущего пользователя
+        /// -удаление текущего пользователя
         /// </summary>
         /// <returns></returns>
         [Route("Delete")]

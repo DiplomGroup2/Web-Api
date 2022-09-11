@@ -26,15 +26,15 @@
             </div>
           </div>
           
-          <div class="sing-in" @click="SignInClick">Sing in</div>
+          <div class="sing-in" @click="SignInClick">Sign in</div>
           <img
             class="group-18" src="../assets/group-18@2x.svg"
           />
           
           <div class="tiles" id="outtooltip">tiles
 
-           <span id="tooltiptext"><h3 v-if="!username">You are not logged in!</h3>
-                                  <h3 v-if="username">Hi,{{username}} </h3></span>
+          <!-- <span id="tooltiptext"><h3 v-if="!username">You are not logged in!</h3>
+                                  <h3 v-if="username">Hi,{{username}} </h3></span>-->
           </div>
               
            
@@ -414,10 +414,10 @@ export default
   font-family: var(--font-family-fredoka);
   font-size: var(--font-size-l);
   font-weight: 500;
-  left: 266px;
+  left: 280px;
   letter-spacing: 0;
   position: absolute;
-  top: 26px;
+  top: 90px;
   width: 49px;
 }
 

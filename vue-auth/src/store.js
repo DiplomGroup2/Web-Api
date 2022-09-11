@@ -13,19 +13,19 @@ export default createStore({
 
     getters:{
         username:(state)=>{
-            alert("username");
+            //alert("username");
             return state.username;
         }
     },
     actions:{
         user: (context,username)=>{
-            alert("commit");
+            //alert("commit");
             context.commit('user',username);
         }
     },
     mutations:{
         user:(state,username)=>{
-            alert("mutation");
+           // alert("mutation");
             state.username=username;
         }
     }

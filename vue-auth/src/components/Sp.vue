@@ -31,7 +31,6 @@
                                    @remove="DeleteTodo(todo)"
                                    @refresh="getAllPages()"
                                    @refreshTags="get_all_tags()">
-
                         </todo-item>
 
                     </div>
@@ -48,7 +47,11 @@
                      src="../assets/group-18@2x.svg" />
                 <h1 class="title fredoka-medium-black-25px">Personal pages</h1>
 
-                <div class="trash fredoka-light-black-16px">trash</div>
+                <div class="trash fredoka-light-black-16px" id="outtooltip">
+                    <img class="mask-group-3" src="../assets/mask-group-1@2x.svg" />
+                    <span id="tooltiptext2">Trash</span>
+                    <!-- Trash-->
+                </div>
 
                 <div class="overlap-group3">
                     <div class="rectangle-121"></div>
@@ -101,9 +104,8 @@
                     <img class="group-68" src="../assets/group-68@2x.svg" />
                     <div class="workspace fredoka-light-black-16px">Workspace</div>
                 </div>
-
                 <!--<div class="rectangle-126 border-0-4px-glacier"></div>-->
-                <!--<select v-model="select" class="rectangle-126 border-0-4px-glacier">
+                <select v-model="select" class="rectangle-126 border-0-4px-glacier">
                     <option value="" disabled hidden>Choose a tag</option>
                     <option>movies</option>
                     <option>sport</option>
@@ -111,7 +113,7 @@
                     <option>education</option>
                     <option>politics</option>
                     <option>economics</option>
-                </select>-->
+                </select>
                 <!--<div class="group-136">
                     <div class="overlap-group6">
                         <div class="ellipse-43 border-1px-glacier"></div>
@@ -119,7 +121,6 @@
                     </div>
                 </div>-->
             </div>
-
             <img class="mask-group-3" src="../assets/mask-group-1@2x.svg" />
 
             <!--<div class="tags fredoka-light-gray-12px">#tags</div>-->
@@ -135,10 +136,92 @@
                 <div class="group-13 border-0-3px-fresh-air">
                     <img class="mask-group-4" src="../assets/mask-group-6@2x.svg" />
                 </div>
-
                 <!--ПОДКЛЮЧЕНИЕ ПОДСКАЗКИ TOOLTIP LOGOUT -->
-                <div class="group-14 border-0-3px-fresh-air" @click="handleLogout" id="outtooltip">
-                    <span id="tooltiptext">Log out</span>
+                <div class="group-14 border-0-3px-fresh-air" id="outtooltip">
+                    <!--<span id="tooltiptext">Log out</span>-->
+                    <span id="tooltiptext">
+                        <input type="hidden" id="anPageName" name="page" value="component-22" />
+                        <!--<div class="container-center-horizontal">-->
+                        <div class="component-22 screen">
+                            <div class="component-22-1">
+                                <div class="flex-col">
+                                    <div class="flex-row">
+                                        <div class="profile">Profile</div>
+                                        <!--<div class="overlap-group401">
+                                          <div class="group-11601">
+                                            <img
+                                              class="rectangle-11801"
+                                              src="https://anima-uploads.s3.amazonaws.com/projects/630cefa5a839203234c33557/releases/630cefe0260e835b228e4406/img/rectangle-118@2x.svg"
+                                            />
+                                          </div>
+                                          <div class="ellipse-40101"></div>
+                                        </div>-->
+                                    </div>
+                                    <img class="line-601"
+                                         src="../assets/line-6-9@2x.svg" />
+                                </div>
+                                <div class="flex-row-101">
+                                    <div class="overlap-group101">
+                                        <div class="rectangle-601"></div>
+                                        <img class="icon-user101"
+                                             src="../assets/mask-group-56@2x.svg" />
+                                    </div>
+                                    <div class="flex-col-101">
+                                        <div class="username fredoka-light-black-16px">
+
+
+
+                                            <h3 v-if="!username" id="backgr">Username/</h3>
+                                            <h3 v-if="username" id="backgr">{{username}} </h3>
+
+
+
+                                        </div>
+                                        <div class="free">Free</div>
+                                    </div>
+                                    <!-- <div class="overlap-group101"><div class="upgrade">Upgrade</div></div>-->
+                                </div>
+                                <img class="line-701"
+                                     src="../assets/line-7@2x.svg" />
+                                <div class="overlap-group201">
+                                    <img class="mask-group101"
+                                         src="../assets/mask-group-57@2x.svg" />
+                                    <div class="account-settings fredoka-light-granite-gray-16px">Account settings</div>
+                                </div>
+                                <img class="line-801"
+                                     src="../assets/line-8@2x.svg" />
+                                <div class="overlap-group301">
+                                    <img class="mask-group-101"
+                                         src="../assets/mask-group-58@2x.svg" />
+                                    <div class="sing-out fredoka-light-granite-gray-16px" @click="handleLogout">Sign Out</div>
+                                </div>
+                            </div>
+                            <!--</div>-->
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </span>
                 </div>
 
             </div>
@@ -146,15 +229,367 @@
     </div>
 </template>
 
-
 <style scoped>
+    /* screen - component-22 */
 
+    .component-22 {
+        align-items: flex-start;
+        display: flex;
+        height: 1024px;
+        width: 1440px;
+    }
+
+        .component-22 .component-22-1 {
+            -webkit-backdrop-filter: blur(8px) brightness(100%);
+            align-items: center;
+            backdrop-filter: blur(8px) brightness(100%);
+            background-color: #ffffffeb;
+            border: 0.4px solid;
+            border-color: #cacaca;
+            border-radius: 13px;
+            box-shadow: 0px 4px 4px #00000040;
+            display: flex;
+            flex-direction: column;
+            min-height: 260px;
+            padding: 21.2px 14.3px;
+            width: 260px;
+            margin-right: 50px;
+        }
+
+        .component-22 .flex-col {
+            display: flex;
+            flex-direction: column;
+            margin-right: 0;
+            min-height: 38px;
+            /*width: 292px;*/
+            width: 200px;
+        }
+
+        .component-22 .flex-row {
+            align-items: flex-start;
+            display: flex;
+            margin-left: 0;
+            width: 200px;
+            /*min-width: 271px;*/
+        }
+
+
+        .component-22 .profile {
+            color: var(--black);
+            font-family: var(--font-family-fredoka);
+            font-size: var(--font-size-m);
+            font-weight: 400;
+            letter-spacing: 0;
+            min-height: 18px;
+            width: 49px;
+            margin-left: 18px;
+        }
+
+        .component-22 .overlap-group401 {
+            align-self: flex-end;
+            border-radius: 15px;
+            height: 20px;
+            margin-left: 181px;
+            position: relative;
+            width: 41px;
+        }
+
+        .component-22 .group-11601 {
+            align-items: flex-end;
+            background-color: var(--alto);
+            border-radius: 15px;
+            display: flex;
+            height: 20px;
+            left: 0;
+            min-width: 41px;
+            padding: 1.4px 1.4px;
+            position: absolute;
+            top: 0;
+        }
+
+        .component-22 .rectangle-11801 {
+            height: 17px;
+            width: 38px;
+        }
+
+        .component-22 .ellipse-40101 {
+            background-color: #f7f7f7;
+            border: 1px solid;
+            border-color: var(--white);
+            border-radius: 8.62px;
+            cursor: pointer;
+            height: 17px;
+            left: 1px;
+            position: absolute;
+            top: 1px;
+            width: 17px;
+        }
+
+        .component-22 .line-601 {
+            height: 1px;
+            margin-top: 17px;
+            width: 292px;
+        }
+
+        .component-22 .flex-row-101 {
+            align-items: center;
+            display: flex;
+            margin-left: 0;
+            margin-top: 15px;
+            min-width: 271px;
+        }
+
+        .component-22 .overlap-group101 {
+            height: 50px;
+            position: relative;
+            width: 50px;
+        }
+
+        .component-22 .rectangle-601 {
+            background-color: #ebebeb;
+            border: 0.46px solid;
+            border-color: var(--white);
+            border-radius: 20.13px;
+            height: 60px;
+            left: -40px;
+            position: absolute;
+            top: -20px;
+            width: 122px;
+        }
+
+        .component-22 .icon-user101 {
+            height: 50px;
+            left: -35px;
+            position: absolute;
+            top: -20px;
+            width: 50px;
+        }
+
+        .component-22 .flex-col-101 {
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2.0px;
+            margin-left: 15px;
+            min-height: 39px;
+            width: 75px;
+        }
+
+        .component-22 .username {
+            letter-spacing: 0;
+            min-height: 18px;
+            width: 75px;
+        }
+
+        .component-22 .free {
+            color: #00000066;
+            font-family: var(--font-family-fredoka);
+            font-size: var(--font-size-xs);
+            font-weight: 300;
+            letter-spacing: 0;
+            margin-top: 4px;
+            min-height: 18px;
+            width: 26px;
+        }
+
+        .component-22 .overlap-group101 {
+            align-items: flex-start;
+            background-color: var(--white);
+            border: 0.4px solid;
+            border-color: var(--black);
+            border-radius: 8px;
+            display: flex;
+            height: 26px;
+            margin-left: 49px;
+            margin-top: 0;
+            min-width: 81px;
+            padding: 3.5px 14.6px;
+        }
+
+        .component-22 .upgrade {
+            color: var(--black);
+            font-family: var(--font-family-fredoka);
+            font-size: var(--font-size-s);
+            font-weight: 400;
+            letter-spacing: 0;
+            min-height: 16px;
+            width: 51px;
+        }
+
+        .component-22 .line-701 {
+            align-self: flex-start;
+            height: 1px;
+            margin-top: 15px;
+            width: 292px;
+        }
+
+        .component-22 .overlap-group201 {
+            align-items: flex-start;
+            background-color: var(--coconut);
+            border-radius: 4px;
+            display: flex;
+            height: 42px;
+            margin-left: 0;
+            margin-top: 15px;
+            min-width: 271px;
+            padding: 10.7px 9.7px;
+        }
+
+        .component-22 .mask-group101 {
+            height: 21px;
+            margin-top: 0;
+            width: 21px;
+        }
+
+        .component-22 .account-settings {
+            letter-spacing: 0;
+            margin-left: 7px;
+            min-height: 18px;
+            width: 118px;
+            color: gray;
+        }
+
+        .component-22 .line-801 {
+            align-self: flex-start;
+            height: 1px;
+            margin-top: 17px;
+            width: 292px;
+        }
+
+        .component-22 .overlap-group301 {
+            align-items: flex-start;
+            background-color: var(--coconut);
+            border-radius: 4px;
+            display: flex;
+            height: 42px;
+            margin-left: 0;
+            margin-top: 18px;
+            min-width: 271px;
+            padding: 10.6px 11.7px;
+        }
+
+        .component-22 .mask-group-101 {
+            align-self: center;
+            height: 19px;
+            margin-bottom: 0.35px;
+            width: 19px;
+        }
+
+        .component-22 .sing-out {
+            letter-spacing: 0;
+            margin-left: 7px;
+            min-height: 18px;
+            width: 64px;
+            color: gray;
+            cursor: pointer;
+        }
+
+    :root {
+        --alto: #d9d9d9;
+        --black: #000000;
+        --coconut: #fefefe;
+        --granite-gray: #666666a6;
+        --white: #ffffff;
+        --font-size-m: 16px;
+        --font-size-s: 13px;
+        --font-size-xs: 12px;
+        --font-family-fredoka: "Fredoka", Helvetica;
+    }
+
+    .fredoka-light-granite-gray-16px {
+        color: var(--granite-gray);
+        font-family: var(--font-family-fredoka);
+        font-size: var(--font-size-m);
+        font-style: normal;
+        font-weight: 300;
+    }
+
+    .fredoka-light-black-16px {
+        color: var(--black);
+        font-family: var(--font-family-fredoka);
+        font-size: var(--font-size-m);
+        font-style: normal;
+        font-weight: 300;
+    }
+
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+    @import url("https://fonts.googleapis.com/css?family=Fredoka:400,300,700,500");
+
+    .screen a {
+        display: contents;
+        text-decoration: none;
+    }
+
+    .container-center-horizontal {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        pointer-events: none;
+        width: 100%;
+    }
+
+        .container-center-horizontal > * {
+            flex-shrink: 0;
+            pointer-events: auto;
+        }
+
+    .overlay {
+        display: none;
+        height: 100%;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+        .overlay.animate-appear {
+            animation: reveal 0.3s ease-in-out 1 normal forwards;
+            display: block;
+            opacity: 0;
+        }
+
+        .overlay.animate-disappear {
+            animation: reveal 0.3s ease-in-out 1 reverse forwards;
+            display: block;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+            .overlay.animate-disappear * {
+                pointer-events: none;
+            }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+
+
+
+
+
+    /*старый код*/
     #outtooltip {
         position: relative;
         display: inline-block;
     }
 
         #outtooltip #tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            border-color: black;
+            padding: 20px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        #outtooltip #tooltiptext2 {
             visibility: hidden;
             width: 120px;
             background-color: rgba(0, 0, 0, 0.322);
@@ -165,10 +600,15 @@
             padding: 5px 0;
             /* Position the tooltip */
             position: absolute;
-            /*z-index: 1;*/
+            z-index: 1;
         }
 
         #outtooltip:hover #tooltiptext {
+            visibility: visible;
+            cursor: pointer;
+        }
+
+        #outtooltip:hover #tooltiptext2 {
             visibility: visible;
             cursor: pointer;
         }
@@ -190,7 +630,7 @@
             margin-top: -94.24px;
             position: relative;
             width: 1678px;
-            /*z-index: 1;*/
+            z-index: 1;
         }
 
         .desktop-21 .ellipse-3 {
@@ -299,8 +739,8 @@
             /* left: 226px;*/
             min-width: 125px;
             padding: 3.9px 4.7px;
-            /*position: absolute;*/
-            /*top: 365px;*/
+            /* position: absolute;
+            top: 365px;*/
         }
 
         .desktop-21 .group-container {
@@ -410,7 +850,7 @@
         }
 
         .desktop-21 .all-notes {
-            /*left: 38px;*/
+            /* left: 38px;*/
             letter-spacing: 0;
             /* position: absolute;
             top: 4px;*/
@@ -418,11 +858,11 @@
         }
 
         .desktop-21 .overlap-group-1 {
-            /*height: 20px;
-            left: 5px;*/
-            /*position: absolute;
-            top: 4px;
-            width: 27px;*/
+            /* height: 20px;
+            left: 5px;
+            position: absolute;
+            top: 4px;*/
+            width: 27px;
         }
 
         .desktop-21 .overlap-group4 {
@@ -791,10 +1231,11 @@
         .desktop-21 .mask-group-3 {
             height: 29px;
             left: 140px;
-            position: fixed;
+            /*position: fixed;*/
+            cursor: pointer;
             top: 694px;
             width: 29px;
-            /* z-index: 2;*/
+            z-index: 2;
         }
 
         .desktop-21 .tags {
@@ -803,7 +1244,7 @@
             position: fixed;
             top: 19px;
             width: 40px;
-            /* z-index: 4;*/
+            z-index: 4;
         }
 
         .desktop-21 .group-10 {
@@ -815,7 +1256,7 @@
             min-width: 165px;
             position: fixed;
             top: 10px;
-            /* z-index: 3;*/
+            z-index: 3;
         }
 
         .desktop-21 .overlap-group-3 {
@@ -1047,10 +1488,10 @@
     .border-0-9px-black-4 {
         border: 0.9px solid var(--black-4);
     }
-</style>>
+</style>
 
 <script>
-
+    import { mapGetters } from 'vuex'
     import TodoItem from './TodoItem'
     //import Userpage from './Userpage'
     import axios from 'axios'
@@ -1059,7 +1500,22 @@
     Userfront.init("demo1234");
     export default {
 
+
+
+
         name: 'SP',
+        props: ['title'],
+
+        computed: {
+            ...mapGetters(['username']),
+            isLoggedOut() {
+                return !Userfront.tokens.accessToken;
+            },
+        },
+
+
+
+
 
         components: { TodoItem },
 
@@ -1079,7 +1535,7 @@
             async addNewTodo() {
 
                 await axios.post('api/Page/Create', {
-                    newName: "Page test",
+                    newName: "Untitled",
                 }, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -1115,7 +1571,6 @@
             },
             QuestionPage() {
                 this.$router.push('/question');
-
             },
 
             async get_all_tags() {
@@ -1129,5 +1584,4 @@
             },
         }
     }
-</script>>
-
+</script>

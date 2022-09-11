@@ -29,7 +29,7 @@
           />
           <div class="overlap-group border-0-4px-white">
            
-            <div class="creat-first-page fredoka-normal-white-20px"><button @click="Workspace" style="background-color: transparent; border-color: transparent; width:200px">Create first page</button></div>
+            <div class="creat-first-page fredoka-normal-white-20px" @click="Workspace">Create first page</div>
           </div>
           <img
             class="group-18" src="../assets/group-18-10@2x.svg"
@@ -295,7 +295,8 @@ Userfront.init("demo1234");
 .desktop-7 .creat-first-page {
   letter-spacing: 0;
   min-height: 24px;
-  width: 144px;
+  width: 200px;
+  text-align:center;
 }
 
 .desktop-7 .group-18 {

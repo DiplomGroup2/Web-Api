@@ -20,7 +20,7 @@
             </div>
 
             <div class="flex-row-1">
-                <select v-model="select" class="overlap-group4 " @change="add_tag()">
+                <select v-model="select" class="overlap-group4 border-0-2px-black" @change="add_tag()">
                     <option value="" disabled hidden>Choose a tag</option>
                     <option value="add tag">add tag</option>
                     <option v-for="item in alltags" :value="item.tag" :key="item.tag">{{item.tag}}</option>
@@ -29,18 +29,18 @@
                 <!--<input ref="tagfocus" v-show="visible" v-model="newtag" v-on:blur="add_newtag">-->
             </div>
 
-            <div class=" flex-row-1">
+            <div class="flex-row-1">
                 <div class="date">{{createdPage}}</div>
                 <img class="vector-8" src="../assets/vector-8@2x.svg" />
                 <!--<div class="movies">-->
-                    <div class="movies fredoka-light-gray-12px">
-                        <span class="movies" v-for="item in group" :key="item">
-                            #{{item}}
-                            <span class="movies button1" v-on:click="del_tag(item)">
-                                &nbsp;&nbsp;X
-                            </span>
+                <div class="movies fredoka-light-gray-12px">
+                    <span class="movies" v-for="item in group" :key="item">
+                        #{{item}}
+                        <span class="movies button1" v-on:click="del_tag(item)">
+                            &nbsp;&nbsp;&nbsp;&nbsp;X
                         </span>
-                    <!--</div>-->
+                    </span>
+                    <!--<img class="vectorCustom" src="../assets/vector-8@2x.svg" />-->
                 </div>
             </div>
 
@@ -79,9 +79,10 @@
                 </div>
                 <div class="group-133">
                     <div class="overlap-group1" v-on:click="create_text">
-                        <div class="overlap-group">
+                        <div class="overlap-group" id="outtooltip">
                             <div class="rectangle-39 border-0-9px-black-3"></div>
                             <div class="rectangle-37 border-0-9px-black-4"></div>
+                            <span id="tooltiptext3">Add Text</span>
                         </div>
                         <img class="line-5" src="../assets/line-5@2x.svg" />
                         <img class="line-6" src="../assets/line-6@2x.svg" />
@@ -96,9 +97,21 @@
                     </div>
 
                 </div>
-                <img class="group-136" src="../assets/group-136-2@2x.svg" v-on:click="create_url" />
+                <div id="outtooltip">
+                    <img class="group-136" src="../assets/group-136-2@2x.svg" v-on:click="create_url" />
+                    <span id="tooltiptext4">Add Link</span>
+                </div>
                 <!--<textarea id="textArea" v-model="message" placeholder="link.." v-on:blur="add_text"></textarea>
                 />-->
+                <!--ДИСКЕТА-->
+                <div class="group-1351">
+                    <div class="overlap-group31">
+                        <div class="overlap-group-11">
+                            <div class="rectangle-1341"></div>
+                        </div>
+                        <div class="rectangle-1321"></div>
+                    </div>
+                </div>
 
 
             </div>
@@ -121,8 +134,6 @@
     //import axios from 'axios'
     import Userpage from "./Userpage"
     import axios from 'axios'
-    // import vSelect from 'vue-select'
-    import 'vue-select/dist/vue-select.css';
     import RecordItem from './RecordItem'
 
 
@@ -134,7 +145,6 @@
 
         data() {
             return {
-
                 message: '',
                 imgSrc: '',
                 select: '',
@@ -149,11 +159,11 @@
             this.name = this.title;
         },
 
-
         methods: {
             editName() {
                 this.editing = true;
             },
+
             async save_name() {
                 try {
                     await axios.put('api/Page/Rename',
@@ -248,7 +258,7 @@
             async add_tag() {
                 if (this.select == "add tag") {
                     this.visible = true;
-                //    this.$refs.tagfocus.focus();
+                    //    this.$refs.tagfocus.focus();
                 }
                 else {
                     this.visible = false;
@@ -334,7 +344,6 @@
                   }*/
         },
         components:
-            //{ Userpage, RecordItem, vSelect }
             { Userpage, RecordItem }
 
     }
@@ -421,6 +430,62 @@
         }
 
 
+        /*ТРЕТИЙ  ХОВЕР */
+        #outtooltip #tooltiptext3 {
+            visibility: hidden;
+            width: 70px;
+            /*border-radius: 6px;*/
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            height: 18px;
+            border-color: black;
+            padding: 2px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        #outtooltip:hover #tooltiptext3 {
+            visibility: visible;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            border-color: black;
+            border-radius: 2px;
+            border-width: 2px;
+        }
+        /*ЧЕТВЕРТЫЙ  ХОВЕР */
+        #outtooltip #tooltiptext4 {
+            visibility: hidden;
+            width: 70px;
+            /*border-radius: 6px;*/
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            height: 18px;
+            border-color: black;
+            padding: 2px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        #outtooltip:hover #tooltiptext4 {
+            visibility: visible;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: lightgray;
+            color: gray;
+            text-align: center;
+            border-color: black;
+            border-radius: 2px;
+            border-width: 2px;
+        }
+
+
 
     textarea {
         width: 200px;
@@ -431,8 +496,8 @@
     .view {
         align-items: flex-start;
         /*display: flex;
-                                    height: 192px;
-                                    */
+                                height: 192px;
+                                */
         overflow: hidden;
         padding: 0.6px 0;
         /* width: 265px;*/
@@ -451,8 +516,8 @@
         border-radius: 13px;
         box-shadow: 0px 4px 0px #8aa7de;
         /*display: flex;
-        flex-direction: column;
-        min-height: 187px;*/
+    flex-direction: column;
+    min-height: 187px;*/
         padding: 14.0px 19.7px;
         width: 265px;
         flex-direction: column;
@@ -478,7 +543,7 @@
     .untitled {
         letter-spacing: 0;
         min-height: 20px;
-        width: 68px;
+        width: 250px;
     }
 
     .overlap-group4 {
@@ -495,6 +560,7 @@
         margin: -5px;
         border: 0.4px solid var(--gray);
         color: gray;
+        font-size: 14px;
     }
 
     .group-134 {
@@ -523,10 +589,12 @@
     .flex-row-1 {
         align-items: flex-end;
         display: flex;
-        height: 16px;
+        height: 20px;
+        /*height: 16px;*/
         margin-left: 0.4px;
-        margin-top: 1px;
+        margin-top: 6px;
         min-width: 98px;
+        /*margin-top: 1px;*/
     }
 
     .date {
@@ -550,7 +618,9 @@
         align-self: flex-start;
         letter-spacing: 0;
         min-height: 16px;
-        margin-left: 4px;
+        margin-left: 2px;
+        margin-top: -7px;
+        padding-top: 5px;
         width: 70px;
         display: flex;
         flex-direction: row;
@@ -591,6 +661,7 @@
         height: 20px;
         position: relative;
         width: 22px;
+        cursor: pointer;
     }
 
     .overlap-group {
@@ -621,19 +692,19 @@
     }
 
     .line-5 {
-        height: 9px;
+        height: 14px;
         left: 13px;
         position: absolute;
-        top: 7px;
-        width: 1px;
+        top: 2px;
+        width: 3px;
     }
 
     .line-6 {
-        height: 1px;
-        left: 9px;
+        height: 3px;
+        left: 8px;
         position: absolute;
-        top: 11px;
-        width: 9px;
+        top: 8px;
+        width: 13px;
     }
 
     .group-132 {
@@ -696,7 +767,7 @@
         font-family: var(--font-family-fredoka);
         font-size: var(--font-size-l);
         font-style: normal;
-        font-weight: 500;
+        font-weight: 300;
     }
 
     .fredoka-light-gray-12px {
@@ -717,6 +788,10 @@
         font-weight: 300;
     }
 
+    .border-0-2px-black {
+        border: 0.2px dotted var(--black);
+    }
+
     .border-0-4px-black {
         border: 0.4px solid var(--black);
     }
@@ -731,6 +806,8 @@
 
     .button1 {
         cursor: pointer;
-            }
+/*        padding: -5px;
+*/        margin: -5px;
+    }
 </style>
 

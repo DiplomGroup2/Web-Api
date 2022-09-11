@@ -70,7 +70,7 @@
                         products or a plan for working with a team in a couple of clicks!
                     </p>
                     <div class="overlap-group3 border-0-4px-white">
-                        <div class="sing-in fredoka-normal-white-20px" @click="FromRegisterIntoSignIn" >Sing in</div>
+                        <div class="sing-in fredoka-normal-white-20px" @click="FromRegisterIntoSignIn" >Sign in</div>
                     </div>
                     <error v-if="error" :error="error" />
 

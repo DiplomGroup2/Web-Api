@@ -9,6 +9,9 @@
   <Comment CommentText="VUE&#xD;&#xA;(front-end)">
     <Position X="4.021" Y="3.719" Height="0.49" Width="0.877" />
   </Comment>
+  <Comment CommentText="MongoDB&#xD;&#xA;(database)">
+    <Position X="3.927" Y="0.834" Height="0.49" Width="0.877" />
+  </Comment>
   <Class Name="DBMongo.Models.Page" Collapsed="true">
     <Position X="12.5" Y="4" Width="1.5" />
     <TypeIdentifier />

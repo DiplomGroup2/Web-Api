@@ -2,13 +2,10 @@
 using DBMongo.Models;
 using Diplom_webAPI_REST.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using MVC_2.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MVC_2.Controllers
 {
@@ -32,15 +29,12 @@ namespace MVC_2.Controllers
         [HttpPost]
         public IActionResult Create(PageRenameModel model)
         {
-            //throw new NotImplementedException();
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
                 _context.CreatePageUser(u.Id, model.NewName, model.Group);
             }
-
             return Ok();
         }
 
@@ -57,7 +51,6 @@ namespace MVC_2.Controllers
             else
             {
                 string name = User.Identity.Name;
-
                 var u = _context.SearchUser(name);
                 if (u != null)
                 {
@@ -77,18 +70,16 @@ namespace MVC_2.Controllers
         public IActionResult Rename(PageRenameModel model)
         {
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
                 _context.RenamePageUser(u.Id, model.IdPage, model.NewName, model.Group);
             }
-
             return Ok();
         }
 
         /// <summary>
-        /// отримання сторінки по  id. 
+        /// -отримання сторінки по  id. 
         /// </summary>
         /// <param name="PageId"></param>
         /// <returns></returns>
@@ -97,13 +88,11 @@ namespace MVC_2.Controllers
         public IActionResult GetPage(string PageId)
         {
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetPageUser(u.Id, PageId));
             }
-
             return BadRequest("От халепа :(");
         }
 
@@ -115,30 +104,24 @@ namespace MVC_2.Controllers
         [HttpGet]
         public IActionResult GetTag()
         {
-
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetAllTagUser(u.Id).Select(s => new GroupModel { Tag = s }).ToList());
             }
-
             return BadRequest("От халепа :( Спочатку авторизуйтесь");
         }
 
-
         /// <summary>
-        /// пошук сторінок авторизованого користувача за назвою
+        /// -пошук сторінок авторизованого користувача за назвою
         /// </summary>
         /// <returns></returns>
         [Route("GetName")]
         [HttpGet]
         public IActionResult GetName(string str)
         {
-
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
@@ -146,7 +129,6 @@ namespace MVC_2.Controllers
 
                 return new JsonResult(_context.GetNamePageUser(u.Id, arrayStr));
             }
-
             return BadRequest("От халепа :( Спочатку авторизуйтесь");
         }
 
@@ -158,48 +140,42 @@ namespace MVC_2.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetAllPageUser(u.Id));
             }
-
             return BadRequest("От халепа :(");
         }
 
         /// <summary>
-        /// видалення стіку авторизованого користувача по id
+        /// отримання всіх сторінок авторизованого користувача
         /// </summary>
-        /// <param name="PageId"></param>
+        /// <param name="tag"></param>
         /// <returns></returns>
-        // [Route("Delete")]
-        // [HttpDelete]
-        //public IActionResult Delete(string PageId)
-        //{
-        //    string name = User.Identity.Name;
-
-        //    var u = _context.SearchUser(name);
-        //    if (u != null)
-        //    {
-        //        _context.DeletePageUser(u.Id, PageId);
-        //    }
-        //    return Ok();
-        //}
+        [Route("GetPageTag")]
+        [HttpGet]
+        public IActionResult GetPageTag(string tag)
+        {
+            string name = User.Identity.Name;
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                return new JsonResult(_context.GetAllPageUser(u.Id,tag));
+            }
+            return BadRequest("От халепа :(");
+        }
 
         /// <summary>
-        /// видалення сторынки авторизованого користувача по id
+        /// видалення сторінки авторизованого користувача по id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns> 
         [HttpDelete("{id}")]
-
         public IActionResult Delete(string id)
         {
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
@@ -207,7 +183,6 @@ namespace MVC_2.Controllers
             }
             return Ok();
         }
-
 
         /// <summary>
         /// Видалення тегу
@@ -218,13 +193,11 @@ namespace MVC_2.Controllers
         public IActionResult DeleteTag(PageTagModel model)
         {
             string name = User.Identity.Name;
-
             var u = _context.SearchUser(name);
             if (u != null)
             {
                 _context.DeleteTagPage(u.Id, model.IdPage, model.Group);
             }
-
             return Ok();
         }
     }
