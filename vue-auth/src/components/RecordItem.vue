@@ -40,8 +40,8 @@
                 </span>
             </span>
             <span class="rectangle-135">
-                <!--<a v-bind:href="'http://lavira-001-site1.atempurl.com/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>-->
-                <a v-bind:href="'http://localhost:59723/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>
+                <a v-bind:href="'http://lavira-001-site1.atempurl.com/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>
+                <!--<a v-bind:href="'http://localhost:59723/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>-->
             </span>
         </span>
 
