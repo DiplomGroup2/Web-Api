@@ -30,18 +30,20 @@
         <!--<a href="screen.html"><img class="group-136" src="assets/group-136@2x.svg" /> </a>-->
         <!--ДИСКЕТА C ПОЛЕМ ДЛЯ ВЫВОДА ИНФЫ-->
         <!--виведення файлу-->
-        <!--<span v-if="type==a4">
-            <span class="group-135">
+        <span v-if="type==a4" class="group-file">
+            <span class="group-135" >
                 <span class="overlap-group3">
                     <span class="overlap-group-1">
-                        <span class="rectangle-134">еуче</span>
+                        <span class="rectangle-134"></span>
                     </span>
                     <span class="rectangle-132"></span>
                 </span>
             </span>
             <span class="rectangle-135">
+                <!--<a v-bind:href="'http://lavira-001-site1.atempurl.com/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>-->
+                <a v-bind:href="'http://localhost:59723/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>
             </span>
-        </span>-->
+        </span>
 
         <!--ДИСКЕТА C ПОЛЕМ ДЛЯ ВЫВОДА ИНФЫ - базовый вариант
         <a href="zametka-2.html">
@@ -120,26 +122,32 @@
 
 
 <style scoped>
-    .group-135 {
-        align-items: flex-end;
+    .group-file {
+        align-items: stretch;
         cursor: pointer;
         display: flex;
-        height: 15px;
-        left: 21px;
-        min-width: 16px;
-        position: absolute;
-        top: 63px;
+        flex-direction: row;
+        width: 100%;
+        padding: 4px;
+        border-color: var(--black);
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .group-135 {
+        align-items: flex-start;
+        cursor: pointer;
+        width: 40px;
+        padding: 7px;
     }
 
     .rectangle-135 {
         border: 0.5px solid;
-        border-color: var(--black);
-        border-radius: 9px;
-        height: 15px;
-        left: 44px;
-        position: absolute;
-        top: 63px;
-        width: 88px;
+        border-color: gray;
+        border-radius: 5px;
+        width: 100%;
+        padding: 5px;
     }
 
     .overlap-group3 {

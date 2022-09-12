@@ -70,9 +70,7 @@
             <!--<form method="post" enctype="multipart/form-data">-->
 
             <div class="group-container">
-
-                <!--<input type="file" multiple accept="image/*" onchange="handleFiles(this.files)"><br>-->
-                <div @click="handleLogout" id="outtooltip">
+                <div id="outtooltip">
                     <img class="mask-group-1" src="../assets/mask-group-3@2x.svg" />
                     <!--<span id="tooltiptext"><input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/></span>-->
                     <span id="tooltiptext2"><input type="file" @change="onFile" /></span>
@@ -101,22 +99,31 @@
                     <img class="group-136" src="../assets/group-136-2@2x.svg" v-on:click="create_url" />
                     <span id="tooltiptext4">Add Link</span>
                 </div>
+
+
                 <!--<textarea id="textArea" v-model="message" placeholder="link.." v-on:blur="add_text"></textarea>
                 />-->
                 <!--ДИСКЕТА-->
-                <div class="group-1351">
-                    <div class="overlap-group31">
-                        <div class="overlap-group-11">
-                            <div class="rectangle-1341"></div>
+                <!--<div class="group-1351" v-on:click="create_file">-->
+                <div id="outtooltip">
+                    <div class="group-1351" id="outtooltip">
+                        <!--<span id="tooltiptext">
+                            <input type="file" @change="create_file">
+                        </span>-->
+                        <div class="overlap-group31">
+                            <div class="overlap-group-11">
+                                <div class="rectangle-1341"></div>
+                            </div>
+                            <div class="rectangle-1321"></div>
                         </div>
-                        <div class="rectangle-1321"></div>
+
                     </div>
+                    <span id="tooltiptext2"><input type="file" @change="create_file" /></span>
+
+
                 </div>
-
-
             </div>
-            <div class="imgset"><img :src="imgSrc" v-if="imgSrc" class="mypic" /> </div>
-
+            <!--<div class="imgset"><img :src="imgSrc" v-if="imgSrc" class="mypic" /> </div>-->
             <!-- <div class="preview">
               <p>No files currently selected for upload</p>
             </div>
@@ -146,7 +153,7 @@
         data() {
             return {
                 message: '',
-                imgSrc: '',
+                /* imgSrc: '',*/
                 select: '',
                 editing: false,
                 creating_text: false,
@@ -155,7 +162,6 @@
             }
         },
         async created() {
-            //Vue.component('v-select', vSelect)
             this.name = this.title;
         },
 
@@ -191,7 +197,7 @@
 
                 const reader = new FileReader()
                 reader.readAsDataURL(files[0])
-                reader.onload = () => (this.imgSrc = reader.result)
+                /* reader.onload = () => (this.imgSrc = reader.result)*/
                 try {
                     await axios.post('api/Record/CreateImage',
                         {
@@ -203,6 +209,7 @@
                             "Content-Type": "multipart/form-data"
                         }
                     });
+                    this.$emit('refresh');
                 } catch (e) {
                     this.error = 'Invalid!';
                     console.log(e);
@@ -281,6 +288,31 @@
                 }
             },
 
+            async create_file(e) {
+                const files = e.target.files
+                if (!files.length) return
+
+                const reader = new FileReader()
+                reader.readAsDataURL(files[0])
+                /* reader.onload = () => (this.imgSrc = reader.result)*/
+                try {
+                    await axios.post('api/Record/CreateFile',
+                        {
+                            File: files[0],
+                            PageId: this.pageId,
+                        }, {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                            "Content-Type": "multipart/form-data"
+                        }
+                    });
+                    this.$emit('refresh');
+                } catch (e) {
+                    this.error = 'Invalid!';
+                    console.log(e);
+                }
+            },
+
             async add_newtag() {
                 this.visible = false;
                 try {
@@ -354,6 +386,72 @@
 
 
 <style scoped>
+    .group-1351 {
+        align-items: flex-end;
+        display: flex;
+        cursor: pointer;
+        height: 16px;
+        min-width: 16px;
+        margin-left: 14px;
+        margin-top: 4px;
+         /* bottom: 20px;
+        left: 150px;
+        margin-left: 14px;
+        margin-top: 4px;*/
+        /*position: absolute;*/
+        /*left: 21px;*/
+        /*top: 63px;*/
+    }
+
+    .overlap-group31 {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        background-image: url(../assets/vector-10@2x.svg);
+        background-size: 100% 100%;
+        margin-bottom: -0.35px;
+        min-height: 15px;
+        padding: 0.1px 2.9px;
+        width: 17px;
+    }
+
+    .overlap-group-11 {
+        align-items: flex-start;
+        border: 1px solid;
+        border-color: darkgray;
+        border-radius: 0.5px;
+        display: flex;
+        height: 7px;
+        justify-content: flex-end;
+        margin-left: 1.64px;
+        min-width: 8px;
+        padding: 1.1px 2.0px;
+    }
+
+    .rectangle-1341 {
+        background-color: var(--gray);
+        /*border: 1px none;*/
+        border: 0.5px solid;
+        height: 3px;
+        width: 2px;
+    }
+
+    .rectangle-1321 {
+        border: 0.8px solid;
+        border-color: var(--gray);
+        border-radius: 0.5px;
+        height: 5px;
+        margin-top: 1px;
+        width: 11px;
+    }
+
+    .vectorCustom {
+        height: 14px;
+        margin-bottom: 0.14px;
+        margin-left: 2px;
+        width: 1px;
+    }
+
     group-136 {
         height: 15px;
         margin-bottom: 0;
@@ -496,8 +594,8 @@
     .view {
         align-items: flex-start;
         /*display: flex;
-                                height: 192px;
-                                */
+                                    height: 192px;
+                                    */
         overflow: hidden;
         padding: 0.6px 0;
         /* width: 265px;*/
@@ -516,8 +614,8 @@
         border-radius: 13px;
         box-shadow: 0px 4px 0px #8aa7de;
         /*display: flex;
-    flex-direction: column;
-    min-height: 187px;*/
+        flex-direction: column;
+        min-height: 187px;*/
         padding: 14.0px 19.7px;
         width: 265px;
         flex-direction: column;
@@ -555,7 +653,7 @@
         height: 19px;
         justify-content: flex-end;
         /*        margin-left: 21px;
-    */ min-width: 112px;
+        */ min-width: 112px;
         padding: 0px 4.0px;
         margin: -5px;
         border: 0.4px solid var(--gray);
@@ -806,8 +904,8 @@
 
     .button1 {
         cursor: pointer;
-/*        padding: -5px;
-*/        margin: -5px;
+        /*        padding: -5px;
+    */ margin: -5px;
     }
 </style>
 

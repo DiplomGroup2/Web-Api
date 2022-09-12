@@ -181,8 +181,9 @@ namespace MVC_2.Controllers
             var s = _context.GetImage(imageId);
             if (s != null)
             {
+
                 s.Seek(0, SeekOrigin.Begin);
-                try { return File(s, "application/octet-stream"); }
+                try { return File(s, "application/octet-stream", _context.GetFileName(imageId)); } 
                 //try { return File(s, "image/jpeg"); }
                 catch (Exception e) { return BadRequest("От халепа :("); }
 

@@ -119,7 +119,7 @@ namespace DBMongo
 
         public Record CreateRecordFileUser(string userId, string fileName, MemoryStream memoryStream)
         {
-            Record r = new Record { UserId = userId, RecordType = "file" };
+            Record r = new Record { UserId = userId, RecordType = "file", Text= fileName };
             if (fileName != null)
             {
                 ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
@@ -215,6 +215,29 @@ namespace DBMongo
             return r;
         }
 
+        public string GetFileName(string userId, string recordId)
+        {
+            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+            ObjectId id;
+            ObjectId.TryParse(recordId, out id);
+            var filter = new BsonDocument { { "_id", id }, { "UserId", userId } };
+            var cursor = col.Find(filter);
+            var r = cursor.FirstOrDefault();
+            return r.Text;
+        }
+
+        public string GetFileName( string imageId)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var builderPage = Builders<Page>.Filter;
+            var builderRecord = Builders<Record>.Filter;
+            FilterDefinition<Page> filter = builderPage.Empty;
+            filter &= builderPage.ElemMatch(p => p.Records, builderRecord.Eq(r=>r.ImageId, imageId));
+            var cursor = col.Find(filter);
+            var r = cursor.FirstOrDefault().Records.FirstOrDefault(o=>o.ImageId== imageId);
+            return r.Text;
+        }
+
         public List<Record> GetAllRecordUser(string userId)
         {
             IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
@@ -275,6 +298,7 @@ namespace DBMongo
             var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.ToList();
+           
             return d;
         }
 
