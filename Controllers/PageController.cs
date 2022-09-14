@@ -150,7 +150,7 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
-        /// отримання всіх сторінок авторизованого користувача
+        /// отримання всіх сторінок авторизованого користувача за обраним тегом
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
@@ -162,7 +162,43 @@ namespace MVC_2.Controllers
             var u = _context.SearchUser(name);
             if (u != null)
             {
-                return new JsonResult(_context.GetAllPageUser(u.Id,tag));
+                return new JsonResult(_context.GetAllPageUser(u.Id, tag ?? ""));
+            }
+            return BadRequest("От халепа :(");
+        }
+
+        /// <summary>
+        /// отримання всіх сторінок авторизованого користувача без тегів
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetPageUntagged")]
+        [HttpGet]
+        public IActionResult GetPageUntagged()
+        {
+            string name = User.Identity.Name;
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+
+                return new JsonResult(_context.GetPageUserUntagged(u.Id));
+            }
+            return BadRequest("От халепа :(");
+        }
+
+        /// <summary>
+        /// отримання 10 останніх створених сторінок авторизованого користувача без тегів
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetPageLast")]
+        [HttpGet]
+        public IActionResult GetPageLast(int countLast)
+        {
+            string name = User.Identity.Name;
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+
+                return new JsonResult(_context.GetPageUserLast(u.Id, countLast));
             }
             return BadRequest("От халепа :(");
         }

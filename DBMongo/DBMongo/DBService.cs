@@ -119,7 +119,7 @@ namespace DBMongo
 
         public Record CreateRecordFileUser(string userId, string fileName, MemoryStream memoryStream)
         {
-            Record r = new Record { UserId = userId, RecordType = "file", Text= fileName };
+            Record r = new Record { UserId = userId, RecordType = "file", Text = fileName };
             if (fileName != null)
             {
                 ObjectId id = _gridFS.UploadFromStream(fileName, memoryStream);
@@ -226,15 +226,15 @@ namespace DBMongo
             return r.Text;
         }
 
-        public string GetFileName( string imageId)
+        public string GetFileName(string imageId)
         {
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var builderPage = Builders<Page>.Filter;
             var builderRecord = Builders<Record>.Filter;
             FilterDefinition<Page> filter = builderPage.Empty;
-            filter &= builderPage.ElemMatch(p => p.Records, builderRecord.Eq(r=>r.ImageId, imageId));
+            filter &= builderPage.ElemMatch(p => p.Records, builderRecord.Eq(r => r.ImageId, imageId));
             var cursor = col.Find(filter);
-            var r = cursor.FirstOrDefault().Records.FirstOrDefault(o=>o.ImageId== imageId);
+            var r = cursor.FirstOrDefault().Records.FirstOrDefault(o => o.ImageId == imageId);
             return r.Text;
         }
 
@@ -298,7 +298,7 @@ namespace DBMongo
             var filter = new BsonDocument { { "UserId", userId } };
             var cursor = col.Find(filter);
             var d = cursor.ToList();
-           
+
             return d;
         }
 
@@ -311,6 +311,29 @@ namespace DBMongo
             filter &= builderPage.All("Group", new List<string>() { tag });
             var cursor = col.Find(filter);
             var d = cursor.ToList();
+            return d;
+        }
+
+        public List<Page> GetPageUserUntagged(string userId)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var builderPage = Builders<Page>.Filter;
+            FilterDefinition<Page> filter = builderPage.Empty;
+            filter &= builderPage.Eq("UserId", userId);
+            filter &= (builderPage.Eq(p => p.Group, null)) | (builderPage.Size("Group", 0));
+            var cursor = col.Find(filter);
+            var d = cursor.ToList();
+            return d;
+        }
+
+        public List<Page> GetPageUserLast(string userId, int countLast)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var builderPage = Builders<Page>.Filter;
+            FilterDefinition<Page> filter = builderPage.Empty;
+            filter &= builderPage.Eq("UserId", userId);
+            var cursor = col.Find(filter).SortByDescending(o=>o.Id);
+            var d = cursor.Limit(countLast).ToList();
             return d;
         }
 

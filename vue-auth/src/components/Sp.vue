@@ -54,8 +54,8 @@
                 </div>
 
                 <div class="overlap-group3">
-                    <div class="rectangle-121"></div>
-                    <div class="overlap-group2">
+                    <!--<div class="rectangle-121"></div>-->
+                    <div class="overlap-group2" v-on:click="getAllPages">
                         <div class="group-container">
 
                             <div class="overlap-group-1">
@@ -74,7 +74,45 @@
                         <div class="all-notes fredoka-light-black-16px">All notes</div>
                     </div>
 
-                    <div class="overlap-group2" v-for="item in alltags" :value="item.tag" :key="item.tag">
+                    <div class="overlap-group2" v-on:click="getPageLast(10)">
+                        <div class="group-container">
+
+                            <div class="overlap-group-1">
+                                <div class="group-67">
+                                    <img class="vector-1"
+                                         src="../assets/vector-1-2@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-2-2@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-3-1@2x.svg" />
+                                </div>
+                                <img class="rectangle-36"
+                                     src="../assets/rectangle-36-1@2x.svg" />
+                            </div>
+                        </div>
+                        <div class="all-notes fredoka-light-black-16px">Last 10</div>
+                    </div>
+
+                    <div class="overlap-group2" v-on:click="getUntagged()">
+                        <div class="group-container">
+
+                            <div class="overlap-group-1">
+                                <div class="group-67">
+                                    <img class="vector-1"
+                                         src="../assets/vector-1-2@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-2-2@2x.svg" />
+                                    <img class="vector"
+                                         src="../assets/vector-3-1@2x.svg" />
+                                </div>
+                                <img class="rectangle-36"
+                                     src="../assets/rectangle-36-1@2x.svg" />
+                            </div>
+                        </div>
+                        <div class="all-notes fredoka-light-black-16px">Untagged</div>
+                    </div>
+
+                    <div class="overlap-group2" v-for="item in alltags" :value="item.tag" :key="item.tag" v-on:click="getPagesTag(item.tag)">
                         <div class="group-container">
                             <div class="overlap-group">
                                 <div class="group-67">
@@ -105,7 +143,7 @@
                     <div class="workspace fredoka-light-black-16px">Workspace</div>
                 </div>
                 <!--<div class="rectangle-126 border-0-4px-glacier"></div>-->
-                <select v-model="select" class="rectangle-126 border-0-4px-glacier">
+                <!--<select v-model="select" class="rectangle-126 border-0-4px-glacier">
                     <option value="" disabled hidden>Choose a tag</option>
                     <option>movies</option>
                     <option>sport</option>
@@ -113,7 +151,7 @@
                     <option>education</option>
                     <option>politics</option>
                     <option>economics</option>
-                </select>
+                </select>-->
                 <!--<div class="group-136">
                     <div class="overlap-group6">
                         <div class="ellipse-43 border-1px-glacier"></div>
@@ -198,28 +236,6 @@
                             </div>
                             <!--</div>-->
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     </span>
                 </div>
@@ -741,6 +757,7 @@
             padding: 3.9px 4.7px;
             /* position: absolute;
             top: 365px;*/
+            cursor: pointer;
         }
 
         .desktop-21 .group-container {
@@ -1499,10 +1516,6 @@
 
     Userfront.init("demo1234");
     export default {
-
-
-
-
         name: 'SP',
         props: ['title'],
 
@@ -1512,10 +1525,6 @@
                 return !Userfront.tokens.accessToken;
             },
         },
-
-
-
-
 
         components: { TodoItem },
 
@@ -1527,11 +1536,14 @@
                 select: '',
             }
         },
+
         async created() {
             await this.getAllPages();
             await this.get_all_tags();
         },
+
         methods: {
+
             async addNewTodo() {
 
                 await axios.post('api/Page/Create', {
@@ -1543,6 +1555,7 @@
                 });
                 await this.getAllPages();
             },
+
             async DeleteTodo(todo) {
                 await axios.delete('api/Page/' + todo.id, {
                     headers: {
@@ -1551,6 +1564,7 @@
                 });
                 await this.getAllPages();
             },
+
             handleLogout() {
                 console.log('log_out_button'),
                     Userfront.logout();
@@ -1558,8 +1572,6 @@
                     this.$router.push('/');
 
             },
-
-
 
             async getAllPages() {
                 const response = await axios.get('api/Page/GetAll', {
@@ -1569,8 +1581,36 @@
                 });
                 this.todos = response.data;
             },
+
             QuestionPage() {
                 this.$router.push('/question');
+            },
+
+            async getUntagged()  {
+                const response = await axios.get('api/Page/GetPageUntagged', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.todos = response.data;
+            },
+
+            async getPagesTag(tag) {
+                const response = await axios.get('api/Page/GetPageTag?tag=' + tag, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.todos = response.data;
+            },
+
+            async getPageLast(n) {
+                const response = await axios.get('api/Page/GetPageLast?countLast=' + n, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.todos = response.data;
             },
 
             async get_all_tags() {

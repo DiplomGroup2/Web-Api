@@ -13,7 +13,7 @@
         </span>
 
         <!--виведення зображення-->
-        <span class="img-record" v-if="type==a2"> <img class="img-record" v-bind:src="'http://lavira-001-site1.atempurl.com/api/Record/GetImage?imageId=' + imageId" /> </span>
+        <span class="img-record" v-if="type==a2"> <img class="img-record" v-bind:src="'https://diplom.somee.com/api/Record/GetImage?imageId=' + imageId" /> </span>
 
         <!--виведення посилання-->
         <span v-if="type==a3">
@@ -40,7 +40,7 @@
                 </span>
             </span>
             <span class="rectangle-135">
-                <a v-bind:href="'http://lavira-001-site1.atempurl.com/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>
+                <a v-bind:href="'https://diplom.somee.com/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>
                 <!--<a v-bind:href="'http://localhost:59723/api/Record/GetFile?imageId=' + imageId" target="_blank">{{message}} </a>-->
             </span>
         </span>
