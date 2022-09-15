@@ -29,14 +29,15 @@
           />
           <div class="overlap-group border-0-4px-white">
            
-            <div class="creat-first-page fredoka-normal-white-20px" @click="Workspace">Create first page</div>
+            <div class="creat-first-page fredoka-normal-white-20px" @click="Workspace">Let's start!</div><!--Create first page</div>-->
           </div>
           <img
             class="group-18" src="../assets/group-18-10@2x.svg"
           />
           <h1 class="place fredoka-medium-black-30px">Welcome</h1>
           <div class="shall-we-start-by-cr fredoka-light-black-30px">
-            Shall we start by creating the first personal page?
+            <!--Shall we start by creating the first personal page?-->
+            Are you ready to create your notes? <a href @click="RulesRouting">Follow the simple rules...</a>
           </div>
           <div class="rectangle-70"></div>
           <div class="rectangle-73"></div>
@@ -133,7 +134,8 @@ Userfront.init("demo1234");
      //},
              data(){
                 return{   
-                    return: ''                 
+                    return: '',
+
                      
                     
                 }
@@ -150,6 +152,9 @@ Userfront.init("demo1234");
       QuestionPage(){
           this.$router.push('/question');
       },
+      RulesRouting(){
+            this.$router.push('/rules');
+      }
         
     
      

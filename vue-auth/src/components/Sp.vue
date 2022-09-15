@@ -142,24 +142,26 @@
                     <img class="group-68" src="../assets/group-68@2x.svg" />
                     <div class="workspace fredoka-light-black-16px">Workspace</div>
                 </div>
-                <!--<div class="rectangle-126 border-0-4px-glacier"></div>-->
-                <!--<select v-model="select" class="rectangle-126 border-0-4px-glacier">
-                    <option value="" disabled hidden>Choose a tag</option>
+
+                <!--<div class="rectangle-126 border-0-4px-glacier"></div> -->
+                <input v-model="text" class="rectangle-126 border-0-4px-glacier" placeholder="Input tag">
+                   <!-- <option value="" disabled hidden>Choose a tag</option>
                     <option>movies</option>
                     <option>sport</option>
                     <option>travelling</option>
                     <option>education</option>
                     <option>politics</option>
-                    <option>economics</option>
-                </select>-->
-                <!--<div class="group-136">
+                    <option>economics</option>-->
+            
+               <!-- <div class="group-136">
                     <div class="overlap-group6">
                         <div class="ellipse-43 border-1px-glacier"></div>
                         <img class="line-9" src="../assets/line-9@2x.svg" />
                     </div>
-                </div>-->
+                </div> -->
             </div>
-            <img class="mask-group-3" src="../assets/mask-group-1@2x.svg" />
+            
+            
 
             <!--<div class="tags fredoka-light-gray-12px">#tags</div>-->
             <div class="group-10">
@@ -287,6 +289,11 @@
             margin-left: 0;
             width: 200px;
             /*min-width: 271px;*/
+        }
+
+        .search{
+            width: 30px;
+            margin-top: 20px;
         }
 
 

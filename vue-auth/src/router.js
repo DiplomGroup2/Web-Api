@@ -10,6 +10,8 @@ import Sp from './components/Sp.vue'
 import Zerouserpage from './components/Zerouserpage.vue'
 import TodoItem from './components/TodoItem.vue'
 import Question from './components/Question.vue'
+import Rules from './components/Rules.vue'
+
 
 
 export default createRouter({
@@ -22,7 +24,9 @@ export default createRouter({
 		{path: '/workspace', component: Sp},
 		{path: '/zeroworkspace', component: Zerouserpage},
 		{path: '/td', component: TodoItem},
-		{path: '/question', component: Question}
+		{path: '/question', component: Question},
+		{path: '/rules', component: Rules}
+
 
 	]
 })

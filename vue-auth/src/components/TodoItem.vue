@@ -119,8 +119,13 @@
 
                     </div>
                     <span id="tooltiptext2"><input type="file" @change="create_file" /></span>
+                
 
+                </div>
 
+                <div id="outtooltip">
+                    <img class="group-138" src="../assets/video.png" v-on:click="create_url" />
+                   
                 </div>
             </div>
             <!--<div class="imgset"><img :src="imgSrc" v-if="imgSrc" class="mypic" /> </div>-->
@@ -452,11 +457,18 @@
         width: 1px;
     }
 
-    group-136 {
-        height: 15px;
-        margin-bottom: 0;
-        margin-left: 12px;
+    .group-136 {
+        height: 20px;
+        margin-top: 3px;
+        margin-left: -8px;
         width: 15px;
+    }
+
+    .group-138 {
+        height: 20px;
+        margin-top: 3px;
+        margin-left: 13px;
+        width: 18px;
     }
 
     input:focus, textarea:focus, select:focus {
@@ -908,4 +920,3 @@
     */ margin: -5px;
     }
 </style>
-

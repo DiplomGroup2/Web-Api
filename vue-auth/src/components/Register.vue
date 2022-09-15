@@ -3,6 +3,7 @@
     <div class="container-center-horizontal">
         <div class="desktop-2 screen">
             <form @submit.prevent="handleSubmit">
+                <error v-if="error" :error="error" />
                 <div class="overlap-group4">
                     <div class="rectangle-2 border-0-2px-gray"></div>
                     <div class="overlap-group1">
@@ -58,10 +59,10 @@
                              src="../assets/vector-5-1@2x.svg" />
                     </div>
                     <div class="rectangle-69"></div>
-                    <button class="btn btn-primary btn-block ">
+                    <button >
                         <div class="place-1 fredoka-normal-white-20px">
                             Sign Up
-                            <!--Register-->
+                            <!--Register class="btn btn-primary btn-block"-->
                         </div>
                     </button>
                     <h1 class="title fredoka-bold-white-36px">Welcome!</h1>
@@ -72,7 +73,7 @@
                     <div class="overlap-group3 border-0-4px-white">
                         <div class="sing-in fredoka-normal-white-20px" @click="FromRegisterIntoSignIn" >Sign in</div>
                     </div>
-                    <error v-if="error" :error="error" />
+                    
 
                 </div>
             </form>
@@ -663,7 +664,9 @@
 
 
     body {
-        background: #9df91c;
+        /*background: #79a8f9;*/
+        /*background:lightskyblue;*/
+        background:#CCE5FF;
         min-height: 100vh;
         display: flex;
         font-weight: 400;

@@ -3,8 +3,8 @@
     <div class="container-center-horizontal">
       <div class="desktop-1 screen">
           <form @submit.prevent="handleSubmit">
-              <div class="overlap-group5">
-                  <error v-if="error" :error="error" />
+            <error v-if="error" :error="error" />
+              <div class="overlap-group5">             
                   <div class="rectangle-2 border-0-2px-gray"></div>
                   <div class="forgot-your-password">Forgot your password?</div>
                   <!--<div class="rectangle-4 border-0-4px-black">-->
@@ -59,8 +59,8 @@
                   <div class="overlap-group3 border-0-4px-white">
                       <div class="place fredoka-normal-white-20px" @click="FromSignInIntoRegister">Register</div>
                   </div>
-                  <button class="btn btn-primary btn-block">
-                      <!--Login-->
+                  <button>
+                      <!--Login  class="btn btn-primary btn-block"-->
 
                       <div class="overlap-group4 border-0-4px-white">
                           <div class="sing-in fredoka-normal-white-20px">Sign in</div>
