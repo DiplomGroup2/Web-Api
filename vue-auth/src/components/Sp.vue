@@ -45,7 +45,7 @@
                      src="../assets/line-2@1x.svg" />
                 <img class="group-18"
                      src="../assets/group-18@2x.svg" />
-                <h1 class="title fredoka-medium-black-25px">Personal pages</h1>
+                <h1 class="title fredoka-medium-black-25px">Personal pages - {{personalPage}}</h1>
 
                 <div class="trash fredoka-light-black-16px" id="outtooltip">
                     <img class="mask-group-3" src="../assets/mask-group-1@2x.svg" />
@@ -74,7 +74,7 @@
                         <div class="all-notes fredoka-light-black-16px">All notes</div>
                     </div>
 
-                    <div class="overlap-group2" v-on:click="getPageLast(10)">
+                    <div class="overlap-group2" v-on:click="getPageLast(3)">
                         <div class="group-container">
 
                             <div class="overlap-group-1">
@@ -142,26 +142,14 @@
                     <img class="group-68" src="../assets/group-68@2x.svg" />
                     <div class="workspace fredoka-light-black-16px">Workspace</div>
                 </div>
+                <!--v-on:blur="search_record(search)" />-->
 
-                <!--<div class="rectangle-126 border-0-4px-glacier"></div> -->
-                <input v-model="text" class="rectangle-126 border-0-4px-glacier" placeholder="Input tag">
-                   <!-- <option value="" disabled hidden>Choose a tag</option>
-                    <option>movies</option>
-                    <option>sport</option>
-                    <option>travelling</option>
-                    <option>education</option>
-                    <option>politics</option>
-                    <option>economics</option>-->
-            
-               <!-- <div class="group-136">
-                    <div class="overlap-group6">
-                        <div class="ellipse-43 border-1px-glacier"></div>
-                        <img class="line-9" src="../assets/line-9@2x.svg" />
-                    </div>
-                </div> -->
+                <input v-model="text" class="rectangle-126 border-0-4px-glacier" placeholder=" Input text for search"
+                       @keyup.enter="search_record($event)">
+
             </div>
-            
-            
+
+
 
             <!--<div class="tags fredoka-light-gray-12px">#tags</div>-->
             <div class="group-10">
@@ -291,221 +279,221 @@
             /*min-width: 271px;*/
         }
 
-        .search{
-            width: 30px;
-            margin-top: 20px;
-        }
+    .search {
+        width: 30px;
+        margin-top: 20px;
+    }
 
 
-        .component-22 .profile {
-            color: var(--black);
-            font-family: var(--font-family-fredoka);
-            font-size: var(--font-size-m);
-            font-weight: 400;
-            letter-spacing: 0;
-            min-height: 18px;
-            width: 49px;
-            margin-left: 18px;
-        }
+    .component-22 .profile {
+        color: var(--black);
+        font-family: var(--font-family-fredoka);
+        font-size: var(--font-size-m);
+        font-weight: 400;
+        letter-spacing: 0;
+        min-height: 18px;
+        width: 49px;
+        margin-left: 18px;
+    }
 
-        .component-22 .overlap-group401 {
-            align-self: flex-end;
-            border-radius: 15px;
-            height: 20px;
-            margin-left: 181px;
-            position: relative;
-            width: 41px;
-        }
+    .component-22 .overlap-group401 {
+        align-self: flex-end;
+        border-radius: 15px;
+        height: 20px;
+        margin-left: 181px;
+        position: relative;
+        width: 41px;
+    }
 
-        .component-22 .group-11601 {
-            align-items: flex-end;
-            background-color: var(--alto);
-            border-radius: 15px;
-            display: flex;
-            height: 20px;
-            left: 0;
-            min-width: 41px;
-            padding: 1.4px 1.4px;
-            position: absolute;
-            top: 0;
-        }
+    .component-22 .group-11601 {
+        align-items: flex-end;
+        background-color: var(--alto);
+        border-radius: 15px;
+        display: flex;
+        height: 20px;
+        left: 0;
+        min-width: 41px;
+        padding: 1.4px 1.4px;
+        position: absolute;
+        top: 0;
+    }
 
-        .component-22 .rectangle-11801 {
-            height: 17px;
-            width: 38px;
-        }
+    .component-22 .rectangle-11801 {
+        height: 17px;
+        width: 38px;
+    }
 
-        .component-22 .ellipse-40101 {
-            background-color: #f7f7f7;
-            border: 1px solid;
-            border-color: var(--white);
-            border-radius: 8.62px;
-            cursor: pointer;
-            height: 17px;
-            left: 1px;
-            position: absolute;
-            top: 1px;
-            width: 17px;
-        }
+    .component-22 .ellipse-40101 {
+        background-color: #f7f7f7;
+        border: 1px solid;
+        border-color: var(--white);
+        border-radius: 8.62px;
+        cursor: pointer;
+        height: 17px;
+        left: 1px;
+        position: absolute;
+        top: 1px;
+        width: 17px;
+    }
 
-        .component-22 .line-601 {
-            height: 1px;
-            margin-top: 17px;
-            width: 292px;
-        }
+    .component-22 .line-601 {
+        height: 1px;
+        margin-top: 17px;
+        width: 292px;
+    }
 
-        .component-22 .flex-row-101 {
-            align-items: center;
-            display: flex;
-            margin-left: 0;
-            margin-top: 15px;
-            min-width: 271px;
-        }
+    .component-22 .flex-row-101 {
+        align-items: center;
+        display: flex;
+        margin-left: 0;
+        margin-top: 15px;
+        min-width: 271px;
+    }
 
-        .component-22 .overlap-group101 {
-            height: 50px;
-            position: relative;
-            width: 50px;
-        }
+    .component-22 .overlap-group101 {
+        height: 50px;
+        position: relative;
+        width: 50px;
+    }
 
-        .component-22 .rectangle-601 {
-            background-color: #ebebeb;
-            border: 0.46px solid;
-            border-color: var(--white);
-            border-radius: 20.13px;
-            height: 60px;
-            left: -40px;
-            position: absolute;
-            top: -20px;
-            width: 122px;
-        }
+    .component-22 .rectangle-601 {
+        background-color: #ebebeb;
+        border: 0.46px solid;
+        border-color: var(--white);
+        border-radius: 20.13px;
+        height: 60px;
+        left: -40px;
+        position: absolute;
+        top: -20px;
+        width: 122px;
+    }
 
-        .component-22 .icon-user101 {
-            height: 50px;
-            left: -35px;
-            position: absolute;
-            top: -20px;
-            width: 50px;
-        }
+    .component-22 .icon-user101 {
+        height: 50px;
+        left: -35px;
+        position: absolute;
+        top: -20px;
+        width: 50px;
+    }
 
-        .component-22 .flex-col-101 {
-            align-items: flex-start;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 2.0px;
-            margin-left: 15px;
-            min-height: 39px;
-            width: 75px;
-        }
+    .component-22 .flex-col-101 {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2.0px;
+        margin-left: 15px;
+        min-height: 39px;
+        width: 75px;
+    }
 
-        .component-22 .username {
-            letter-spacing: 0;
-            min-height: 18px;
-            width: 75px;
-        }
+    .component-22 .username {
+        letter-spacing: 0;
+        min-height: 18px;
+        width: 75px;
+    }
 
-        .component-22 .free {
-            color: #00000066;
-            font-family: var(--font-family-fredoka);
-            font-size: var(--font-size-xs);
-            font-weight: 300;
-            letter-spacing: 0;
-            margin-top: 4px;
-            min-height: 18px;
-            width: 26px;
-        }
+    .component-22 .free {
+        color: #00000066;
+        font-family: var(--font-family-fredoka);
+        font-size: var(--font-size-xs);
+        font-weight: 300;
+        letter-spacing: 0;
+        margin-top: 4px;
+        min-height: 18px;
+        width: 26px;
+    }
 
-        .component-22 .overlap-group101 {
-            align-items: flex-start;
-            background-color: var(--white);
-            border: 0.4px solid;
-            border-color: var(--black);
-            border-radius: 8px;
-            display: flex;
-            height: 26px;
-            margin-left: 49px;
-            margin-top: 0;
-            min-width: 81px;
-            padding: 3.5px 14.6px;
-        }
+    .component-22 .overlap-group101 {
+        align-items: flex-start;
+        background-color: var(--white);
+        border: 0.4px solid;
+        border-color: var(--black);
+        border-radius: 8px;
+        display: flex;
+        height: 26px;
+        margin-left: 49px;
+        margin-top: 0;
+        min-width: 81px;
+        padding: 3.5px 14.6px;
+    }
 
-        .component-22 .upgrade {
-            color: var(--black);
-            font-family: var(--font-family-fredoka);
-            font-size: var(--font-size-s);
-            font-weight: 400;
-            letter-spacing: 0;
-            min-height: 16px;
-            width: 51px;
-        }
+    .component-22 .upgrade {
+        color: var(--black);
+        font-family: var(--font-family-fredoka);
+        font-size: var(--font-size-s);
+        font-weight: 400;
+        letter-spacing: 0;
+        min-height: 16px;
+        width: 51px;
+    }
 
-        .component-22 .line-701 {
-            align-self: flex-start;
-            height: 1px;
-            margin-top: 15px;
-            width: 292px;
-        }
+    .component-22 .line-701 {
+        align-self: flex-start;
+        height: 1px;
+        margin-top: 15px;
+        width: 292px;
+    }
 
-        .component-22 .overlap-group201 {
-            align-items: flex-start;
-            background-color: var(--coconut);
-            border-radius: 4px;
-            display: flex;
-            height: 42px;
-            margin-left: 0;
-            margin-top: 15px;
-            min-width: 271px;
-            padding: 10.7px 9.7px;
-        }
+    .component-22 .overlap-group201 {
+        align-items: flex-start;
+        background-color: var(--coconut);
+        border-radius: 4px;
+        display: flex;
+        height: 42px;
+        margin-left: 0;
+        margin-top: 15px;
+        min-width: 271px;
+        padding: 10.7px 9.7px;
+    }
 
-        .component-22 .mask-group101 {
-            height: 21px;
-            margin-top: 0;
-            width: 21px;
-        }
+    .component-22 .mask-group101 {
+        height: 21px;
+        margin-top: 0;
+        width: 21px;
+    }
 
-        .component-22 .account-settings {
-            letter-spacing: 0;
-            margin-left: 7px;
-            min-height: 18px;
-            width: 118px;
-            color: gray;
-        }
+    .component-22 .account-settings {
+        letter-spacing: 0;
+        margin-left: 7px;
+        min-height: 18px;
+        width: 118px;
+        color: gray;
+    }
 
-        .component-22 .line-801 {
-            align-self: flex-start;
-            height: 1px;
-            margin-top: 17px;
-            width: 292px;
-        }
+    .component-22 .line-801 {
+        align-self: flex-start;
+        height: 1px;
+        margin-top: 17px;
+        width: 292px;
+    }
 
-        .component-22 .overlap-group301 {
-            align-items: flex-start;
-            background-color: var(--coconut);
-            border-radius: 4px;
-            display: flex;
-            height: 42px;
-            margin-left: 0;
-            margin-top: 18px;
-            min-width: 271px;
-            padding: 10.6px 11.7px;
-        }
+    .component-22 .overlap-group301 {
+        align-items: flex-start;
+        background-color: var(--coconut);
+        border-radius: 4px;
+        display: flex;
+        height: 42px;
+        margin-left: 0;
+        margin-top: 18px;
+        min-width: 271px;
+        padding: 10.6px 11.7px;
+    }
 
-        .component-22 .mask-group-101 {
-            align-self: center;
-            height: 19px;
-            margin-bottom: 0.35px;
-            width: 19px;
-        }
+    .component-22 .mask-group-101 {
+        align-self: center;
+        height: 19px;
+        margin-bottom: 0.35px;
+        width: 19px;
+    }
 
-        .component-22 .sing-out {
-            letter-spacing: 0;
-            margin-left: 7px;
-            min-height: 18px;
-            width: 64px;
-            color: gray;
-            cursor: pointer;
-        }
+    .component-22 .sing-out {
+        letter-spacing: 0;
+        margin-left: 7px;
+        min-height: 18px;
+        width: 64px;
+        color: gray;
+        cursor: pointer;
+    }
 
     :root {
         --alto: #d9d9d9;
@@ -1524,7 +1512,7 @@
     Userfront.init("demo1234");
     export default {
         name: 'SP',
-        props: ['title'],
+       // props: ['title', 'search'],
 
         computed: {
             ...mapGetters(['username']),
@@ -1541,6 +1529,7 @@
                 pageId: "",
                 alltags: [],
                 select: '',
+                personalPage: '',
             }
         },
 
@@ -1587,6 +1576,7 @@
                     }
                 });
                 this.todos = response.data;
+                this.personalPage = "All pages";
             },
 
             QuestionPage() {
@@ -1600,6 +1590,7 @@
                     }
                 });
                 this.todos = response.data;
+                this.personalPage = "Untagged pages";
             },
 
             async getPagesTag(tag) {
@@ -1609,6 +1600,7 @@
                     }
                 });
                 this.todos = response.data;
+                this.personalPage = "with tag " + tag;
             },
 
             async getPageLast(n) {
@@ -1618,6 +1610,7 @@
                     }
                 });
                 this.todos = response.data;
+                this.personalPage = "last 3";
             },
 
             async get_all_tags() {
@@ -1628,6 +1621,25 @@
                     }
                 });
                 this.alltags = response.data;
+            },
+
+     async search_record(e) {
+            console.log(e);
+                try {
+                    const response = await axios.get('api/Record/GetText?str='+ e.target.value,
+                         {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        }
+                    });
+                    this.todos = response.data;
+                } catch (ex) {
+                    this.error = 'Invalid!';
+                    console.log(ex);
+                }
+                //this.editing = false;
+                //alert(
+                //    this.message);
             },
         }
     }

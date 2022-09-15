@@ -104,6 +104,14 @@ namespace DBMongo
             return r;
         }
 
+        public Record CreateRecordYouTubeUser(string userId, string record)
+        {
+            Record r = new Record { UserId = userId, Text = record, RecordType = "YouTube" };
+            IMongoCollection<Record> col = _database.GetCollection<Record>(COLLECTION_RECORD);
+            col.InsertOne(r);
+            return r;
+        }
+
         public Record CreateRecordImageUser(string userId, string fileName, MemoryStream memoryStream)
         {
             Record r = new Record { UserId = userId, RecordType = "image" };
@@ -367,6 +375,13 @@ namespace DBMongo
             IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
             var filter = new BsonDocument { { "_id", ObjectId.Parse(PageId) }, { "UserId", userId } };
             col.DeleteOne(filter);
+        }
+
+        public void DeleteAllPageUser(string userId)
+        {
+            IMongoCollection<Page> col = _database.GetCollection<Page>(COLLECTION_PAGE);
+            var filter = new BsonDocument { { "UserId", userId } };
+            col.DeleteMany(filter);
         }
 
         /// <summary>

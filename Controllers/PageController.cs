@@ -221,6 +221,24 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
+        /// *видалення всіх сторінок авторизованого користувача
+        /// </summary>
+        /// <returns></returns> 
+        [Route("DeleteAllPage")]
+        [HttpDelete]
+        //[HttpDelete("{id}")]
+        public IActionResult DeleteAllPage()
+        {
+            string name = User.Identity.Name;
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                _context.DeleteAllPageUser(u.Id);
+            }
+            return Ok();
+        }
+
+        /// <summary>
         /// Видалення тегу
         /// </summary>
         /// <returns></returns>

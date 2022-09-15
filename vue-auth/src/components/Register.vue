@@ -664,9 +664,8 @@
 
 
     body {
-        /*background: #79a8f9;*/
-        /*background:lightskyblue;*/
-        background:#CCE5FF;
+        background: #e3e8ee;
+        /* background: #CCE5FF;*/
         min-height: 100vh;
         display: flex;
         font-weight: 400;

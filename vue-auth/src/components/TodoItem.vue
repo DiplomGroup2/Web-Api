@@ -61,7 +61,10 @@
 
                 <span v-if="creating_url">
                     <input v-model="message" placeholder="Link.." v-on:blur="add_url">
-                    <!--<textarea id="textArea" v-model="message" placeholder="Link.." v-on:blur="add_url"></textarea>-->
+                </span>
+
+                <span v-if="creating_YouTube">
+                    <input v-model="message" placeholder="Link.." v-on:blur="add_YouTube">
                 </span>
 
 
@@ -99,12 +102,6 @@
                     <img class="group-136" src="../assets/group-136-2@2x.svg" v-on:click="create_url" />
                     <span id="tooltiptext4">Add Link</span>
                 </div>
-
-
-                <!--<textarea id="textArea" v-model="message" placeholder="link.." v-on:blur="add_text"></textarea>
-                />-->
-                <!--ДИСКЕТА-->
-                <!--<div class="group-1351" v-on:click="create_file">-->
                 <div id="outtooltip">
                     <div class="group-1351" id="outtooltip">
                         <!--<span id="tooltiptext">
@@ -119,13 +116,12 @@
 
                     </div>
                     <span id="tooltiptext2"><input type="file" @change="create_file" /></span>
-                
-
                 </div>
 
                 <div id="outtooltip">
-                    <img class="group-138" src="../assets/video.png" v-on:click="create_url" />
-                   
+                    <img class="group-138" src="../assets/video.png" v-on:click="create_YouTube" />
+                    <span id="tooltiptext4">Add Link YouTube</span>
+
                 </div>
             </div>
             <!--<div class="imgset"><img :src="imgSrc" v-if="imgSrc" class="mypic" /> </div>-->
@@ -143,7 +139,6 @@
 
 
 <script>
-    //import axios from 'axios'
     import Userpage from "./Userpage"
     import axios from 'axios'
     import RecordItem from './RecordItem'
@@ -163,6 +158,7 @@
                 editing: false,
                 creating_text: false,
                 creating_url: false,
+                creating_YouTube: false,
                 visible: false,
             }
         },
@@ -267,6 +263,29 @@
                 this.creating_url = false;
             },
 
+     create_YouTube() {
+                this.creating_YouTube = true;
+            },
+            async add_YouTube() {
+                try {
+                    await axios.post('api/Record/CreateYouTube',
+                        {
+                            Text: this.message,
+                            PageId: this.pageId,
+                        }, {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        }
+                    });
+                    this.message = "";
+                    this.$emit('refresh');
+                } catch (e) {
+                    this.error = 'Invalid!';
+                    console.log(e);
+                }
+                this.creating_YouTube = false;
+            },
+
             async add_tag() {
                 if (this.select == "add tag") {
                     this.visible = true;
@@ -353,6 +372,7 @@
                         });
                     this.select = "";
                     this.$emit('refresh');
+                    this.$emit('refreshTags');
                 } catch (e) {
                     this.error = 'Invalid!';
                     console.log(e);
@@ -399,13 +419,6 @@
         min-width: 16px;
         margin-left: 14px;
         margin-top: 4px;
-         /* bottom: 20px;
-        left: 150px;
-        margin-left: 14px;
-        margin-top: 4px;*/
-        /*position: absolute;*/
-        /*left: 21px;*/
-        /*top: 63px;*/
     }
 
     .overlap-group31 {

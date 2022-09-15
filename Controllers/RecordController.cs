@@ -59,6 +59,24 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
+        /// посилання на YouTube
+        /// </summary>
+        /// <returns></returns>
+        [Route("CreateYouTube")]
+        [HttpPost]
+        public IActionResult CreateYouTube(RecordTextModel model)
+        {
+            string name = User.Identity.Name;
+            var u = _context.SearchUser(name);
+            if (u != null)
+            {
+                var r = _context.CreateRecordYouTubeUser(u.Id, model.Text);
+                _context.AddRecordToPage(u.Id, model.PageId, r);
+            }
+            return Ok();
+        }
+
+        /// <summary>
         /// створення запису (зображення). 
         /// </summary>
         /// <returns></returns>

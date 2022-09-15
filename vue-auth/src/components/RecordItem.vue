@@ -26,12 +26,10 @@
             </span>
         </span>
 
-
-        <!--<a href="screen.html"><img class="group-136" src="assets/group-136@2x.svg" /> </a>-->
-        <!--ДИСКЕТА C ПОЛЕМ ДЛЯ ВЫВОДА ИНФЫ-->
         <!--виведення файлу-->
         <span v-if="type==a4" class="group-file">
-            <span class="group-135" >
+            <img class="mask-group-4" src="../assets/mask-group-6@2x.svg" />
+            <span class="group-135">
                 <span class="overlap-group3">
                     <span class="overlap-group-1">
                         <span class="rectangle-134"></span>
@@ -45,47 +43,48 @@
             </span>
         </span>
 
-        <!--ДИСКЕТА C ПОЛЕМ ДЛЯ ВЫВОДА ИНФЫ - базовый вариант
-        <a href="zametka-2.html">
-            <div class="group-135">
-              <div class="overlap-group3">
-                <div class="overlap-group-1">
-                  <div class="rectangle-134"></div>
-                </div>
-                <div class="rectangle-132"></div>
-              </div></div
-          ></a>
-          <div class="rectangle-135"></div>-->
+        <!--виведення відео з ютубу-->
+
+        <span v-if="type==a5">
+            <iframe v-bind:src="youTube"
+                    title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <span v-if="!editing" v-on:click="edit()">
+                <a v-bind:href="message" target="_blank">{{message}} </a>
+            </span>
+            <span v-if="editing">
+                <textarea id="textArea" v-model="message" v-on:blur="save_record" />
+            </span>
+        </span>
+
     </div>
 
 </template>
 
 
-<script>
-    import axios from 'axios'
+<script>import axios from 'axios'
 
     export default {
         name: 'RECORDITEM',
         props: ['text', 'imageId', 'type', 'recordId', 'pageId'],
-        //emits: ['remove'],
-        // emits: ['remove', 'refresh'],
-
 
         data() {
             return {
                 message: '',
-                //groups: [],
-                //imgSrc: ''
+                youTube: '',
                 a1: 'text',
                 a2: 'image',
                 a3: 'url',
                 a4: 'file',
+                a5: 'YouTube',
                 img: 'null',
                 editing: false,
             }
         },
         async created() {
             this.message = this.text;
+            if (this.message.startsWith("https://www.youtube.com/watch?v=")  )
+                this.youTube = this.message.replace("https://www.youtube.com/watch?v=","https://www.youtube.com/embed/")
         },
 
         methods: {
@@ -111,18 +110,24 @@
                     console.log(e);
                 }
                 this.editing = false;
-                //alert(
-                //    this.message);
             },
-
         }
-    }
-</script>
+    }</script>
 
 
 
 <style scoped>
-    .group-file {
+    .rectangle-1361 {
+        background-color: var(--white);
+        border-radius: 12px;
+        box-shadow: 0px 4px 0px #8ba8de;
+        /*height: 409px;
+        left: 695px;
+        position: absolute;
+        top: 139px;
+        width: 695px;*/
+    }
+        .group-file {
         align-items: stretch;
         cursor: pointer;
         display: flex;
