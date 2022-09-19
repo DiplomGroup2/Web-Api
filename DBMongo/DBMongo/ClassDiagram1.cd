@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Контролери &#xD;&#xA;back end&#xD;&#xA;">
+    <Position X="0.98" Y="2.442" Height="0.487" Width="1.108" />
+  </Comment>
+  <Comment CommentText="MongoDB">
+    <Position X="11.281" Y="2.644" Height="0.427" Width="0.904" />
+  </Comment>
+  <Class Name="DBMongo.DBService">
+    <Position X="5.75" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAEAAAAAAAACAAAIAAAQIAAAAAAQAAAA=</HashCode>
+      <FileName>DBService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBMongo.PageDBService">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAkCAAAAAAIAAEAQAAAAAAAAAAAQAABBAQAAAACARA=</HashCode>
+      <FileName>PageDBService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBMongo.RecordDBService">
+    <Position X="4" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEQAAAABAIAAAAIAAAgAAQQAAAIAAAEAAAAACAAAA=</HashCode>
+      <FileName>RecordDBService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBMongo.UserDBService">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAEAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserDBService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBMongo.Models.Page">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAGAEAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Page.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBMongo.Models.Record">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAACAEAAAA=</HashCode>
+      <FileName>Models\Record.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBMongo.Models.User">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

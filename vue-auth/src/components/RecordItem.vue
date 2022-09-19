@@ -28,7 +28,6 @@
 
         <!--виведення файлу-->
         <span v-if="type==a4" class="group-file">
-            <img class="mask-group-4" src="../assets/mask-group-6@2x.svg" />
             <span class="group-135">
                 <span class="overlap-group3">
                     <span class="overlap-group-1">

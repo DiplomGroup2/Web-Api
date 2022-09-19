@@ -32,7 +32,9 @@ namespace MVC_2
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddDbContext<HomeLibraryContext>();
-            services.AddSingleton<DBService>();
+            services.AddSingleton<UserDBService>();
+            services.AddSingleton<PageDBService>();
+            services.AddSingleton<RecordDBService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

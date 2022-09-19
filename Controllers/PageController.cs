@@ -14,11 +14,13 @@ namespace MVC_2.Controllers
     [Authorize]
     public class PageController : ControllerBase
     {
-        private readonly DBService _context;
+        private readonly PageDBService _context;
+        private readonly UserDBService _ucontext;
 
-        public PageController(DBService context)
+        public PageController(PageDBService context, UserDBService ucontext)
         {
             _context = context;
+            _ucontext = ucontext;
         }
 
         /// <summary>
@@ -30,7 +32,7 @@ namespace MVC_2.Controllers
         public IActionResult Create(PageRenameModel model)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 _context.CreatePageUser(u.Id, model.NewName, model.Group);
@@ -51,7 +53,7 @@ namespace MVC_2.Controllers
             else
             {
                 string name = User.Identity.Name;
-                var u = _context.SearchUser(name);
+                var u = _ucontext.SearchUser(name);
                 if (u != null)
                 {
                     _context.AddTagPage(u.Id, model.IdPage, model.Group);
@@ -70,7 +72,7 @@ namespace MVC_2.Controllers
         public IActionResult Rename(PageRenameModel model)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 _context.RenamePageUser(u.Id, model.IdPage, model.NewName, model.Group);
@@ -88,7 +90,7 @@ namespace MVC_2.Controllers
         public IActionResult GetPage(string PageId)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetPageUser(u.Id, PageId));
@@ -105,7 +107,7 @@ namespace MVC_2.Controllers
         public IActionResult GetTag()
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetAllTagUser(u.Id).Select(s => new GroupModel { Tag = s }).ToList());
@@ -122,7 +124,7 @@ namespace MVC_2.Controllers
         public IActionResult GetName(string str)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 string[] arrayStr = str.Split(' ');
@@ -141,7 +143,7 @@ namespace MVC_2.Controllers
         public IActionResult GetAll()
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetAllPageUser(u.Id));
@@ -159,7 +161,7 @@ namespace MVC_2.Controllers
         public IActionResult GetPageTag(string tag)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetAllPageUser(u.Id, tag ?? ""));
@@ -176,7 +178,7 @@ namespace MVC_2.Controllers
         public IActionResult GetPageUntagged()
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
 
@@ -194,7 +196,7 @@ namespace MVC_2.Controllers
         public IActionResult GetPageLast(int countLast)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
 
@@ -212,7 +214,7 @@ namespace MVC_2.Controllers
         public IActionResult Delete(string id)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 _context.DeletePageUser(u.Id, id);
@@ -230,7 +232,7 @@ namespace MVC_2.Controllers
         public IActionResult DeleteAllPage()
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 _context.DeleteAllPageUser(u.Id);
@@ -247,7 +249,7 @@ namespace MVC_2.Controllers
         public IActionResult DeleteTag(PageTagModel model)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 _context.DeleteTagPage(u.Id, model.IdPage, model.Group);

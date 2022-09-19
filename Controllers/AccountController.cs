@@ -17,9 +17,9 @@ namespace MVC_2.Controllers
     [EnableCors]
     public class AccountController : ControllerBase
     {
-        private readonly DBService _context;
+        private readonly UserDBService _context;
 
-        public AccountController(DBService context)
+        public AccountController(UserDBService context)
         {
             _context = context;
         }

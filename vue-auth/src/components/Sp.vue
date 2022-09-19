@@ -54,7 +54,6 @@
                 </div>
 
                 <div class="overlap-group3">
-                    <!--<div class="rectangle-121"></div>-->
                     <div class="overlap-group2" v-on:click="getAllPages">
                         <div class="group-container">
 
@@ -1637,9 +1636,6 @@
                     this.error = 'Invalid!';
                     console.log(ex);
                 }
-                //this.editing = false;
-                //alert(
-                //    this.message);
             },
         }
     }

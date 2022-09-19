@@ -15,11 +15,15 @@ namespace MVC_2.Controllers
     [Authorize]
     public class RecordController : ControllerBase
     {
-        private readonly DBService _context;
+        private readonly RecordDBService _context;
+        private readonly UserDBService _ucontext;
+        private readonly PageDBService _pcontext;
 
-        public RecordController(DBService context)
+        public RecordController(RecordDBService context, UserDBService ucontext, PageDBService pcontext)
         {
             _context = context;
+            _ucontext = ucontext;
+            _pcontext = pcontext;
         }
 
         /// <summary>
@@ -31,11 +35,11 @@ namespace MVC_2.Controllers
         public IActionResult CreateText(RecordTextModel model)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 var r = _context.CreateRecordTextUser(u.Id, model.Text);
-                _context.AddRecordToPage(u.Id, model.PageId, r);
+                _pcontext.AddRecordToPage(u.Id, model.PageId, r);
             }
             return Ok();
         }
@@ -49,11 +53,11 @@ namespace MVC_2.Controllers
         public IActionResult CreateUrl(RecordTextModel model)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 var r = _context.CreateRecordUrlUser(u.Id, model.Text);
-                _context.AddRecordToPage(u.Id, model.PageId, r);
+                _pcontext.AddRecordToPage(u.Id, model.PageId, r);
             }
             return Ok();
         }
@@ -67,11 +71,11 @@ namespace MVC_2.Controllers
         public IActionResult CreateYouTube(RecordTextModel model)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 var r = _context.CreateRecordYouTubeUser(u.Id, model.Text);
-                _context.AddRecordToPage(u.Id, model.PageId, r);
+                _pcontext.AddRecordToPage(u.Id, model.PageId, r);
             }
             return Ok();
         }
@@ -92,11 +96,11 @@ namespace MVC_2.Controllers
             }
             string name = User.Identity.Name;
 
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 var r = _context.CreateRecordImageUser(u.Id, model.File?.FileName, memoryStream);
-                _context.AddRecordToPage(u.Id, model.PageId, r);
+                _pcontext.AddRecordToPage(u.Id, model.PageId, r);
             }
             return Ok();
         }
@@ -117,11 +121,11 @@ namespace MVC_2.Controllers
             }
             string name = User.Identity.Name;
 
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 var r = _context.CreateRecordFileUser(u.Id, model.File?.FileName, memoryStream);
-                _context.AddRecordToPage(u.Id, model.PageId, r);
+                _pcontext.AddRecordToPage(u.Id, model.PageId, r);
             }
             return Ok();
         }
@@ -136,7 +140,7 @@ namespace MVC_2.Controllers
         public IActionResult Edit(RecordEditModel model)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 _context.EditRecordUser(u.Id, model.IdRecord, model.Text, model.PageId);
@@ -155,7 +159,7 @@ namespace MVC_2.Controllers
         public IActionResult GetTextRecord(string recordId)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetRecordUser(u.Id, recordId));
@@ -195,7 +199,7 @@ namespace MVC_2.Controllers
         public IActionResult GetFileRecord(string imageId)
         {
             // string name = User.Identity.Name;
-            // var u = _context.SearchUser(name);
+            // var u = _ucontext.SearchUser(name);
             var s = _context.GetImage(imageId);
             if (s != null)
             {
@@ -218,7 +222,7 @@ namespace MVC_2.Controllers
         public IActionResult GetText(string str)
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 string[] arrayStr = str.Split(' ');
@@ -236,7 +240,7 @@ namespace MVC_2.Controllers
         public IActionResult GetAll()
         {
             string name = User.Identity.Name;
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 return new JsonResult(_context.GetAllRecordUser(u.Id));
@@ -256,7 +260,7 @@ namespace MVC_2.Controllers
         {
             string name = User.Identity.Name;
 
-            var u = _context.SearchUser(name);
+            var u = _ucontext.SearchUser(name);
             if (u != null)
             {
                 _context.DeleteRecordUser(u.Id, pageId, recordId);
