@@ -13,8 +13,6 @@
                     </span>
                 </div>
 
-
-
                 <img class="mask-group" src="../assets/mask-group-4@2x.svg"
                      @click="$emit('remove')" />
             </div>
@@ -31,8 +29,7 @@
 
             <div class="flex-row-1">
                 <div class="date">{{createdPage}}</div>
-                <img class="vector-8" src="../assets/vector-8@2x.svg" />
-                <!--<div class="movies">-->
+                <img class="vector-8" src="../assets/vector-8@2x.svg" />              
                 <div class="movies fredoka-light-gray-12px">
                     <span class="movies" v-for="item in group" :key="item">
                         #{{item}}
@@ -40,7 +37,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;X
                         </span>
                     </span>
-                    <!--<img class="vectorCustom" src="../assets/vector-8@2x.svg" />-->
+                   
                 </div>
             </div>
 
@@ -89,24 +86,21 @@
                         <img class="line-6" src="../assets/line-6@2x.svg" />
                     </div>
                 </div>
+                <!-- ЗДВЕЗДА ДЛЯ FAVOURITES
                 <div class="group-132">
-                    <div class="overlap-group2">
-                        <!--<img click="SaveInFile"
-                          class="arrow-1" id="arrow" src="../assets/arrow-1@2x.svg"
-                        />-->
-                        <img class="ellipse-42" id="arrow" click="SaveInFile" src="../assets/arrow-1@2x.svg" />
+                    <div class="overlap-group2" id="outtooltip">
+                        <img class="ellipse-42" id="arrow"  src="../assets/StarFavor.svg" />
+                        <span id="tooltiptext6">Add in Favourite List</span>
+                        
                     </div>
 
-                </div>
+                </div>-->
                 <div id="outtooltip">
                     <img class="group-136" src="../assets/group-136-2@2x.svg" v-on:click="create_url" />
                     <span id="tooltiptext4">Add Link</span>
                 </div>
                 <div id="outtooltip">
-                    <div class="group-1351" id="outtooltip">
-                        <!--<span id="tooltiptext">
-                            <input type="file" @change="create_file">
-                        </span>-->
+                    <div class="group-1351" id="outtooltip">                       
                         <div class="overlap-group31">
                             <div class="overlap-group-11">
                                 <div class="rectangle-1341"></div>
@@ -120,18 +114,10 @@
 
                 <div id="outtooltip">
                     <img class="group-138" src="../assets/video.png" v-on:click="create_YouTube" />
-                    <span id="tooltiptext4">Add Link YouTube</span>
+                    <span id="tooltiptext5">Add Link YouTube</span>
 
                 </div>
             </div>
-            <!--<div class="imgset"><img :src="imgSrc" v-if="imgSrc" class="mypic" /> </div>-->
-            <!-- <div class="preview">
-              <p>No files currently selected for upload</p>
-            </div>
-            <div>
-              <button>Submit</button>
-            </div>-->
-            <!--</form> -->
         </div>
 
     </div>
@@ -152,8 +138,7 @@
 
         data() {
             return {
-                message: '',
-                /* imgSrc: '',*/
+                message: '',                
                 select: '',
                 editing: false,
                 creating_text: false,
@@ -188,8 +173,7 @@
                     console.log(e);
                 }
                 this.editing = false;
-                //alert(
-                //    this.message);
+                
             },
 
             async onFile(e) {
@@ -379,26 +363,6 @@
                 }
             }
 
-            /*submitFile(){
-                        let formData = new FormData();
-                        formData.append('file', this.file);
-                        axios.post( '/single-file',
-                            formData,
-                            {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            }
-                          }
-                        ).then(function(){
-                      console.log('SUCCESS!!');
-                    })
-                    .catch(function(){
-                      console.log('FAILURE!!');
-                    });
-                  },
-                  handleFileUpload(){
-                    this.file = this.$refs.file.files[0];
-                  }*/
         },
         components:
             { Userpage, RecordItem }
@@ -447,8 +411,7 @@
     }
 
     .rectangle-1341 {
-        background-color: var(--gray);
-        /*border: 1px none;*/
+        background-color: var(--gray);        
         border: 0.5px solid;
         height: 3px;
         width: 2px;
@@ -472,15 +435,15 @@
 
     .group-136 {
         height: 20px;
-        margin-top: 3px;
-        margin-left: -8px;
-        width: 15px;
+        margin-top: 4px;
+        margin-left: 12px;
+        width: 16px;
     }
 
     .group-138 {
         height: 20px;
-        margin-top: 3px;
-        margin-left: 13px;
+        margin-top: 4px;
+        margin-left: 16px;
         width: 18px;
     }
 
@@ -521,8 +484,7 @@
             text-align: center;
             border-radius: 6px;
             border-color: black;
-            padding: 5px 0;
-            /* Position the tooltip */
+            padding: 5px 0;           
             position: absolute;
             z-index: 1;
         }
@@ -532,17 +494,15 @@
             cursor: pointer;
         }
 
-        /*ВТОРОЙ  ХОВЕР */
+       
         #outtooltip #tooltiptext2 {
             visibility: hidden;
-            width: 0.1px;
-            /*border-radius: 6px;*/
+            width: 0.1px;           
             background-color: rgba(0, 0, 0, 0.322);
             color: #fff;
             text-align: center;
             border-color: rgba(16, 75, 223, 0.533);
-            padding: 5px 0;
-            /* Position the tooltip */
+            padding: 5px 0;           
             position: absolute;
             z-index: 1;
         }
@@ -551,20 +511,16 @@
             visibility: visible;
             cursor: pointer;
         }
-
-
-        /*ТРЕТИЙ  ХОВЕР */
+        
         #outtooltip #tooltiptext3 {
             visibility: hidden;
-            width: 70px;
-            /*border-radius: 6px;*/
+            width: 70px;            
             background-color: lightgray;
             color: black;
             text-align: center;
             height: 18px;
             border-color: black;
-            padding: 2px 0;
-            /* Position the tooltip */
+            padding: 2px 0;            
             position: absolute;
             z-index: 1;
         }
@@ -580,18 +536,16 @@
             border-radius: 2px;
             border-width: 2px;
         }
-        /*ЧЕТВЕРТЫЙ  ХОВЕР */
+       
         #outtooltip #tooltiptext4 {
             visibility: hidden;
-            width: 70px;
-            /*border-radius: 6px;*/
+            width: 70px;            
             background-color: lightgray;
             color: black;
             text-align: center;
             height: 18px;
             border-color: black;
-            padding: 2px 0;
-            /* Position the tooltip */
+            padding: 2px 0;           
             position: absolute;
             z-index: 1;
         }
@@ -607,8 +561,56 @@
             border-radius: 2px;
             border-width: 2px;
         }
+        
+        #outtooltip #tooltiptext5{
+            visibility: hidden;
+            width: 70px;            
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            height: 38px;
+            border-color: black;
+            padding: 2px 0;            
+            position: absolute;
+            z-index: 1;
+        }
+
+ #outtooltip:hover #tooltiptext5 {
+            visibility: visible;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: lightgray;
+            color: gray;
+            text-align: center;
+            border-color: black;
+            border-radius: 2px;
+            border-width: 2px;
+        }
 
 
+        #outtooltip #tooltiptext6{
+            visibility: hidden;
+            width: 100px;           
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            height: 38px;
+            border-color: black;
+            padding: 2px 0;            
+            position: absolute;
+            z-index: 1;
+        }
+        #outtooltip:hover #tooltiptext6 {
+            visibility: visible;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            border-color: black;
+            border-radius: 2px;
+            border-width: 2px;
+        }
 
     textarea {
         width: 200px;
@@ -617,13 +619,9 @@
     }
 
     .view {
-        align-items: flex-start;
-        /*display: flex;
-                                    height: 192px;
-                                    */
+        align-items: flex-start;       
         overflow: hidden;
-        padding: 0.6px 0;
-        /* width: 265px;*/
+        padding: 0.6px 0;      
         min-height: 192px;
         min-width: 265px;
         padding: 10px;
@@ -637,10 +635,7 @@
         backdrop-filter: blur(15px) brightness(100%);
         background-color: var(--white);
         border-radius: 13px;
-        box-shadow: 0px 4px 0px #8aa7de;
-        /*display: flex;
-        flex-direction: column;
-        min-height: 187px;*/
+        box-shadow: 0px 4px 0px #8aa7de;       
         padding: 14.0px 19.7px;
         width: 265px;
         flex-direction: column;
@@ -677,8 +672,7 @@
         display: flex;
         height: 19px;
         justify-content: flex-end;
-        /*        margin-left: 21px;
-        */ min-width: 112px;
+         min-width: 112px;
         padding: 0px 4.0px;
         margin: -5px;
         border: 0.4px solid var(--gray);
@@ -712,12 +706,10 @@
     .flex-row-1 {
         align-items: flex-end;
         display: flex;
-        height: 20px;
-        /*height: 16px;*/
+        height: 20px;      
         margin-left: 0.4px;
         margin-top: 6px;
-        min-width: 98px;
-        /*margin-top: 1px;*/
+        min-width: 98px;      
     }
 
     .date {
@@ -760,13 +752,14 @@
         align-items: flex-start;
         display: flex;
         margin-left: 0.88px;
-        margin-top: 30px; /* изменено  74px; / 40 px  */
+        margin-top: 30px; 
         min-width: 88px;
     }
 
     .mask-group-1 {
-        height: 21px;
-        width: 21px;
+        margin-top:4px;
+        height: 20px;
+        width: 20px;
         cursor: pointer;
     }
 
@@ -785,6 +778,7 @@
         position: relative;
         width: 22px;
         cursor: pointer;
+        margin-left:-2px;
     }
 
     .overlap-group {
@@ -816,7 +810,7 @@
 
     .line-5 {
         height: 14px;
-        left: 13px;
+        left: 12px;
         position: absolute;
         top: 2px;
         width: 3px;
@@ -824,7 +818,7 @@
 
     .line-6 {
         height: 3px;
-        left: 8px;
+        left: 7px;
         position: absolute;
         top: 8px;
         width: 13px;
@@ -856,10 +850,10 @@
     }
 
     .ellipse-42 {
-        height: 14px;
+        height: 50px;
         left: 0;
         position: absolute;
-        top: 4px;
+        top: -14px;
         width: 20px;
         cursor: pointer;
     }
@@ -929,7 +923,6 @@
 
     .button1 {
         cursor: pointer;
-        /*        padding: -5px;
-    */ margin: -5px;
+        margin: -5px;
     }
 </style>

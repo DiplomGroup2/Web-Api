@@ -10,14 +10,9 @@
           <img
             class="ellipse-4" src="../assets/ellipse-4@2x.svg"
           />
-          
-
           <img
             class="rectangle-24" src="../assets/rectangle-24@1x.png"
-          />
-          
-          
-          <!--<div class="overlap-group border-0-4px-white"><div class="place fredoka-normal-white-20px" @click="component='Register'">Start</div></div>-->
+          />    
           <div class="overlap-group border-0-4px-white"><div class="place fredoka-normal-white-20px" @click="RegisterClick">Start</div></div>-->
           
           <div class="group-72">
@@ -31,36 +26,23 @@
             class="group-18" src="../assets/group-18@2x.svg"
           />
           
-          <div class="tiles" id="outtooltip">tiles
-
-          <!-- <span id="tooltiptext"><h3 v-if="!username">You are not logged in!</h3>
-                                  <h3 v-if="username">Hi,{{username}} </h3></span>-->
+          <div class="tiles" id="outtooltip">tiles        
           </div>
               
            
           <div class="organize-your-ideas-projects-visually">Organize your ideas &amp; projects visually</div>
           <div class="personal-workspace-favored-by-creatives">Personal workspace favored by creatives</div>
           <div class="rectangle-136">
-            <!--<iframe width="700" height="415"
-             src="https://www.youtube.com/embed/1bvqFU5OhWQ" 
-             title="YouTube video player"
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-               allowfullscreen></iframe>-->
                <iframe width="700" height="415" 
                src="https://www.youtube.com/embed/H7bOtuZtiXk" 
                title="YouTube video player"
                 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-         <!--<img
-            class="polygon-1" src="../assets/polygon-1@2x.svg"
-          />-->
+          </div>         
           <div class="ellipse-7"></div>
           <div class="ellipse-8"></div>
           <img
             class="rectangle-137" src="../assets/rectangle-137@1x.png"
-          />
-          
+          />          
           <div class="copyright fredoka-normal-black-20px">© 2022 xTiles</div>
           <div class="privacy-policy fredoka-light-white-15px">Privacy policy</div>
           <div class="public-offer fredoka-light-white-15px">Public offer</div>
@@ -72,31 +54,9 @@
           <h1 class="title">tiles</h1>
         </div>
       </div>
-    </div>
-    <!--<h3 v-if="user">Hi,{{user.first_name}} {{user.last_name}} </h3>
-    <h3 v-if="!user">You are not logged in!</h3>-->
-    <!--<div class="example">hi</div>-->
-   
+    </div>  
     <div id="app">
-    <!--<button type="button" @click="this.$router.push('/Register')">Register</button>-->
-    <!-- ЗАКРЫТЫЕ КНОПКИ ! -->
-    <!--<button type="button" @click="component='Register'">Register</button>
-    <button type="button" @click="component='Login'">Login</button>
-    <button type="button" @click="component='Home'">Home</button>
-    <button type="button" @click="component='Sp'">Spisok</button>-->
-
-    <!-- <button type="button" @click="component='Login'">Login</button> -->
-    <!-- ДЛЯ ПОДКЛЮЧЕНИЯ ДИНАМИЧЕСКИ:    
-    <keep-alive>
-      <component :is="component"></component>
-    </keep-alive>-->
   </div>
-
-    <!--<div class="back">
-    <h3 v-if="!username">You are not logged in!</h3>
-    <h3 v-if="username">Hi,{{username}} </h3>
-    </div>-->
-
 </template>
 
 <script>
@@ -116,40 +76,6 @@ export default
 
 
     }
-// - МОЖЕТ ПРИГОДИТЬСЯ. через мапирование остаемся на той же странице
-//import {mapGetters} from 'vuex'
-//import Login from './Login';
-
-//import Register from './Register';
-//import Home from './Home';
-//import Sp from './Sp';
-
-//export default {
-    //name:'HOME',
-    
-    //computed: {
-       // ...mapGetters(['username'])
-   // },
-   // components:{
-     //   Login,
-        //Register,
-       // Home,
-       //Sp
-    //},
-    //data(){
-               // return{  
-                    // return: "",                  
-                   // component:'Home'
-                    
-                //}
-             //},
-
-//}
-
-
-
-
-
 </script>
 <style  scoped>
 #outtooltip {
@@ -167,17 +93,9 @@ export default
   margin-left: 10px;
   padding: 5px 5px;
   visibility: visible;
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
 }
-
-
-
-/* @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
-*{
-  box-sizing:border-box;
-} */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
 @import url("https://fonts.googleapis.com/css?family=Fredoka:400,300,700,500");
@@ -250,13 +168,10 @@ export default
 
 
 .desktop-25 {
-  align-items: flex-start;
-  /*background-color: var(--mystic);
-  background-color:lightblue;*/
-   background-color: #e3e8ee;
+  align-items: flex-start; 
+  background-color: #e3e8ee;
   display: flex;
-  overflow: hidden;
-  /*width: 1440px;*/
+  overflow: hidden;  
   width: 1520px;
   
 }
@@ -311,7 +226,6 @@ export default
 
 .desktop-25 .rectangle-24 {
   height: 750px;
-  /*height: 1066px;*/
   left: 150px;
   top: 20px;
   width: 1402px;
@@ -458,14 +372,6 @@ export default
   width: 695px;
 }
 
-/*.desktop-25 .polygon-1 {
-  height: 82px;
-  left: 1016px;
-  position: absolute;
-  top: 298px;
-  width: 72px;
-}*/
-
 .desktop-25 .ellipse-7 {
   -webkit-backdrop-filter: blur(10px) brightness(100%);
   backdrop-filter: blur(10px) brightness(100%);
@@ -498,7 +404,6 @@ export default
   left: 91px;
   position: absolute;
   top: 644px;
-  /*width: 1439px;*/
   width: 1515px;
 }
 
@@ -557,103 +462,6 @@ export default
 .desktop-25.back{
     background-color: aquamarine;
 }
-/* 
-
-body{
-  background:white;  
-  min-height:100vh;
-  display:flex;
-  font-weight:400;
-  font-family:'Fira Sans', sand-serif;
-}
-
-
-h1,h2,h3,h4,h5,h6,label,span{
-  font-weight:500;
-  font-family:'Fira Sans',sans-serif;
-}
-
-body,html, #app, #root,.auth-wrapper{
-  width:100%;
-  height:100%;
-}
-
-#app{
-  text-align:center;
-}
-.navbar-light{
-  background-color:#ffffff;
-  box-shadow:0px 14px 80px rgba(34,35,58,0.2);
-}
-
-.auth-wrapper{
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-  text-align:left;
-}
-.auth-inner{
-  width:450px;
-  margin:auto;
-  background:#ffffff;
-  box-shadow:0px 14px 80px rgba(34,35,58,0.2);
-  padding:40px 55px 45px 55px;
-  border-radius:15px;
-  transition:all .3s;
-
-}
-
-.auth-wrapper .form-control:focus{
-  border-color: #167bff; 
-  box-shadow:none;
-}
-
-.auth-wrapper h3{
-  text-align:center;
-  margin:0;
-  line-height:1;
-  padding-bottom:20px;
-
-}
-
-.custom-control-label{
-  font-weight:400;
-
-}
-
-.forgot-password,
-.forgot-password a {
-  text-align:right;
-  font-size:13px;
-  padding-top: 10px;
-  color:#7f7d7d;
-  margin:0;
-} */
-
-/* .forgot-password a {
-  /* color:#167bff; */
-
-/* } */
 </style>
 
-
-<!-- <style scoped>
-.example {
-  color: red;
-}
-.back{
-    background-color: aquamarine;
-}
-body{
-  background:white;
-  min-height:100vh;
-  display:flex;
-  font-weight:400;
-  font-family:'Fira Sans', sand-serif;
-}
-.auth-wrapper .form-control:focus{
-  border-color: #d0ff16;
-  box-shadow:none;
-}
-</style> -->
 

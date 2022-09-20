@@ -1,16 +1,5 @@
 <template > 
 <li>
-       <!--ВЫВОД СТРОКИ,КТО ПОДКЛЮЧИЛСЯ , ТАКЖЕ НУЖНО  РАСКОММЕНТИРОВАТЬ Я КОМПОНЕНТ ERROR-->
-       <!--{{ title }}
-           <h3 v-if="!username" id="backgr">You are not logged in!</h3>
-           <h3 v-if="username" id="backgr">Hi,{{username}} </h3>
-    <h3 ><font color="blue"> {{ title }} </font></h3>     
-     <error v-if="error" :error="error" />   -->
-     
-
-
-
-
       <input type="hidden" id="anPageName" name="page" value="desktop-7" />
     <div class="container-center-horizontal">
       <div class="desktop-7 screen">
@@ -29,14 +18,14 @@
           />
           <div class="overlap-group border-0-4px-white">
            
-            <div class="creat-first-page fredoka-normal-white-20px" @click="Workspace">Let's start!</div><!--Create first page</div>-->
+            <div class="creat-first-page fredoka-normal-white-20px" @click="Workspace">Let's start!</div>
           </div>
           <img
             class="group-18" src="../assets/group-18-10@2x.svg"
           />
           <h1 class="place fredoka-medium-black-30px">Welcome</h1>
           <div class="shall-we-start-by-cr fredoka-light-black-30px">
-            <!--Shall we start by creating the first personal page?-->
+            
             Are you ready to create your notes? <a href @click="RulesRouting">Follow the simple rules...</a>
           </div>
           <div class="rectangle-70"></div>
@@ -62,10 +51,12 @@
           class="icon-light_bulb" src="../assets/mask-group-64@2x.svg"
         />
         <div class="group-10">
-          <div class="overlap-group-1">
+          <div class="overlap-group-1" id="outtooltip">
             <div class="rectangle-9 border-0-3px-fresh-air"></div>
             <div class="text-1 fredoka-bold-white-30px" @click="QuestionPage">?</div>
+             <span id="tooltiptext1" >FAQ</span>
           </div>
+          <!--
           <div class="group-12 border-0-3px-fresh-air">
             <img
               class="icon-star"
@@ -77,7 +68,7 @@
               class="mask-group-1"
               src="../assets/mask-group-66@2x.svg"
             />
-          </div>
+          </div>-->
           <div class="group-14 border-0-3px-fresh-air" id="outtooltip" >
             <img 
               class="icon-user" @click="handleLogout"
@@ -89,26 +80,14 @@
       </div>
     </div>
      
-     <!--  <form v-on:submit.prevent="addNewTodo">
-    <label for="new-todo">Add a todo</label>
-    <input
-      v-model="newTodoText"
-      placeholder= "text"
-    />
-    <button>Add</button>
-  </form>
--->
-      <!--<button class="btn btn-primary btn-block"  @click="Workspace">Create First Page</button> -->
+    
    </li>
    
 </template>
 
 
 <script>
-//import axios from 'axios'
-//import {mapGetters} from 'vuex'
 import Userfront from "@userfront/core"
-//import Error from './Error.vue'
 import {mapGetters} from 'vuex'
 
 
@@ -127,11 +106,7 @@ Userfront.init("demo1234");
        return !Userfront.tokens.accessToken;
     },
             },
-             
-             //components:{
-        //Error
-        
-     //},
+                          
              data(){
                 return{   
                     return: '',
@@ -183,10 +158,9 @@ Userfront.init("demo1234");
   border-radius: 6px;
   border-color: black;
   padding: 5px 0;
-
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
+  margin-top:40px;
 }
 
 #outtooltip:hover #tooltiptext {
@@ -194,6 +168,24 @@ Userfront.init("demo1234");
   cursor: pointer;
 }
 
+#outtooltip #tooltiptext1 {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0.322);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  border-color: black;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  margin-top:40px;
+}
+
+#outtooltip:hover #tooltiptext1 {
+  visibility: visible;
+  cursor: pointer;
+}
 
 .desktop-7 {
   align-items: flex-start;
@@ -201,10 +193,8 @@ Userfront.init("demo1234");
   background-color: #e3e8ee;
   display: flex;
   height: 747px;
-  margin-top:-17px;
-  /*height: 1024px;*/
-  overflow: hidden;
-  /*width: 1440px;*/
+  margin-top:-17px; 
+  overflow: hidden; 
   width: 1519px;
 }
 
@@ -263,11 +253,9 @@ Userfront.init("demo1234");
   backdrop-filter: blur(15px) brightness(100%);
   
   background-color:var(--white-4);
-  border-radius: 13px;
-  /*height: 1024px;*/
+  border-radius: 13px; 
   height: 730px;
   margin-top:5px;
-  /*left: 109px;*/
   left: 140px;
   position: absolute;
   top: 94px;
@@ -447,8 +435,8 @@ Userfront.init("demo1234");
   box-shadow: 0px 2px 2px #5cffdd;
   display: flex;
   height: 36px;
-  left: 1134px;
-  min-width: 166px;
+  left: 1240px;
+  min-width: 70px;
   position: fixed;
   top: 17px;
   z-index: 8;
@@ -615,6 +603,7 @@ Userfront.init("demo1234");
   font-size: var(--font-size-xxl);
   font-style: normal;
   font-weight: 500;
+  
 }
 
 .fredoka-light-black-30px {
@@ -623,6 +612,7 @@ Userfront.init("demo1234");
   font-size: var(--font-size-xxl);
   font-style: normal;
   font-weight: 300;
+  
 }
 
 .fredoka-bold-white-30px {
@@ -630,6 +620,7 @@ Userfront.init("demo1234");
   font-size: var(--font-size-xxl);
   font-style: normal;
   font-weight: 700;
+  cursor:pointer;
 }
 
 .border-0-3px-fresh-air {

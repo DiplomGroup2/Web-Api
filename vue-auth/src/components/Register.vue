@@ -28,41 +28,32 @@
                         </div>
                         <div class="ellipse-6"></div>
                         <div class="ellipse-7"></div>
-                    </div>
-                    <!--<div class="rectangle-12 border-0-4px-black">-->
-                    <input type="email" class="form-control rectangle-12 border-0-4px-black" v-model="email" placeholder="Email" />
-
-
-                    <!--</div>-->
-                    <!--<div class="rectangle-13 border-0-4px-black">-->
-                    <input type="password" class="form-control rectangle-13 border-0-4px-black" v-model="password" placeholder="Password" />
-
-                    <!--</div>-->
-                    <!--<div class="rectangle-14 border-0-4px-black">-->
-                    <input type="password" class="form-control rectangle-14 border-0-4px-black" v-model="password_confirm" placeholder="Repeat password" />
-
-                    <!--</div>-->
+                    </div>                   
+                    <input type="email" class="form-control rectangle-12 border-0-4px-black" v-model="email" placeholder="Email" />                   
+                    <input type="password" class="form-control rectangle-13 border-0-4px-black" v-model="password" placeholder="Password" />                   
+                    <input type="password" class="form-control rectangle-14 border-0-4px-black" v-model="password_confirm" placeholder="Repeat password" />                    
                     <div class="create-account fredoka-medium-black-30px">Create Account</div>
                     <p class="dont-have-an-accoun fredoka-light-black-16px">
                         Don&#39;t have an account yet?<br />You must register otherwise your data will be lost.
                     </p>
                     <div class="group-8 border-0-4px-white">
                         <div class="overlap-group-container">
-                            <img :src="require('@/assets/Plus.jpg')"/>
+                                      <div class="overlap-group2">
+                                     <div class="rectangle-6"></div>                    
+                                      <img class="icon-user" src="../assets/mask-group-77@2x.svg"/>
+                                       
+                  </div>
                         </div>
                     </div>
-                    <!--<div class="place fredoka-light-nobel-16px">Name</div>
-    <div class="email fredoka-light-nobel-16px">Email</div>
-    <div class="password fredoka-light-nobel-16px">Password</div>-->
+                    <!--Глазик для проверки кода-->
                     <div class="group-67">
-                        <img class="vector-5"
-                             src="../assets/vector-5-1@2x.svg" />
+                       <!-- <img class="vector-5"
+                             src="../assets/vector-5-1@2x.svg" />-->
                     </div>
                     <div class="rectangle-69"></div>
-                    <button >
+                    <button class="btn">
                         <div class="place-1 fredoka-normal-white-20px">
-                            Sign Up
-                            <!--Register class="btn btn-primary btn-block"-->
+                            Sign Up                          
                         </div>
                     </button>
                     <h1 class="title fredoka-bold-white-36px">Welcome!</h1>
@@ -79,42 +70,14 @@
             </form>
         </div>
     </div>
-
     <div>
-        <!--<form @submit.prevent="handleSubmit">
-        <error v-if="error" :error="error"/>-->
-        <!--<h3>Sign Up</h3>-->
-        <!--<div class="form-group">
-            <label>First Name</label>
-            <input type="text" class="form-control" v-model="first_name"  placeholder="First Name"/>
-            </div>
-            <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" class="form-control" v-model="last_name" placeholder="Last Name"/>
-            </div>-->
-        <!--<div class="form-group">
-        <label>Email</label>-->
-        <!--<input type="email" class="form-control" v-model="login" placeholder="Email"/>-->
-        <!--</div>-->
-<!--
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" v-model="password" placeholder="Password" />
-        </div>-->
-
-        <!-- <div class="form-group">
-        <label>Confirm Password</label>
-        <input type="password" class="form-control" v-model="password_confirm" placeholder="Confirm Password"/>
-        </div>-->
-        <!--<button class="btn btn-primary btn-block">Sign Up</button>-->
-        <!--</form>-->
     </div>
 </template>
 
 <script>
     import axios from 'axios'
     import Error from './Error.vue'
-    //import Login from './Login';
+   
 
     export default {
         name: 'REGISTER',
@@ -122,9 +85,7 @@
             Error
         },
         data() {
-            return {
-                //first_name:'',
-                //last_name:'',
+            return {              
                 email: '',
                 password: '',
                 password_confirm: '',
@@ -139,12 +100,9 @@
                         return;
                     }
                     console.log('submitted'),
-                        await axios.post('api/Account/Register', {
-                            //first_name:this.first_name,
-                            //last_name:this.last_name,
+                        await axios.post('api/Account/Register', {                            
                             email: this.email,
-                            password: this.password,
-                            //assword_confirm:this.password_confirm
+                            password: this.password,    
                         });
 
                     this.$router.push('/login');
@@ -157,39 +115,40 @@
                     this.$router.push('/login');
 
                 }
-
         }
-        //СТИЛИ,КОТОРЫЕ БЫЛИ
-       // .desktop-2 {
-       // align-items: flex-start;
-        //background-color: var(--baby-powder);
-        //display: flex;
-       // height: 1024px;
-        //padding: 100px 400px;
-        //width: 1440px;
-    //}
+       
     }
 </script>
 
 <style>
-    .desktop-2 {
-        
-         background-color:#e3e8ee;
-        /*margin-left: 180px;
-        margin-top:50px; 
-        height: 10px;
-        width: 100px;СТИЛЬ С ЗЕЛЕНЫМ ФОНОМ*/
-        height: 969px;/*ПЕРЕДЕЛКА*/
-        width: 1918px;/*ПЕРЕДЕЛКА*/
+.btn {
+   
+  background: transparent;
+    border: none !important;
+}
+
+    .desktop-2 {        
+         background-color:#e3e8ee;       
+        height: 969px;
+        width: 1918px;
          
     }
 
+.desktop-2 .rectangle-6 {
+  background: linear-gradient(180deg, rgba(248.63, 248.63, 248.63, 0) 0%, rgb(219.94, 236.07, 255) 100%);
+  border-radius: 32.19px;
+  height: 59px;
+  left: 1px;
+  position: absolute;
+  top: 0;
+  width: 59px;
+}
     .desktop-2 .overlap-group4 {
         height: 655px;
         position: relative;
         width: 1119px;
-        margin-left:380px;/*добавлено*/
-        margin-top:120px;/*добавлено*/
+        margin-left:380px;
+        margin-top:120px;
         
     }
 
@@ -212,8 +171,7 @@
         width: 688px;
     }
 
-    .desktop-2 .rectangle-3 {
-        /* Изменение в стиле фона*/
+    .desktop-2 .rectangle-3 {        
         background: linear-gradient(180deg, #74FDE0, #5BBCFD);
         border-radius: 12px 0px 0px 12px;
         height: 655px;
@@ -664,8 +622,7 @@
 
 
     body {
-        background: #e3e8ee;
-        /* background: #CCE5FF;*/
+        background: #e3e8ee;  
         min-height: 100vh;
         display: flex;
         font-weight: 400;

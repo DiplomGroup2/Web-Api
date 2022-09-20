@@ -1,48 +1,10 @@
 <template>
-    <!--<li>-->
-    <!--{{ title }}
-       <button id="logout-button" @click.prevent="handleLogout" >Log out</button>
-              <h3 v-if="!username">You are not logged in!</h3>
-              <h3 v-if="username" id="backgr">Hi,{{username}} </h3>
-
-
-
-       <h3 ><font color="blue"> {{ title }} </font></h3>
-        <error v-if="error" :error="error" />
-        <img :src="require('@/assets/createpage.jpg')"/>
-
-         <form v-on:submit.prevent="addNewTodo">
-       <label for="new-todo">Add a todo</label>
-       <input
-         v-model="newTodoText"
-         placeholder= "text"
-       />
-       <button>Add</button>
-     </form>
-    <button class="btn btn-primary btn-block">Create First Page</button>-->
-    <!--</li>-->
-
-
-   <p> </p>   
-    <!--111111-->
-
-
-
-   
-   <!--<input type="hidden" id="anPageName" name="page" value="98_318" />
-    <div class="group-15 border-0-4px-black"></div>-->
-    
+   <p> </p>       
 </template>
 
-
 <script>
-//import axios from 'axios'
-//import {mapGetters} from 'vuex'
 import Userfront from "@userfront/core"
-//import Error from './Error.vue'
 import {mapGetters} from 'vuex'
-
-
 
 Userfront.init("demo1234");
 
@@ -59,8 +21,7 @@ Userfront.init("demo1234");
     },
             },
 
-             components:{
-        //Error
+             components:{      
 
      },
              data(){
@@ -84,12 +45,7 @@ Userfront.init("demo1234");
 
     }
   }
-
-
-
 </script>
-
-
 
 <style scoped>
 

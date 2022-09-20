@@ -188,7 +188,7 @@ namespace MVC_2.Controllers
         }
 
         /// <summary>
-        /// отримання 10 останніх створених сторінок авторизованого користувача без тегів
+        /// отримання  останніх створених сторінок авторизованого користувача без тегів
         /// </summary>
         /// <returns></returns>
         [Route("GetPageLast")]
@@ -228,7 +228,6 @@ namespace MVC_2.Controllers
         /// <returns></returns> 
         [Route("DeleteAllPage")]
         [HttpDelete]
-        //[HttpDelete("{id}")]
         public IActionResult DeleteAllPage()
         {
             string name = User.Identity.Name;

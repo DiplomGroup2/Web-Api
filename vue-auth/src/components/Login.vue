@@ -6,23 +6,15 @@
             <error v-if="error" :error="error" />
               <div class="overlap-group5">             
                   <div class="rectangle-2 border-0-2px-gray"></div>
-                  <div class="forgot-your-password">Forgot your password?</div>
-                  <!--<div class="rectangle-4 border-0-4px-black">-->
-                      <input type="email" class="form-control rectangle-4 border-0-4px-black" v-model="email" placeholder="Email" />
-
-                  <!--</div>-->
-                 <!-- <div class="rectangle-11 border-0-4px-black">-->
-                      <input type="password" class="form-control rectangle-11 border-0-4px-black" v-model="password" placeholder="Password" />
-
-                  <!--</div>-->
-                  <!--<div class="email fredoka-light-nobel-16px">-->
-                  <!--<label>Email</label>-->
-                  <!--</div>-->
-                  <!--<div class="password fredoka-light-nobel-16px">Password</div>-->
-                  <div class="group-64">
+                  <div class="forgot-your-password">Forgot your password?</div>                 
+                      <input type="email" class="form-control rectangle-4 border-0-4px-black" v-model="email" placeholder="Email" />           
+                      <input type="password" class="form-control rectangle-11 border-0-4px-black" v-model="password" placeholder="Password" />                
+                  <!--Глазик для проверки пароля-->
+                  <!--<div class="group-64">
+                    
                       <img class="vector-4"
                            src="../assets/vector-4-1@2x.svg" />
-                  </div>
+                  </div>-->
                   <div class="overlap-group1">
                       <div class="rectangle-3"></div>
                       <div class="overlap-group">
@@ -47,8 +39,7 @@
                       <div class="ellipse-7"></div>
                   </div>
                   <div class="overlap-group2">
-                      <div class="rectangle-6"></div>
-                     <!-- <img class="icon-user" :src="require('@/assets/Profile.jpg')"/> -->
+                      <div class="rectangle-6"></div>                    
                      <img class="icon-user" src="../assets/mask-group-77@2x.svg"/>
                   </div>
                   <h1 class="title fredoka-bold-white-36px">Welcome!</h1>
@@ -74,19 +65,10 @@
           </form>
       </div>
     </div>
-      <!--<img alt="Vue logo" src="./assets/logo.png">-->
-      <!--<h3>Login</h3>-->
-<!--<div class="form-group">
-<label>Email</label>
-<input type="email" class="form-control" v-model="login" placeholder="Email"/>
-</div>
 
-<div class="form-group">
-<label>Password</label>
-</div>-->
-
-
-<!--<p class="forgot-password text-right">
+<!--
+  FORGOT PASSWORD
+  <p class="forgot-password text-right">
 <router-link to="forgot">Forgot password?</router-link>
 </p>-->
 
@@ -117,14 +99,9 @@ export default {
            password:this.password
            });
            localStorage.setItem('access_token',response.data.access_token);
-           console.log(localStorage);
-          
-          
-           alert(response.data.username);
-        
-           await this.$store.dispatch('user',response.data.username);
-
-           //this.$store.dispatch('username',response.data.username);
+           console.log(localStorage);         
+           /*alert(response.data.username); */       
+           await this.$store.dispatch('user',response.data.username);        
            this.$router.push('/zeroworkspace');
            }catch(e){
             this.error = 'Invalid username/password!';
@@ -133,24 +110,14 @@ export default {
         },
         FromSignInIntoRegister(){
           this.$router.push('/register');
-
         }
     }
-    //ИЗМЕНЕНИЯ ПО СТИЛЮ . БЫЛО ВОТ ТАК:
-   // .desktop-1 {
-  //background-color: var(--baby-powder);
-  //height: 910px;
-  //width: 100%;
-//}
 }
 </script>
 
 <style>
-.desktop-1 {
-  /*background-color: var(--baby-powder);*/
-   background-color:#e3e8ee;
-  /*height: 10px;
-  width: 130%; CТИЛЬ С ЗЕЛЕНЫМ ФОНОМ*/
+.desktop-1 { 
+  background-color:#e3e8ee;  
   height:969px;
   width:1918px;
 }
@@ -251,8 +218,7 @@ export default {
   width: 688px;
 }
 
-.desktop-1 .rectangle-3 {
-  /* Изменение в стиле фона*/
+.desktop-1 .rectangle-3 { 
   background: linear-gradient(180deg, #74FDE0, #5BBCFD);
   border-radius: 0px 12px 12px 0px;
   height: 655px;

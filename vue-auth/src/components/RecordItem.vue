@@ -1,5 +1,5 @@
 <template>
-    <!--<img class="group-136" src="../assets/group-136-2@2x.svg" />-->
+   
     <div class="fredoka-light-black-15px img-record">
         <!--виведення тексту з можливістю редагування-->
         <span v-if="type==a1">
@@ -11,6 +11,7 @@
 
             </span>
         </span>
+
 
         <!--виведення зображення-->
         <span class="img-record" v-if="type==a2"> <img class="img-record" v-bind:src="'https://diplom.somee.com/api/Record/GetImage?imageId=' + imageId" /> </span>
@@ -27,7 +28,7 @@
         </span>
 
         <!--виведення файлу-->
-        <span v-if="type==a4" class="group-file">
+        <span v-if="type==a4" class="group-file">            
             <span class="group-135">
                 <span class="overlap-group3">
                     <span class="overlap-group-1">
@@ -45,12 +46,13 @@
         <!--виведення відео з ютубу-->
 
         <span v-if="type==a5">
-            <iframe v-bind:src="youTube"
+            <iframe  v-bind:src="youTube"
                     title="YouTube video player"
                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <span v-if="!editing" v-on:click="edit()">
                 <a v-bind:href="message" target="_blank">{{message}} </a>
             </span>
+            
             <span v-if="editing">
                 <textarea id="textArea" v-model="message" v-on:blur="save_record" />
             </span>
@@ -59,7 +61,6 @@
     </div>
 
 </template>
-
 
 <script>import axios from 'axios'
 
@@ -120,11 +121,7 @@
         background-color: var(--white);
         border-radius: 12px;
         box-shadow: 0px 4px 0px #8ba8de;
-        /*height: 409px;
-        left: 695px;
-        position: absolute;
-        top: 139px;
-        width: 695px;*/
+        
     }
         .group-file {
         align-items: stretch;
@@ -144,6 +141,7 @@
         cursor: pointer;
         width: 40px;
         padding: 7px;
+
     }
 
     .rectangle-135 {
@@ -151,7 +149,7 @@
         border-color: gray;
         border-radius: 5px;
         width: 100%;
-        padding: 5px;
+        padding: 7px;
     }
 
     .overlap-group3 {
@@ -232,4 +230,25 @@
         width: 100%;
         margin: 1px;
     }
+</style>
+
+<style scoped>    
+    #textArea {
+        resize: both;
+        width: 100%;
+        height: 100%;
+    }
+    .text {
+        letter-spacing: 0;
+        margin-top: 8px;
+        min-height: 16px;
+        width: 39px;
+    }
+    .fredoka-light-black-15px {
+        color: var(--black);
+        font-family: var(--font-family-fredoka);
+        font-size: var(--font-size-s);
+        font-style: normal;
+        font-weight: 300;
+    }  
 </style>

@@ -45,15 +45,16 @@
                      src="../assets/line-2@1x.svg" />
                 <img class="group-18"
                      src="../assets/group-18@2x.svg" />
-                <h1 class="title fredoka-medium-black-25px">Personal pages - {{personalPage}}</h1>
+                <h1 class="title fredoka-medium-black-25px">Personal pages {{personalPage}}</h1>
 
                 <div class="trash fredoka-light-black-16px" id="outtooltip">
                     <img class="mask-group-3" src="../assets/mask-group-1@2x.svg" />
-                    <span id="tooltiptext2">Trash</span>
+                    <span id="tooltiptext2" >Delete All</span>
                     <!-- Trash-->
                 </div>
 
                 <div class="overlap-group3">
+                    <!--<div class="rectangle-121"></div>-->
                     <div class="overlap-group2" v-on:click="getAllPages">
                         <div class="group-container">
 
@@ -89,7 +90,7 @@
                                      src="../assets/rectangle-36-1@2x.svg" />
                             </div>
                         </div>
-                        <div class="all-notes fredoka-light-black-16px">Last 10</div>
+                        <div class="all-notes fredoka-light-black-16px">Last 3</div>
                     </div>
 
                     <div class="overlap-group2" v-on:click="getUntagged()">
@@ -152,37 +153,31 @@
 
             <!--<div class="tags fredoka-light-gray-12px">#tags</div>-->
             <div class="group-10">
-                <div class="overlap-group-3">
+                <div class="overlap-group-3" id="outtooltip">
                     <div class="rectangle-9 border-0-3px-fresh-air"></div>
-                    <div class="text-1 fredoka-bold-white-30px" @click="QuestionPage">?</div>
+                    <div class="text-1 fredoka-bold-white-30px"  @click="QuestionPage">?</div>
+                     <span id="tooltiptext3">FAQ</span>
                 </div>
-                <div class="group-12 border-0-3px-fresh-air">
+                <!-- ДЛЯ ДОБАВЛЕНИЯ СТРАНИЦЫ FAVOURITES
+                <div class="group-12 border-0-3px-fresh-air" id="outtooltip" >
                     <img class="icon-star" src="../assets/star-1@2x.svg" />
-                </div>
+                    <span id="tooltiptext4">Favourite Records</span>
+                </div>-->
 
-                <div class="group-13 border-0-3px-fresh-air">
-                    <img class="mask-group-4" src="../assets/mask-group-6@2x.svg" />
+                <div class="group-13 border-0-3px-fresh-air" id="outtooltip" >
+                    <img class="mask-group-4" @click="RulesPush" src="../assets/mask-group-6@2x.svg" />
+                     <span id="tooltiptext4">Rules</span>
                 </div>
-                <!--ПОДКЛЮЧЕНИЕ ПОДСКАЗКИ TOOLTIP LOGOUT -->
-                <div class="group-14 border-0-3px-fresh-air" id="outtooltip">
-                    <!--<span id="tooltiptext">Log out</span>-->
+                <div class="group-14 border-0-3px-fresh-air" id="outtooltip">                  
                     <span id="tooltiptext">
                         <input type="hidden" id="anPageName" name="page" value="component-22" />
-                        <!--<div class="container-center-horizontal">-->
+                       
                         <div class="component-22 screen">
                             <div class="component-22-1">
                                 <div class="flex-col">
                                     <div class="flex-row">
                                         <div class="profile">Profile</div>
-                                        <!--<div class="overlap-group401">
-                                          <div class="group-11601">
-                                            <img
-                                              class="rectangle-11801"
-                                              src="https://anima-uploads.s3.amazonaws.com/projects/630cefa5a839203234c33557/releases/630cefe0260e835b228e4406/img/rectangle-118@2x.svg"
-                                            />
-                                          </div>
-                                          <div class="ellipse-40101"></div>
-                                        </div>-->
+                                        
                                     </div>
                                     <img class="line-601"
                                          src="../assets/line-6-9@2x.svg" />
@@ -198,15 +193,14 @@
 
 
 
-                                            <h3 v-if="!username" id="backgr">Username/</h3>
+                                            <h3 v-if="!username" id="backgr">Username</h3>
                                             <h3 v-if="username" id="backgr">{{username}} </h3>
 
 
 
                                         </div>
                                         <div class="free">Free</div>
-                                    </div>
-                                    <!-- <div class="overlap-group101"><div class="upgrade">Upgrade</div></div>-->
+                                    </div>                                   
                                 </div>
                                 <img class="line-701"
                                      src="../assets/line-7@2x.svg" />
@@ -223,7 +217,7 @@
                                     <div class="sing-out fredoka-light-granite-gray-16px" @click="handleLogout">Sign Out</div>
                                 </div>
                             </div>
-                            <!--</div>-->
+                            
                         </div>
 
                     </span>
@@ -234,9 +228,155 @@
     </div>
 </template>
 
-<style scoped>
-    /* screen - component-22 */
 
+<script>
+    import { mapGetters } from 'vuex'
+    import TodoItem from './TodoItem'
+    //import Userpage from './Userpage'
+    import axios from 'axios'
+    import Userfront from "@userfront/core"
+
+    Userfront.init("demo1234");
+    export default {
+        name: 'SP',
+       // props: ['title', 'search'],
+
+        computed: {
+            ...mapGetters(['username']),
+            isLoggedOut() {
+                return !Userfront.tokens.accessToken;
+            },
+        },
+
+        components: { TodoItem },
+
+        data() {
+            return {
+                todos: [],
+                pageId: "",
+                alltags: [],
+                select: '',
+                personalPage: '',
+            }
+        },
+
+        async created() {
+            await this.getAllPages();
+            await this.get_all_tags();
+        },
+
+        methods: {
+
+            async addNewTodo() {
+
+                await axios.post('api/Page/Create', {
+                    newName: "Untitled",
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                await this.getAllPages();
+            },
+
+            async DeleteTodo(todo) {
+                await axios.delete('api/Page/' + todo.id, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                await this.getAllPages();
+            },
+
+            handleLogout() {
+                console.log('log_out_button'),
+                    Userfront.logout();
+                console.log('log_out_button2'),
+                    this.$router.push('/');
+
+            },
+
+            async getAllPages() {
+                const response = await axios.get('api/Page/GetAll', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.todos = response.data;
+                this.personalPage = " - All pages";
+            },
+
+            QuestionPage() {
+                this.$router.push('/question');
+            },
+            RulesPush(){
+                this.$router.push('/rules');
+            },
+
+            async getUntagged()  {
+                const response = await axios.get('api/Page/GetPageUntagged', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.todos = response.data;
+                this.personalPage = " - Untagged pages";
+            },
+
+            async getPagesTag(tag) {
+                const response = await axios.get('api/Page/GetPageTag?tag=' + tag, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.todos = response.data;
+                this.personalPage = " - with tag " + tag;
+            },
+
+            async getPageLast(n) {
+                const response = await axios.get('api/Page/GetPageLast?countLast=' + n, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.todos = response.data;
+                this.personalPage = " - last 3";
+            },
+
+            async get_all_tags() {
+
+                const response = await axios.get('api/Page/GetTag', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                this.alltags = response.data;
+            },
+
+     async search_record(e) {
+            console.log(e);
+                try {
+                    const response = await axios.get('api/Record/GetText?str='+ e.target.value,
+                         {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        }
+                    });
+                    this.todos = response.data;
+                } catch (ex) {
+                    this.error = 'Invalid!';
+                    console.log(ex);
+                }
+                
+            },
+        }
+    }
+</script>
+
+
+
+<style scoped>
+   
     .component-22 {
         align-items: flex-start;
         display: flex;
@@ -266,7 +406,7 @@
             flex-direction: column;
             margin-right: 0;
             min-height: 38px;
-            /*width: 292px;*/
+           
             width: 200px;
         }
 
@@ -275,7 +415,7 @@
             display: flex;
             margin-left: 0;
             width: 200px;
-            /*min-width: 271px;*/
+           
         }
 
     .search {
@@ -574,13 +714,6 @@
         box-sizing: border-box;
     }
 
-
-
-
-
-
-
-    /*старый код*/
     #outtooltip {
         position: relative;
         display: inline-block;
@@ -593,8 +726,7 @@
             text-align: center;
             border-radius: 6px;
             border-color: black;
-            padding: 20px 0;
-            /* Position the tooltip */
+            padding: 20px 0;           
             position: absolute;
             z-index: 1;
         }
@@ -607,12 +739,36 @@
             text-align: center;
             border-radius: 6px;
             border-color: black;
-            padding: 5px 0;
-            /* Position the tooltip */
+            padding: 5px 0;          
             position: absolute;
             z-index: 1;
         }
-
+        #outtooltip #tooltiptext3 {
+            visibility: hidden;
+            width: 80px;
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            border-color: black;
+            top:40px;
+            padding: 5px 0;        
+            position: absolute;
+            z-index: 1;
+        }
+        #outtooltip #tooltiptext4 {
+            visibility: hidden;
+            width: 80px;
+            background-color: lightgray;
+            color: black;
+            text-align: center;
+            border-radius: 3px;
+            border-color: black;
+            top:40px;
+            padding: 5px 0;           
+            position: absolute;
+            z-index: 1;
+        }
         #outtooltip:hover #tooltiptext {
             visibility: visible;
             cursor: pointer;
@@ -622,20 +778,24 @@
             visibility: visible;
             cursor: pointer;
         }
+        #outtooltip:hover #tooltiptext3 {
+            visibility: visible;
+            cursor: pointer;
+        }
+        #outtooltip:hover #tooltiptext4 {
+            visibility: visible;
+            cursor: pointer;
+        }
 
     .desktop-21 {
-        align-items: flex-start;
-        /*background-color: var(--mystic);*/
+        align-items: flex-start;        
         background-color: #e3e8ee;
         display: flex;
         min-height: 1124px;
-        /*overflow: hidden;*/
-        /*width: 1440px;*/
-        /*width: 1519px;*/
+        
     }
 
-        .desktop-21 .overlap-group9 {
-            /*height: 1118px;*/
+        .desktop-21 .overlap-group9 {            
             margin-left: -88px;
             margin-top: -94.24px;
             position: relative;
@@ -683,7 +843,7 @@
             top: 196px;
             width: 259px;
         }
-        /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        
         .desktop-21 .rectangle-24 {
             -webkit-backdrop-filter: blur(15px) brightness(100%);
             backdrop-filter: blur(15px) brightness(100%);
@@ -745,12 +905,9 @@
             background-color: var(--white-2);
             border-radius: 5px;
             display: flex;
-            height: 30px;
-            /* left: 226px;*/
+            height: 30px;           
             min-width: 125px;
-            padding: 3.9px 4.7px;
-            /* position: absolute;
-            top: 365px;*/
+            padding: 3.9px 4.7px;            
             cursor: pointer;
         }
 
@@ -834,9 +991,6 @@
             background-color: var(--white-32);
             border-radius: 13px;
             height: 191px;
-            /*left: 725px;
-    position: absolute;
-    top: 259px;*/
             width: 264px;
             margin: 20px;
             display: inline-block;
@@ -860,19 +1014,12 @@
             width: 125px;
         }
 
-        .desktop-21 .all-notes {
-            /* left: 38px;*/
-            letter-spacing: 0;
-            /* position: absolute;
-            top: 4px;*/
+        .desktop-21 .all-notes {           
+            letter-spacing: 0;           
             width: 79px;
         }
 
-        .desktop-21 .overlap-group-1 {
-            /* height: 20px;
-            left: 5px;
-            position: absolute;
-            top: 4px;*/
+        .desktop-21 .overlap-group-1 {        
             width: 27px;
         }
 
@@ -1260,7 +1407,6 @@
 
         .desktop-21 .group-10 {
             align-items: center;
-            /*box-shadow: 0px 2px 2px #5cffdd;*/
             display: flex;
             height: 34px;
             left: 1133px;
@@ -1278,8 +1424,7 @@
             width: 27px;
         }
 
-        .desktop-21 .rectangle-9 {
-            /*background: linear-gradient(180deg, rgb(253, 254, 255) 0%, rgb(234, 242, 253) 100%);*/
+        .desktop-21 .rectangle-9 {            
             border-radius: 13px;
             height: 27px;
             left: 0;
@@ -1300,16 +1445,14 @@
             left: 7px;
             letter-spacing: 0;
             position: absolute;
-            text-align: center;
-            text-fill-color: transparent;
+            text-align: center;            
             top: 0;
             width: 13px;
             cursor: pointer;
         }
 
         .desktop-21 .group-12 {
-            align-items: flex-start;
-            /*background: linear-gradient(180deg, rgba(246, 246, 249, 0.27) 0%, rgb(255, 255, 255) 0.01%, rgb(232, 241, 253) 100%);*/
+            align-items: flex-start;            
             border-radius: 13px;
             display: flex;
             height: 27px;
@@ -1322,11 +1465,11 @@
         .desktop-21 .icon-star {
             height: 17px;
             width: 18px;
+            cursor:pointer;
         }
 
         .desktop-21 .group-13 {
-            align-items: flex-start;
-            /*background: linear-gradient(180deg, rgb(253, 254, 255) 0%, rgb(234, 242, 253) 100%);*/
+            align-items: flex-start;       
             border-radius: 13px;
             display: flex;
             height: 27px;
@@ -1339,6 +1482,7 @@
         .desktop-21 .mask-group-4 {
             height: 16px;
             width: 17px;
+            cursor:pointer;
         }
 
         .desktop-21 .group-14 {
@@ -1501,142 +1645,3 @@
     }
 </style>
 
-<script>
-    import { mapGetters } from 'vuex'
-    import TodoItem from './TodoItem'
-    //import Userpage from './Userpage'
-    import axios from 'axios'
-    import Userfront from "@userfront/core"
-
-    Userfront.init("demo1234");
-    export default {
-        name: 'SP',
-       // props: ['title', 'search'],
-
-        computed: {
-            ...mapGetters(['username']),
-            isLoggedOut() {
-                return !Userfront.tokens.accessToken;
-            },
-        },
-
-        components: { TodoItem },
-
-        data() {
-            return {
-                todos: [],
-                pageId: "",
-                alltags: [],
-                select: '',
-                personalPage: '',
-            }
-        },
-
-        async created() {
-            await this.getAllPages();
-            await this.get_all_tags();
-        },
-
-        methods: {
-
-            async addNewTodo() {
-
-                await axios.post('api/Page/Create', {
-                    newName: "Untitled",
-                }, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
-                await this.getAllPages();
-            },
-
-            async DeleteTodo(todo) {
-                await axios.delete('api/Page/' + todo.id, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
-                await this.getAllPages();
-            },
-
-            handleLogout() {
-                console.log('log_out_button'),
-                    Userfront.logout();
-                console.log('log_out_button2'),
-                    this.$router.push('/');
-
-            },
-
-            async getAllPages() {
-                const response = await axios.get('api/Page/GetAll', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
-                this.todos = response.data;
-                this.personalPage = "All pages";
-            },
-
-            QuestionPage() {
-                this.$router.push('/question');
-            },
-
-            async getUntagged()  {
-                const response = await axios.get('api/Page/GetPageUntagged', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
-                this.todos = response.data;
-                this.personalPage = "Untagged pages";
-            },
-
-            async getPagesTag(tag) {
-                const response = await axios.get('api/Page/GetPageTag?tag=' + tag, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
-                this.todos = response.data;
-                this.personalPage = "with tag " + tag;
-            },
-
-            async getPageLast(n) {
-                const response = await axios.get('api/Page/GetPageLast?countLast=' + n, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
-                this.todos = response.data;
-                this.personalPage = "last 3";
-            },
-
-            async get_all_tags() {
-
-                const response = await axios.get('api/Page/GetTag', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
-                this.alltags = response.data;
-            },
-
-     async search_record(e) {
-            console.log(e);
-                try {
-                    const response = await axios.get('api/Record/GetText?str='+ e.target.value,
-                         {
-                        headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                        }
-                    });
-                    this.todos = response.data;
-                } catch (ex) {
-                    this.error = 'Invalid!';
-                    console.log(ex);
-                }
-            },
-        }
-    }
-</script>

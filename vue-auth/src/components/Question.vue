@@ -1,16 +1,5 @@
 <template > 
 <li>
-       <!--ВЫВОД СТРОКИ,КТО ПОДКЛЮЧИЛСЯ , ТАКЖЕ НУЖНО  РАСКОММЕНТИРОВАТЬ Я КОМПОНЕНТ ERROR-->
-       <!--{{ title }}
-           <h3 v-if="!username" id="backgr">You are not logged in!</h3>
-           <h3 v-if="username" id="backgr">Hi,{{username}} </h3>
-    <h3 ><font color="blue"> {{ title }} </font></h3>     
-     <error v-if="error" :error="error" />   -->
-     
-
-
-
-
       <input type="hidden" id="anPageName" name="page" value="desktop-7" />
     <div class="container-center-horizontal">
       <div class="desktop-7 screen">
@@ -64,47 +53,11 @@
             <p> - One-click publishing to the web;</p>
             <p> - All your notes are in one place</p>
             </div>
-          </div>
-          
-          <!--<div class="rectangle-70"></div>
-          <div class="rectangle-73"></div>
-          <div class="rectangle-71"></div>
-          <div class="rectangle-72"></div>-->
-        </div>
-        <!--<img
-          class="mask-group" src="../assets/mask-group-63@1x.svg"
-        />-->
-        <!--<img
-          class="x1" src="../assets/---1@1x.png"
-        />-->
+          </div>          
+        </div>        
         <div class="ellipse-7"></div>
         <div class="ellipse-8"></div>
-        <!--<img
-          class="ellipse-9" src="../assets/ellipse-9@2x.svg"
-        />
-        <img
-          class="ellipse-10" src="../assets/ellipse-10@2x.svg"
-        />
-        <img
-          class="icon-light_bulb" src="../assets/mask-group-64@2x.svg"
-        />-->
         <div class="group-10">
-          <!--<div class="overlap-group-1">
-            <div class="rectangle-9 border-0-3px-fresh-air"></div>
-            <div class="text-1 fredoka-bold-white-30px" @click="QuestionPage">?</div>
-          </div>
-          <div class="group-12 border-0-3px-fresh-air">
-            <img
-              class="icon-star"
-              src="../assets/star-1-10@2x.svg"
-            />
-          </div>
-          <div class="group-13 border-0-3px-fresh-air">
-            <img
-              class="mask-group-1"
-              src="../assets/mask-group-66@2x.svg"
-            />
-          </div>-->
           <div class="group-14 border-0-3px-fresh-air" id="outtooltip" >
             <img 
               class="icon-user" @click="handleLogout"
@@ -115,17 +68,6 @@
         </div>
       </div>
     </div>
-     
-     <!--  <form v-on:submit.prevent="addNewTodo">
-    <label for="new-todo">Add a todo</label>
-    <input
-      v-model="newTodoText"
-      placeholder= "text"
-    />
-    <button>Add</button>
-  </form>
--->
-      <!--<button class="btn btn-primary btn-block"  @click="Workspace">Create First Page</button> -->
    </li>
    
 </template>
@@ -135,7 +77,6 @@
 //import axios from 'axios'
 //import {mapGetters} from 'vuex'
 import Userfront from "@userfront/core"
-//import Error from './Error.vue'
 import {mapGetters} from 'vuex'
 
 
@@ -155,10 +96,7 @@ Userfront.init("demo1234");
     },
             },
              
-             //components:{
-        //Error
-        
-     //},
+            
              data(){
                 return{   
                     return: ''                 
@@ -227,10 +165,8 @@ Userfront.init("demo1234");
   background-color: #e3e8ee;
   display: flex;
   height: 747px;
-  margin-top:-17px;
-  /*height: 1024px;*/
-  overflow: hidden;
-  /*width: 1440px;*/
+  margin-top:-17px;  
+  overflow: hidden; 
   width: 1519px;
 }
 
@@ -290,11 +226,9 @@ Userfront.init("demo1234");
   backdrop-filter: blur(15px) brightness(100%);
   
   background-color:var(--white-4);
-  border-radius: 13px;
-  /*height: 1024px;*/
+  border-radius: 13px; 
   height: 730px;
-  margin-top:5px;
-  /*left: 109px;*/
+  margin-top:5px;  
   left: 140px;
   position: absolute;
   top: 94px;

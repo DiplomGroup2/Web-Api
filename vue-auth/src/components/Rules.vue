@@ -12,38 +12,17 @@
           />
           <img
             class="rectangle-24" src="../assets/rectangle-24@1x.png"
-          />  
-          <!--       
-          <div class="overlap-group border-0-4px-white"><div class="place fredoka-normal-white-20px" @click="RegisterClick">Start</div></div>
-          
-          <div class="group-72">
-            <div class="overlap-group1 border-0-4px-white">
-              <div class="place-1 fredoka-normal-white-20px" @click="RegisterClick">Register</div>
-            </div>
-          </div>-->
-          
+          />                      
           <div class="sing-in" @click="ComeBackClick"><button class="btn">Go to workspace</button></div>
           <img
             class="group-18" src="../assets/group-18@2x.svg"
           />         
           <div class="tiles" id="outtooltip">tiles          
-          </div>   
-                 
-
-
-
-                 
+          </div>                                  
           <div class="organize-your-ideas-projects-visually">FOLLOW OUR RULES TO CREATE YOUR NOTES
 
           </div>
-          <div class="organize-your-ideas-projects-visually1">
-            
-           
-
-
-  <!-- Full-width images with number and caption text -->
-  
-          <!--<div class="personal-workspace-favored-by-creatives">Personal workspace favored by creatives</div>-->
+          <div class="organize-your-ideas-projects-visually1">                     
          <div class="rectangle-136">
              <div class="gallery">
   <a target="_blank" href="../assets/new1.jpg">
@@ -86,21 +65,14 @@
   <div class="desc">6. To add a picture - click Image. Download a picture from your PC. </div>
 </div>
             
-          </div>
-               <!--<iframe width="700" height="415" 
-               src="https://www.youtube.com/embed/H7bOtuZtiXk" 
-               title="YouTube video player"
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->         
-          
+          </div>             
           </div>  
           <div class="ellipse-7">            
           </div>
           <div class="ellipse-8"></div>
           <img
             class="rectangle-137" src="../assets/rectangle-137@1x.png"
-          />
-          
-          
+          />                    
          <div class="x screen">
          <div class="overlap-group4201">
           <div class="view201">
@@ -141,9 +113,7 @@
         </div>
           <img
             class="group-73201" src="../assets/group-73@2x.svg"
-          />
-
-          
+          />          
         </div>
       </div>
       </div>
@@ -167,23 +137,15 @@ import Userfront from "@userfront/core"
              
              data(){
                 return{   
-                    return: 'username',
-
-                     
-                    
+                    return: 'username',                    
                 }
              },
              methods:{           
             ComeBackClick(){
                this.$router.push('/workspace');
-            },
-    
-     
+            },     
     },
-  }
-    
-    
-    
+  }           
 </script>
 
 
@@ -195,7 +157,7 @@ import Userfront from "@userfront/core"
     color:#0a54e2;
     border-radius:4px;
 }
-/*Gallery*/
+
 .desktop-25 .rectangle-136 {
   background-color: rgba(173, 230, 228, 0.677);
   border-radius: 12px;
@@ -228,13 +190,7 @@ div.desc {
   text-align: center;
   
 }
-/*Gallery*/
 
-
-
-
-
-/*RULES*/
 .imgCustom {
   border: 2px solid rgb(221, 221, 221);
   border-radius: 5px;
@@ -406,12 +362,6 @@ div.desc {
   font-style: normal;
   font-weight: 700;
 }
-
-
-
-
-
-
 
 .overlap-group4201 {
   height: 1118px;
@@ -803,20 +753,6 @@ div.desc {
   width: 27px;
 }
 
-/*RULES*/
-
-
-
-
-
-
-
-
-
-
-
-
-
 #outtooltip {
   position: relative;
   display: inline-block;
@@ -832,17 +768,10 @@ div.desc {
   margin-left: 10px;
   padding: 5px 5px;
   visibility: visible;
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
 }
 
-
-
-/* @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
-*{
-  box-sizing:border-box;
-} */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
 @import url("https://fonts.googleapis.com/css?family=Fredoka:400,300,700,500");
@@ -915,13 +844,10 @@ div.desc {
 
 
 .desktop-25 {
-  align-items: flex-start;
-  /*background-color: var(--mystic);
-  background-color:lightblue;*/
+  align-items: flex-start;  
    background-color: #e3e8ee;
   display: flex;
   overflow: hidden;
-  /*width: 1440px;*/
   width: 1520px;
   
 }
@@ -976,7 +902,6 @@ div.desc {
 
 .desktop-25 .rectangle-24 {
   height: 1000px;
-  /*height: 1066px;*/
   left: 150px;
   top: 20px;
   width: 1402px;
@@ -1071,7 +996,6 @@ div.desc {
   left: 220px;
   position: absolute;
   top: 45px;
-
   width: 70px;
 }
 
@@ -1101,16 +1025,6 @@ div.desc {
   top: 324px;
   width: 377px;
 }
-
-
-
-/*.desktop-25 .polygon-1 {
-  height: 82px;
-  left: 1016px;
-  position: absolute;
-  top: 298px;
-  width: 72px;
-}*/
 
 .desktop-25 .ellipse-7 {
   -webkit-backdrop-filter: blur(10px) brightness(100%);
@@ -1144,7 +1058,6 @@ div.desc {
   left: 91px;
   position: absolute;
   top: 644px;
-  /*width: 1439px;*/
   width: 1515px;
 }
 
